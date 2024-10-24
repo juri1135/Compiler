@@ -1,0 +1,7 @@
+void main(void)
+{
+	int i34e; int x[5];
+	
+	i34e = 0;
+	return;
+}
