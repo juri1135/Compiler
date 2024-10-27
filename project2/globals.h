@@ -14,6 +14,15 @@
 #include <ctype.h>
 #include <string.h>
 
+#ifndef YYPARSER
+
+/* the name of the following file may change */
+#include "y.tab.h"
+
+
+#define ENDFILE 0
+#endif
+
 #ifndef FALSE
 #define FALSE 0
 #endif
@@ -25,16 +34,18 @@
 /* MAXRESERVED = the number of reserved words */
 #define MAXRESERVED 6
 
-typedef enum 
-    /* book-keeping tokens */
-   {ENDFILE,ERROR,
-    /* reserved words */
-    IF,ELSE,WHILE,RETURN,INT,VOID,
-    /* multicharacter tokens */
-    ID,NUM,
-    /* special symbols */
-    ASSIGN,EQ,NE,LT,LE,GT,GE,PLUS,MINUS,TIMES,OVER,LPAREN,RPAREN,LBRACE,RBRACE,LCURLY,RCURLY,SEMI,COMMA
-   } TokenType;
+typedef int TokenType;
+// typedef enum 
+//     /* book-keeping tokens */
+//    {ENDFILE,ERROR_token,
+//     /* reserved words */
+//     IF,ELSE,WHILE,RETURN,INT,VOID,
+//     /* multicharacter tokens */
+//     ID,NUM,
+//     /* special symbols */
+//     ASSIGN,EQ,NE,LT,LE,GT,GE,PLUS,MINUS,TIMES,OVER,LPAREN,RPAREN,LBRACE,RBRACE,LCURLY,RCURLY,SEMI,COMMA
+//    } TokenType;
+
 
 extern FILE* source; /* source code text file */
 extern FILE* listing; /* listing output text file */
@@ -46,13 +57,15 @@ extern int lineno; /* source line number for listing */
 /***********   Syntax tree for parsing ************/
 /**************************************************/
 
-typedef enum {StmtK,ExpK, DeclK}, NodeKind;
-typedef enum {VarDeclK, FuncDeclK, ParamK} DeclKind;
-typedef enum {IfK, WhileK, CompoundK, ReturnK } StmtKind;
-typedef enum {OpK,ConstK,IdK,CallK,AssignK} ExpKind;
+typedef enum {StmtK,ExpK, DeclK} NodeKind;
+/*voidparamK 추가 (printTree에서 처리하기 용이 void parameter는 출력 형식이 다름) */
+typedef enum {VarK, ArrK, FuncK, ParamK, VoidParamK, ArrParamK} DeclKind;
+/*if else도 출력 형식이 달라서 If와 IfElse를 분리하는 게 용이*/
+typedef enum {IfK,ElseK, WhileK, CompoundK, ReturnK } StmtKind;
+typedef enum {OpK,ConstK,IdK,ArrIdK,CallK, AssignK} ExpKind;
 
 /* ExpType is used for type checking */
-typedef enum {Void,Integer} ExpType;
+typedef enum {Void,Integer,IntArray,VoidArray} ExpType;
 
 #define MAXCHILDREN 3
 
@@ -102,4 +115,5 @@ extern int TraceCode;
 
 /* Error = TRUE prevents further passes if an error occurs */
 extern int Error; 
+
 #endif

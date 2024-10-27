@@ -22,11 +22,11 @@ TreeNode * newStmtNode(StmtKind);
  * node for syntax tree construction
  */
 TreeNode * newExpNode(ExpKind);
-
+TreeNode * newDeclNode(DeclKind);
 /* Function copyString allocates and makes a new
  * copy of an existing string
  */
-char * copyString( char * );
+char * copyString( const char * );
 
 /* procedure printTree prints a syntax tree to the 
  * listing file using indentation to indicate subtrees
