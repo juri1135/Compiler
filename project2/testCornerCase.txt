@@ -1,0 +1,31 @@
+/*grammar에 의해, void parameter면 void로 명시해야 함... */
+/*void funciton() {
+}*/
+
+/*grammar에 의해 sum=a+b는 가능하지만 int sum=a+b는 불가... */
+/*int add(int a, int b) {
+    int sum=a+b;
+}*/
+/*b=c라는 문법은 syntax 관점에서 보면 문제 없음,, 정상 parsing해야 함*/
+int subtract(int a, int b) {
+    b=c;
+}
+/*scanner에서 숫자는 digit[digit]+로 설정해서, -3은 NUM에 해당 X*/
+int main(void) {
+    int a;
+    int b;
+    a=-3;
+    printMessage(); 
+
+    checkPositive(a); 
+    checkPositive(b); 
+
+    
+    return 0;
+}
+/*이것도 문법에 의해 call은 앞에 type_specifier 붙을 수 없음*/
+int cal(int a, int b){
+    int result = add(a, b); 
+
+    int diff = subtract(a, b);
+}

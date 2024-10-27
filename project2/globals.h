@@ -59,10 +59,10 @@ extern int lineno; /* source line number for listing */
 
 typedef enum {StmtK,ExpK, DeclK} NodeKind;
 /*voidparamK 추가 (printTree에서 처리하기 용이 void parameter는 출력 형식이 다름) */
-typedef enum {VarK, ArrK, FuncK, ParamK, VoidParamK, ArrParamK} DeclKind;
+typedef enum {VarK, ArrK, FuncK, PramsK, ParamK, VoidParamK, ArrParamK} DeclKind;
 /*if else도 출력 형식이 달라서 If와 IfElse를 분리하는 게 용이*/
 typedef enum {IfK,ElseK, WhileK, CompoundK, ReturnK } StmtKind;
-typedef enum {OpK,ConstK,IdK,ArrIdK,CallK, AssignK} ExpKind;
+typedef enum {CallK,AssignK,OpK,ConstK,IdK, TypeK, VarExpK} ExpKind;
 
 /* ExpType is used for type checking */
 typedef enum {Void,Integer,IntArray,VoidArray} ExpType;

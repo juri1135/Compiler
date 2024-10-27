@@ -101,6 +101,7 @@ TreeNode * newDeclNode(DeclKind kind)
   int i;
   if (t==NULL)
     fprintf(listing,"Out of memory error at line %d\n",lineno);
+
   else {
     for (i=0;i<MAXCHILDREN;i++) t->child[i] = NULL;
     t->sibling = NULL;
@@ -150,6 +151,7 @@ void printTree( TreeNode * tree )
   INDENT;
   while (tree != NULL) {
     printSpaces();
+    // fprintf(listing, "Node Address: %p\n", (void*)tree);
     if (tree->nodekind==StmtK)
     { switch (tree->kind.stmt) {
         case IfK:
@@ -178,14 +180,11 @@ void printTree( TreeNode * tree )
           fprintf(listing,"Op: ");
           printToken(tree->attr.op,"\0");
           break;
+        case VarExpK:
+          fprintf(listing,"Variable: name = %s\n",tree->attr.name);
+          break;
         case ConstK:
           fprintf(listing,"Const: %d\n",tree->attr.val);
-          break;
-        case IdK:
-          fprintf(listing,"Variable: name = %s, type = %s\n",tree->attr.name,(tree->type==Integer)?"int":"void");
-          break;
-        case ArrIdK:
-          fprintf(listing,"Variable: name = %s, type = %s\n",tree->attr.name,(tree->type==IntArray)?"int[]":"void[]");
           break;
         case CallK:
           fprintf(listing,"Call: function name = %s\n",tree->attr.name);
@@ -207,16 +206,16 @@ void printTree( TreeNode * tree )
           fprintf(listing,"Variable Declaration: name = %s, type = %s\n",tree->attr.name,(tree->type==IntArray)?"int[]":"void[]");
           break;
         case FuncK:
-          fprintf(listing,"Function Declaration: name = %s, type = %s\n",tree->attr.name,(tree->type==Integer)?"int":"void");
+          fprintf(listing,"Function Declaration: name = %s, return type = %s\n",tree->attr.name,(tree->type==Integer)?"int":"void");
           break;
         case ParamK:
-          fprintf(listing,"Parameter: name = %s, type = %d\n",tree->attr.name, tree->type);
+          fprintf(listing,"Parameter: name = %s, type = %s\n",tree->attr.name, (tree->type==Integer)?"int":"void");
           break;
         case VoidParamK:
           fprintf(listing,"Void Parameter\n");
           break;
         case ArrParamK:
-          fprintf(listing,"Function Declaration: name = %s, type = %s\n",tree->attr.name,(tree->type==IntArray)?"int[]":"void[]");
+          fprintf(listing,"Parameter: name = %s, type = %s\n",tree->attr.name,(tree->type==IntArray)?"int[]":"void[]");
           break;
         default:
           fprintf(listing,"Unknown DeclNode kind\n");
@@ -229,4 +228,20 @@ void printTree( TreeNode * tree )
     tree = tree->sibling;
   }
   UNINDENT;
+  //   else fprintf(listing,"Unknown node kind\n");
+  //  // 자식 노드로 이동하여 재귀 호출
+  //       for (i = 0; i < MAXCHILDREN; i++) {
+  //           if (tree->child[i] != NULL) {
+  //               fprintf(listing, "Child %d (Address: %p):\n", i, (void*)tree->child[i]);
+  //               printTree(tree->child[i]);
+  //           }
+  //       }
+
+  //       // 형제 노드로 이동 (디버그용 형제 주소 출력)
+  //       if (tree->sibling != NULL) {
+  //           fprintf(listing, "Sibling (Address: %p):\n", (void*)tree->sibling);
+  //       }
+  //       tree = tree->sibling;
+  // }
+  // UNINDENT;
 }

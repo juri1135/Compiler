@@ -42,18 +42,11 @@ int yyerror(char * message);
 %token LPAREN RPAREN LCURLY RCURLY LBRACE RBRACE
 %left PLUS MINUS
 %left TIMES OVER COMMA
+/*최종 대입 대상이 LHS니까 오른쪽부터 결합해서 최종으로 LHS에 넣어줘야*/
 %right ASSIGN
 %right THEN ELSE
 %token ERROR
 
-/*
-
-typedef enum {StmtK,ExpK, DeclK} NodeKind;
-typedef enum {VarK, ArrK, FuncK, ParamK, VoidParamK, ArrParamK} DeclKind;
-typedef enum {IfK,ElseK, WhileK, CompoundK, ReturnK } StmtKind;
-typedef enum {OpK,ConstK,IdK,ArrIdK,CallK, AssignK} ExpKind;
-
-*/
 
 %%
 
@@ -61,7 +54,7 @@ typedef enum {OpK,ConstK,IdK,ArrIdK,CallK, AssignK} ExpKind;
 /* Grammar rules          */
 /**************************/
 
-program : declaration_list { savedTree = $1; print_debug_info();}
+program : declaration_list { savedTree = $1;}
         ;
 
 declaration_list : declaration_list declaration
@@ -80,59 +73,66 @@ declaration_list : declaration_list declaration
 declaration : var_declaration { $$ = $1; }
             | fun_declaration { $$ = $1; }
             ;
-
-id : ID
-     { 
-       savedName = copyString(tokenString);
+/*이건 node 아니고 특정 node의 name으로 들어 간다...*/
+id :  ID
+      { $$ = newExpNode(IdK);
+       savedName = copyString(tokenString);  /* 이름을 savedName에 저장 */
        savedLineNo = lineno;
-     }
+       $$->attr.name=savedName;
+       $$->lineno=lineno;}
    ;
-
+/* 얘는 const node로 만들어짐... arr의 child이자 그 외에도 사용...*/
 num : NUM
       { $$ = newExpNode(ConstK);
         savedNumber = atoi(tokenString);
-        savedLineNo = lineno;
-        $$->attr.val=savedNumber;
-        $$->lineno=lineno;
-      }
+        $$->attr.val = savedNumber;
+        $$->lineno = lineno;
+       }
     ;
-
+/*1번은 child 없이 id랑 type에서 속성 갖고 오기*/
 var_declaration : type_specifier id SEMI
                   { $$ = newDeclNode(VarK);
-                    $$->type=savedType;
-                    $$->lineno = lineno;
-                    $$->attr.name = savedName;
+                    $$->type = $1->type;  
+                    $$->attr.name = $2->attr.name;  /* id에서 반환한 이름 */
+                    $$->lineno = savedLineNo;
+                   
                   }
+/*배열은 child로 const Node NUM 가져야 함 type은 savedType, 이름도 savedName*/
                 | type_specifier id LBRACE num RBRACE SEMI
                   { $$ = newDeclNode(ArrK);
-                    $$->type=IntArray;
-                    $$->attr.name=savedName;
-                    
-                    $$->lineno=lineno;
+                    $$->type = ($1->type== Integer) ? IntArray : VoidArray;
+                    $$->attr.name =$2->attr.name;
                     $$->child[0] = $4;
+                    $$->lineno = savedLineNo;
                   }
                 ;
-
-type_specifier : INT { savedType=Integer; }
-               | VOID { savedType=Void;}
+/*얘네는 node의 속성 중 type으로 들어가서 node 생성 필요 없음 */
+type_specifier : INT 
+                { 
+                  $$ = newDeclNode(TypeK); 
+                  $$->type = Integer; 
+                }
+               | VOID 
+                { 
+                  $$ = newDeclNode(TypeK); 
+                  $$->type = Void;     
+                }
                ;
-
+/*child는 param이랑 comp type, name은 다 saved에서 */
 fun_declaration : type_specifier id LPAREN params RPAREN compound_stmt
-                 { $$ = newDeclNode(FuncK);
-                   $$->type=savedType;
-                   $$->attr.name=savedName;
-                   $$->lineno=lineno;
-                   $$->child[0] = $4;
-                   $$->child[1] = $6;
+                 { 
+                   $$ = newDeclNode(FuncK);
+                   $$->type = $1->type;  
+                   $$->attr.name = $2->attr.name;  
+                   $$->lineno = lineno;
+                   $$->child[0] = $4; 
+                   $$->child[1] = $6; 
                  }
                 ;
 
 params : param_list { $$ = $1; }
-       | VOID
-         { $$ = newDeclNode(VoidParamK);
-         }
+       | VOID { $$ = newDeclNode(VoidParamK); }
        ;
-
 param_list : param_list COMMA param
              { YYSTYPE t = $1;
                if (t != NULL) {
@@ -147,22 +147,25 @@ param_list : param_list COMMA param
            ;
 /* 여기는 parameter를 갖는 것... type이 void여도 void parameter는 아님 그냥 type이 void인 인자 */
 param : type_specifier id
-        { $$ = newDeclNode(ParamK);
-          $$->type=savedType;
-          $$->attr.name = savedName;
-        }
-        /* c-는 배열 크기 지정해서 함수 전달 불가 */ 
+        { 
+        $$ = newDeclNode(ParamK);
+        $$->type = $1->type;  
+        $$->attr.name = copyString(savedName);  
+        $$->lineno = savedLineNo;
+      }
       | type_specifier id LBRACE RBRACE
-        { $$ = newDeclNode(ArrParamK);
-          $$->attr.name = copyString(savedName);
-          $$->type=IntArray;
-        }
+      { 
+        $$ = newDeclNode(ArrParamK);
+        $$->type = IntArray; 
+        $$->attr.name = copyString(savedName); 
+        $$->lineno = savedLineNo;
+      }
       ;
 
 compound_stmt : LCURLY local_declarations statement_list RCURLY
                 { $$ = newStmtNode(CompoundK);
-                  $$->child[0] = $2;
-                  $$->child[1] = $3;
+                 $$->child[0] = $2 ? $2 : NULL;  // local_declarations가 없으면 NULL
+                  $$->child[1] = $3 ? $3 : NULL;
                 }
               ;
 
@@ -180,14 +183,19 @@ local_declarations : local_declarations var_declaration
                    ;
 
 statement_list : statement_list statement
-                 { YYSTYPE t = $1;
+                 { 
+                   YYSTYPE t = $1;
                    if (t != NULL) {
-                     while (t->sibling != NULL) { t = t->sibling; }
-                    t->sibling = $2;
-                    $$ = $1;
+                     while (t->sibling != NULL && t->sibling != t) { 
+                        t = t->sibling; 
+                     }
+                     if (t->sibling == t) {
+                         t->sibling = NULL;  
+                     }
+                     t->sibling = $2;
+                     $$ = $1;
                    } else {
-                     $$ = $2;
-                   }
+                     $$ = $2;}
                  }
                | { $$ = NULL; }
                ;
@@ -204,22 +212,24 @@ expression_stmt : expression SEMI { $$ = $1; }
                 | SEMI { $$ = NULL; }
                 ;
 
-selection_stmt: IF LPAREN expression RPAREN statement {
-  $$ = newStmtNode(IfK);
-  $$->child[0] = $3;
-  $$->child[1] = $5;
-} %prec THEN | IF LPAREN expression RPAREN statement ELSE statement {
-  $$ = newStmtNode(IfK);
-  $$->child[0] = $3;
-  $$->child[1] = $5;
-  $$->child[2] = $7;
-}
+selection_stmt: IF LPAREN expression RPAREN statement   
+                { $$ = newStmtNode(IfK);
+                  $$->child[0] = $3;
+                  $$->child[1] = $5;
+                } %prec THEN
+              | IF LPAREN expression RPAREN statement ELSE statement 
+                { $$ = newStmtNode(ElseK);
+                  $$->child[0] = $3;
+                  $$->child[1] = $5;
+                  $$->child[2] = $7;
+                }
 
-iteration_stmt : WHILE LPAREN expression RPAREN statement
-                 { $$ = newStmtNode(WhileK);
-                   $$->child[0] = $3;
-                   $$->child[1] = $5;
-                 }
+iteration_stmt : WHILE LPAREN expression RPAREN statement 
+                 { 
+                $$ = newStmtNode(WhileK);
+                $$->child[0] = $3;
+                $$->child[1] = $5;
+              }
                ;
 
 return_stmt : RETURN SEMI
@@ -232,7 +242,8 @@ return_stmt : RETURN SEMI
             ;
 
 expression : var ASSIGN expression
-             { $$ = newStmtNode(AssignK);
+             { 
+               $$ = newExpNode(AssignK);
                $$->child[0] = $1;
                $$->child[1] = $3;
              }
@@ -240,55 +251,93 @@ expression : var ASSIGN expression
            ;
 
 var : id
-      { $$ = newExpNode(IdK);
+      { $$ = newExpNode(VarExpK);
+        $$->attr.name = copyString(savedName);
       }
     | id LBRACE expression RBRACE
       {
-        $$ = newExpNode(ArrIdK);
+        $$ = newExpNode(VarExpK);
+        $$->attr.name = $1->attr.name;
         $$->child[0] = $3;
       }
     ;
 
-simple_expression : additive_expression relop additive_expression
-                    { $$ = newExpNode(OpK);
-                      $$->type=$2->type;
+simple_expression : additive_expression LT additive_expression
+                    { 
+                      $$ = newExpNode(OpK);  
                       $$->child[0] = $1;
+                      $$->attr.op =LT;  
                       $$->child[1] = $3;
                     }
+                  | additive_expression LE additive_expression
+                    { 
+                      $$ = newExpNode(OpK); 
+                      $$->child[0] = $1;
+                      $$->attr.op =LE; 
+                      $$->child[1] = $3;
+                    }
+                  |additive_expression GT additive_expression
+                    { 
+                      $$ = newExpNode(OpK);  
+                      $$->child[0] = $1;
+                      $$->attr.op = GT;  
+                      $$->child[1] = $3;
+                    }
+                  |additive_expression GE additive_expression
+                    { 
+                      $$ = newExpNode(OpK);  
+                      $$->child[0] = $1;
+                      $$->attr.op = GE;  
+                      $$->child[1] = $3;
+                    }
+                  | additive_expression EQ additive_expression
+                    { 
+                      $$ = newExpNode(OpK);  
+                      $$->child[0] = $1;
+                      $$->attr.op = EQ;  
+                      $$->child[1] = $3;
+                    }
+                  | additive_expression NE additive_expression
+                    { 
+                      $$ = newExpNode(OpK); 
+                      $$->child[0] = $1;
+                      $$->attr.op = NE;  
+                      $$->child[1] = $3;
+                     }
                   | additive_expression { $$ = $1; }
                   ;
 
-relop : LT { $$->attr.op = LT; }
-      | LE { $$->attr.op = LE; }
-      | GT { $$->attr.op = GT; }
-      | GE { $$->attr.op = GE; }
-      | EQ { $$->attr.op = EQ; }
-      | NE { $$->attr.op = NE; }
-      ;
 
-additive_expression : additive_expression addop term
-                      { $$ = newExpNode(OpK);
+
+additive_expression : additive_expression PLUS term
+                      { $$ = newExpNode(OpK); 
                         $$->child[0] = $1;
                         $$->child[1] = $3;
+                        $$->attr.op = PLUS;
+                      }
+                    | additive_expression MINUS term
+                      { $$ = newExpNode(OpK); 
+                        $$->child[0] = $1;
+                        $$->child[1] = $3;
+                        $$->attr.op = MINUS; 
                       }
                     | term { $$ = $1; }
                     ;
 
-addop : PLUS { $$->attr.op = PLUS; }
-      | MINUS { $$->attr.op = MINUS; }
-      ;
-
-term : term mulop factor
+term : term TIMES factor
        { $$ = newExpNode(OpK);
          $$->child[0] = $1;
+         $$->attr.op = TIMES;
+         $$->child[1] = $3;
+       }
+     | term OVER factor
+       { $$ = newExpNode(OpK);
+         $$->child[0] = $1;
+         $$->attr.op = OVER;
          $$->child[1] = $3;
        }
      | factor { $$ = $1; }
      ;
-
-mulop : TIMES { $$->attr.op = TIMES; }
-      | OVER { $$->attr.op = OVER; }
-      ;
 
 factor : LPAREN expression RPAREN { $$ = $2; }
        | var { $$ = $1; }
@@ -301,7 +350,7 @@ factor : LPAREN expression RPAREN { $$ = $2; }
 
 call : id LPAREN args RPAREN 
        { $$ = newExpNode(CallK);
-         $$->attr.name = savedName;
+         $$->attr.name = $1->attr.name;
          $$->child[0] = $3;
        }
      ;
@@ -335,12 +384,6 @@ int yyerror(char * message) {
   printToken(yychar,tokenString);
   Error = TRUE;
   return 0;
-}
-void print_debug_info() {
-    printf("Debug Info:\n");
-    printf("savedTree: %p\n", (void *)savedTree);
-    printf("savedName: %s\n", savedName ? savedName : "NULL");
-    printf("savedType: %d\n", savedType);
 }
 /* yylex calls getToken to make Yacc/Bison output
  * compatible with ealier versions of the TINY scanner
