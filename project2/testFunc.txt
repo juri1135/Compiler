@@ -1,3 +1,6 @@
+int fuc(int a, void b, int x[], void y[]){
+    
+}
 void func(void) {
     return func1(func2());
 }
@@ -5,5 +8,3 @@ void func(void) {
 int compute(int a, int b) {
     return add(a, b) + multiply(a, b); 
 }
-
-
