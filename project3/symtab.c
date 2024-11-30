@@ -18,17 +18,7 @@ Scope currentScope = NULL;    // 현재 활성화된 스코프
 int topScope = -1;            // 스코프 스택의 최상위 인덱스
 int sizeOfList = 0;           // scopeList의 현재 크기
 Scope scopeList[SIZE] = {0}; 
-
-/* the hash function */
-static int hash ( char * key )
-{ int temp = 0;
-  int i = 0;
-  while (key[i] != '\0')
-  { temp = ((temp << SHIFT) + key[i]) % SIZE;
-    ++i;
-  }
-  return temp;
-}
+Scope scopeStack[SIZE];
 
 
 
@@ -40,10 +30,13 @@ static int hash ( char * key )
  */
 
 
+/* the hash function */
+
 
 
 Scope newScope(char *name) {
     Scope scope = (Scope)malloc(sizeof(struct ScopeListRec));
+    scope->location=0;
     scope->name = strdup(name);
     scope->nestedLevel = (currentScope == NULL) ? 0 : currentScope->nestedLevel + 1;
     scope->parent = currentScope;
@@ -66,7 +59,7 @@ Scope newScope(char *name) {
  * loc = memory location is inserted only the
  * first time, otherwise ignored
  */
-void st_insert( char* kind,char * name, int lineno, int loc, char *type, Scope scope )
+void st_insert( char* kind,char * name, int lineno, char *type, Scope scope )
 {   int h = hash(name);
     BucketList l = scope->hashTable[h];
   //symbol table linked list 순회하면서 해당 변수 이미 존재하는 지 확인... 
@@ -78,7 +71,7 @@ void st_insert( char* kind,char * name, int lineno, int loc, char *type, Scope s
       l->name = strdup(name);             // 이름 복사
       l->lines = (LineList)malloc(sizeof(struct LineListRec));
       l->lines->lineno = lineno;          // 첫 번째 라인 번호
-      l->memloc = loc;                    // 메모리 위치
+      l->memloc = scope->location++;                    // 메모리 위치
       l->lines->next = NULL;
       l->type = strdup(type);             
       l->kind=strdup(kind);
@@ -92,32 +85,25 @@ void st_insert( char* kind,char * name, int lineno, int loc, char *type, Scope s
     t->next->next = NULL;
   }
 } /* st_insert */
-void st_insert_function(Scope scope, char *name, char *type, ParameterList params) {
+void st_insert_function(char* kind,char * name, int lineno, char *type, Scope scope, ParameterList params) {
     int h = hash(name);
     BucketList l = scope->hashTable[h];
 
-    // 기존에 같은 이름의 함수가 있는지 확인
-    while (l != NULL && strcmp(name, l->name) != 0) {
-        l = l->next;
-    }
-
-    if (l == NULL) { // 새 함수 추가
-        l = (BucketList)malloc(sizeof(struct BucketListRec));
-        l->name = strdup(name);
-        l->type = strdup(type);
-        l->kind = strdup("Function");
-        l->memloc = 0;
-        l->lines = NULL;
-        l->params = params;
-        l->next = scope->hashTable[h];
-        scope->hashTable[h] = l;
-
-        // paramlist에 매개변수 리스트 저장
-        scope->paramlist[h] = params;
-        fprintf(stderr, "Function '%s' inserted with return type '%s'.\n", name, type);
-    } else {
-        fprintf(stderr, "Error: Redefinition of function %s\n", name);
-    }
+    l = (BucketList)malloc(sizeof(struct BucketListRec));
+    l->name = strdup(name);             // 이름 복사
+    l->lines = (LineList)malloc(sizeof(struct LineListRec));
+    l->lines->lineno = lineno;          // 첫 번째 라인 번호
+    l->memloc = scope->location++;                // 메모리 위치
+    l->lines->next = NULL;
+    l->type = strdup(type);             
+    l->kind=strdup(kind);
+    l->next = scope->hashTable[h];      // 연결 리스트로 추가
+    scope->hashTable[h] = l;
+    l->params=params;
+    // paramlist에 매개변수 리스트 저장
+    scope->paramlist[h] = params;
+    //fprintf(stderr, "Function '%s' inserted with return type '%s'.\n", name, type);
+    
 }
 void addParameter(ParameterList *plist, char *name, char *type) {
     ParameterList newParam = (ParameterList)malloc(sizeof(struct ParamListRec));
@@ -133,6 +119,17 @@ void addParameter(ParameterList *plist, char *name, char *type) {
             temp = temp->next;
         }
         temp->next = newParam;  // 마지막에 추가
+    }
+
+    // Debugging 출력
+    //fprintf(stderr, "Added parameter: %s (%s)\n", name, type);
+
+    // 현재 매개변수 리스트 출력
+    //fprintf(stderr, "Current Parameter List:\n");
+    ParameterList temp = *plist;
+    while (temp != NULL) {
+        //fprintf(stderr, "- %s (%s)\n", temp->name, temp->type);
+        temp = temp->next;
     }
 }
 BucketList st_lookup_bucket(char *name) {
@@ -221,11 +218,12 @@ void printSymTab(FILE * listing)
   fprintf(listing,"-------------  -----------  ------------ ----------  --------  ------------\n");
   for (i=0;i<SIZE;++i){ 
     Scope scope = scopeList[i];
+    if (scope == NULL) continue; // scope가 NULL이면 스킵
     for (int j = 0; j < SIZE; ++j) {
     BucketList l = scope->hashTable[j];
       while (l != NULL) {
         LineList t = l->lines;
-        fprintf(listing, "%-14s %-14s %-14s %-14s %-8d ", l->name, l->kind, l->type, scope->name, l->memloc);
+        fprintf(listing, "%-14s %-12s %-12s %-11s %-8d ", l->name, l->kind, l->type, scope->name, l->memloc);
         while (t != NULL)
         { fprintf(listing,"%4d ",t->lineno);
           t = t->next;
@@ -241,30 +239,43 @@ void printSymTab(FILE * listing)
   printScope(listing);
 } /* printSymTab */
 
-void printFunc(FILE * listing)
-{ 
-  fprintf(listing,"Function Name  Return Type  Parameter Name  Parameter Type\n");
-  fprintf(listing,"-------------  -----------  --------------  --------------\n");
-   for (int i = 0; i < SIZE; i++) {
-    Scope scope = scopeList[i];
-    for (int j = 0; j < SIZE; ++j) {
-    BucketList l = scope->hashTable[j];
-      while (l != NULL) {
-        if (strcmp(l->kind, "Function") == 0) {
-          fprintf(listing, "%-15s %-13s ", l->name, l->type);
-          ParameterList p = scope->paramlist[j];
-          while (p != NULL) {
-            fprintf(listing, "%-16s %-14s ", p->name, p->type);
-            p = p->next;
-          }
-          fprintf(listing, "\n");
-          }
-          l = l->next;
-      }
+void printFunc(FILE *listing) {
+    fprintf(listing, "< Functions >\n");
+    fprintf(listing, "Function Name   Return Type   Parameter Name  Parameter Type\n");
+    fprintf(listing, "-------------  -------------  --------------  --------------\n");
+
+    for (int i = 0; i < SIZE; i++) {
+        Scope scope = scopeList[i];
+        if (scope == NULL) continue; // 스코프가 NULL이면 건너뜀
+
+        for (int j = 0; j < SIZE; j++) {
+            BucketList l = scope->hashTable[j];
+            while (l != NULL) {
+                if (strcmp(l->kind, "Function") == 0) {
+                    if (strcmp(l->type, "undetermined") == 0) {
+                        fprintf(listing, "%-15s %-13s %-16s %-14s\n", l->name, "undetermined", "", "undetermined");
+                    } else {
+                        fprintf(listing, "%-15s %-13s ", l->name, l->type);
+                        
+                        // 매개변수 리스트 처리
+                        ParameterList p =  l->params;
+                        if (p == NULL) {
+                            fprintf(listing, "%-16s %-14s\n", "", "void");
+                        } else {
+                            fprintf(listing, "\n");
+                            while (p != NULL) {
+                                fprintf(listing, "%-15s %-13s %-16s %-14s\n", "-", "-", p->name, p->type);
+                                p = p->next;
+                            }
+                        }
+                    }
+                }
+                l = l->next;
+            }
+        }
     }
-  }
-  fprintf(listing,"\n");
-} /* printSymTab */
+    fprintf(listing, "\n");
+}/* printSymTab */
 
 
 void printGlob(FILE *listing) {
@@ -274,6 +285,7 @@ void printGlob(FILE *listing) {
 
     for (int i = 0; i < SIZE; i++) {
       Scope scope = scopeList[i];
+      if (scope == NULL) continue; // scope가 NULL이면 스킵
         for (int j = 0; j < SIZE; ++j) {
           BucketList l = scope->hashTable[j];
             while (l != NULL) {
@@ -295,6 +307,9 @@ void printScope(FILE *listing) {
 
     for (int i = 0; i < SIZE; i++) {
       Scope scope = scopeList[i];
+      
+      if (scope == NULL||strcmp(scope->name,"global")==0) continue; // scope가 NULL이면 스킵
+        
         for (int j = 0; j < SIZE; ++j) {
             BucketList l = scope->hashTable[j];
             while (l != NULL) {
@@ -302,6 +317,6 @@ void printScope(FILE *listing) {
                 l = l->next;
             }
         }
+        fprintf(listing,"\n");
     }
-    fprintf(listing, "\n");
 }

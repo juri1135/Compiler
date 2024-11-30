@@ -38,6 +38,7 @@ typedef struct BucketListRec
 
 /* Structure for scopes */
 typedef struct ScopeListRec {
+    int location;
     char *name;                     // 스코프 이름
     int nestedLevel;                // 중첩 수준
     struct ScopeListRec *parent;    // 부모 스코프
@@ -57,15 +58,23 @@ extern Scope currentScope;
 extern Scope scopeList[SIZE];
 extern int sizeOfList;
 
-static int hash(char * key);
+static int hash ( char * key )
+{ int temp = 0;
+  int i = 0;
+  while (key[i] != '\0')
+  { temp = ((temp << SHIFT) + key[i]) % SIZE;
+    ++i;
+  }
+  return temp;
+}
 /* Scope management */
 Scope newScope(char *name);
 void pushScope(Scope scope);
 void popScope();
 
 /* Symbol table operations */
-void st_insert( char* kind,char * name, int lineno, int loc, char *type, Scope scope );
-void st_insert_function(Scope scope, char *name, char *type, ParameterList params);
+void st_insert( char* kind,char * name, int lineno, char *type, Scope scope );
+void st_insert_function(char* kind,char * name, int lineno, char *type, Scope scope, ParameterList params);
 BucketList st_lookup_bucket(char *name);
 int st_lookup(char *name);
 BucketList st_lookup_top(char *name);

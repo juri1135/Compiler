@@ -1,4 +1,4 @@
-cscope 15 $HOME/COMPILER/project3               0000242146
+cscope 15 $HOME/COMPILER/project3               0000244229
 	@analyze.c
 
 9 
@@ -13,53 +13,669 @@ cscope 15 $HOME/COMPILER/project3               0000242146
 	~"™Æyze.h
 "
 
-14 
-	gloˇti⁄
+12 
+	~"utû.h
+"
+
+14 
+	gsc›eDïth
  = 0;
 
-21 
+15 
+P¨amëîLi°
+* 
+	gcuºítP¨amëîLi°
+=
+NULL
+;
+
+16 
+	g√°edLevñ
+=0;
+
+18 
+	$îr‹_unde˛¨ed
+(
+FILE
+ * 
+li°ög
+, * 
+ty≥
+, * 
+«me
+, 
+löío
+){
+
+19 if(
+	`°rcmp
+(
+ty≥
+,"undeclared_func")==0){
+
+20 
+	`Ârötf
+(
+li°ög
+, "Eº‹: unde˛¨ed fun˘i⁄ \"%s\" i†ˇŒedáàlöê%d\n", 
+«me
+, 
+löío
+);}
+
+22 
+	`Ârötf
+(
+li°ög
+, "Eº‹: unde˛¨ed v¨übÀ \"%s\" i†u£dáàlöê%d\n", 
+«me
+, 
+löío
+);
+
+24 
+	}
+}
+
+25 
+	$îr‹_void_ˇŒ_ödex
+(
+FILE
+ *
+li°ög
+, *
+ty≥
+, * 
+«me
+, 
+löío
+){
+
+26 if(
+	`°rcmp
+(
+ty≥
+,"void")==0){
+
+27 
+	`Ârötf
+(
+li°ög
+, "Eº‹: Thêvoid-ty≥ v¨übÀ i†de˛¨edáàlöê%d («mê: \"%s\")\n", 
+löío
+, 
+«me
+);
+
+28 }if(
+	`°rcmp
+(
+ty≥
+,"indexNotInt")==0){
+
+29 
+	`Ârötf
+(
+li°ög
+, "Eº‹: InvÆidáºay indexögáàlöê%d («mê: \"%s\"). indicõ†should bêöãgî\n", 
+löío
+, 
+«me
+);
+
+30 }if(
+	`°rcmp
+(
+ty≥
+,"voidarrIndex")==0){
+
+31 
+	`Ârötf
+(
+li°ög
+, "Eº‹: InvÆidáºay indexögáàlöê%d («mê: \"%s\"). indexög c™ o∆yáŒowed f‹ i¡[] v¨übÀs\n", 
+löío
+, 
+«me
+);
+
+33 
+	`Ârötf
+(
+li°ög
+, "Eº‹: InvÆid fun˘i⁄ cÆ»©Üöê%d («mê: \"%s\")\n", 
+löío
+, 
+«me
+);
+
+35 
+	}
+}
+
+36 
+	$îr‹_övÆid
+(
+FILE
+ *
+li°ög
+, *
+ty≥
+, 
+löío
+){
+
+37 if(
+	`°rcmp
+(
+ty≥
+,"return")){
+
+38 
+	`Ârötf
+(
+li°ög
+, "Eº‹: InvÆidÑëu∫áàlöê%d\n", 
+löío
+);
+
+39 }if(
+	`°rcmp
+(
+ty≥
+,"assign")==0){
+
+40 
+	`Ârötf
+(
+li°ög
+, "Eº‹: invÆidássignmíà©Üöê%d\n", 
+löío
+);
+
+41 }if(
+	`°rcmp
+(
+ty≥
+,"operation")==0){
+
+42 
+	`Ârötf
+(
+li°ög
+, "Eº‹: invÆid o≥øti⁄áàlöê%d\n", 
+löío
+);
+
+44 
+	`Ârötf
+(
+li°ög
+, "Eº‹: invÆid c⁄dôi⁄áàlöê%d\n", 
+löío
+);
+
+46 
+	}
+}
+
+47 
+	$îr‹_ªdeföe
+(
+FILE
+ *
+li°ög
+, 
+TªeNode
+ *
+t
+) {
+
+49 
+BuckëLi°
+ 
+buckë
+ = 
+	`°_lookup_buckë
+(
+t
+->
+©å
+.
+«me
+);
+
+50 i‡(
+buckë
+ =
+NULL
+) {
+
+51 
+	`Ârötf
+(
+li°ög
+, "Eº‹: I¡î«»issuê-Çÿbuckë found f‹ symbﬁ \"%s\".\n", 
+t
+->
+©å
+.
+«me
+);
+
+54 
+LöeLi°
+ 
+löñi°
+ = 
+buckë
+->
+löes
+;
+
+56 
+	`Ârötf
+(
+li°ög
+, "Eº‹: Symbﬁ \"%s\" i†ªdeföedáàlöê%d (Æªady deföedáàlöes: ", 
+t
+->
+©å
+.
+«me
+,Å->
+löío
+);
+
+58 
+LöeLi°
+ 
+cuºít
+ = 
+löñi°
+;
+
+59 
+cuºít
+ !
+NULL
+) {
+
+60 
+	`Ârötf
+(
+li°ög
+, "%d", 
+cuºít
+->
+löío
+);
+
+61 i‡(
+cuºít
+->
+√xt
+ !
+NULL
+) {
+
+62 
+	`Ârötf
+(
+li°ög
+, ", ");
+
+64 
+cuºít
+ = cuºít->
+√xt
+;
+
+67 
+	`Ârötf
+(
+li°ög
+, ").\n");
+
+68 
+	}
+}
+
+70 
+	$öputFunc
+(){
+
+72 
+TªeNode
+ * 
+funcNode
+=
+	`√wDe˛Node
+(
+FuncK
+);
+
+73 
+funcNode
+->
+ty≥
+=
+I¡egî
+;
+
+74 
+funcNode
+->
+©å
+.
+«me
+="input";
+
+75 
+funcNode
+->
+löío
+=0;
+
+79 
+TªeNode
+ * 
+∑øm
+=
+	`√wDe˛Node
+(
+VoidP¨amK
+);
+
+80 
+funcNode
+->
+chûd
+[0]=
+∑øm
+;
+
+82 
+TªeNode
+ * 
+compound
+=
+	`√wStmtNode
+(
+CompoundK
+);
+
+83 
+compound
+->
+chûd
+[0]=
+NULL
+;
+
+84 
+compound
+->
+chûd
+[1]=
+NULL
+;
+
+85 
+funcNode
+->
+chûd
+[1]=
+compound
+;
+
+88 
+	`°_ö£π_fun˘i⁄
+("Fun˘i⁄","öput",0,"öt",
+cuºítSc›e
+,
+NULL
+);
+
+89 
+	}
+}
+
+91 
+	$ouçutFunc
+(){
+
+92 
+√°edLevñ
+++;
+
+93 
+P¨amëîLi°
+ 
+∑øms
+ = 
+NULL
+;
+
+94 
+	`°_ö£π_fun˘i⁄
+("Fun˘i⁄","ouçut",0,"void",
+cuºítSc›e
+,
+∑øms
+);
+
+95 
+Sc›e
+ 
+funcSc›e
+=
+	`√wSc›e
+("output");
+
+96 
+funcSc›e
+->
+√°edLevñ
+=nestedLevel;
+
+97 
+	`pushSc›e
+(
+funcSc›e
+);
+
+100 
+	`°_ö£π
+("V¨übÀ", "vÆue",0,"öt",
+cuºítSc›e
+);
+
+101 
+	`addP¨amëî
+(&
+∑øms
+, "value", "int");
+
+104 
+	`p›Sc›e
+();
+
+106 
+	}
+}
+
+112 * 
+	$nodeKödToSåög
+(
+TªeNode
+ * 
+t
+){
+
+113 
+t
+->
+nodeköd
+) {
+
+114 
+De˛K
+:
+
+115 
+t
+->
+köd
+.
+de˛
+) {
+
+116 
+V¨K
+:
+
+118 
+AºK
+:
+
+120 
+FuncK
+:
+
+122 
+P¨amK
+:
+
+124 
+AºP¨amK
+:
+
+126 
+VoidP¨amK
+:
+
+134 
+StmtK
+:
+
+135 
+t
+->
+köd
+.
+°mt
+) {
+
+136 
+CompoundK
+:
+
+138 
+IfK
+:
+
+141 
+El£K
+:
+
+143 
+WhûeK
+:
+
+145 
+Rëu∫K
+:
+
+153 
+ExpK
+:
+
+155 
+t
+->
+köd
+.
+exp
+) {
+
+157 
+CÆlK
+:
+
+159 
+IdK
+:
+
+161 
+OpK
+:
+
+163 
+AssignK
+:
+
+165 
+C⁄°K
+:
+
+167 
+Ty≥K
+:
+
+169 
+V¨ExpK
+:
+
+181 
+	}
+}
+
+182 
 	$åavî£
 –
 TªeNode
  * 
 t
-,
-
-22 (* 
+, (* 
 ¥eProc
-Ë(
-TªeNode
- *),
-
-23 (* 
+Ë(TªeNodê*), (* 
 po°Proc
-Ë(
-TªeNode
- *) )
+) (TreeNode *) ){
 
-24 { i‡(
+183 i‡(
 t
  !
 NULL
 )
 
-25 { 
+184 { 
+	`¥ötf
+("TøvîsögÇode: %†löío:%d\n", 
+	`nodeKödToSåög
+(
+t
+),t->
+löío
+);
+
+185 
 	`¥eProc
 (
 t
 );
 
-26 { 
+186 { 
 i
 ;
 
-27 
+187 
 i
 =0; i < 
 MAXCHILDREN
 ; i++)
 
-28 
+188 
 	`åavî£
 (
 t
@@ -73,13 +689,13 @@ i
 po°Proc
 );
 
-30 
+190 
 	`po°Proc
 (
 t
 );
 
-31 
+191 
 	`åavî£
 (
 t
@@ -91,807 +707,37 @@ siblög
 po°Proc
 );
 
-33 
+193 
 	}
 }
 
-39 
+199 
 	$nuŒProc
 (
 TªeNode
  * 
 t
-)
+){
 
-40 { i‡(
+200 i‡(
 t
 ==
 NULL
 ) ;
 
-42 
-	}
-}
-
-43 
-P¨amëîLi°
- 
-	$exåa˘P¨ams
-(
-TªeNode
- *
-funcNode
-) {
-
-44 
-P¨amëîLi°
- 
-∑ømLi°
- = 
-NULL
-;
-
-47 
-TªeNode
- *
-∑ømNode
- = 
-funcNode
-->
-chûd
-[1];
-
-48 
-∑ømNode
- !
-NULL
-) {
-
-49 c⁄° *
-ty≥
- = (
-∑ømNode
-->
-köd
-.
-de˛
- =
-AºP¨amK
-) ? "int[]" : "int";
-
-50 
-	`addP¨amëî
-(&
-∑ømLi°
-, 
-∑ømNode
-->
-©å
-.
-«me
-, 
-ty≥
-);
-
-51 
-∑ømNode
- =Ö¨amNode->
-siblög
-;
-
-54  
-∑ømLi°
-;
-
-55 
-	}
-}
-
-60 
-	$ö£πNode
-(
-TªeNode
- *
-t
-) {
-
-61 
-t
-->
-nodeköd
-) {
-
-62 
-De˛K
-:
-
-63 
-t
-->
-köd
-.
-de˛
-) {
-
-64 
-V¨K
-:
-
-65 
-AºK
-:
-
-66 i‡(
-	`°_lookup
-(
-t
-->
-©å
-.
-«me
-)) {
-
-67 
-	`ªp‹tEº‹
-(
-ERR_REDEFINED_SYMBOL
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-);
-
-69 c⁄° *
-ty≥
- = (
-t
-->
-köd
-.
-de˛
- =
-AºK
-) ? "int[]" : "int";
-
-70 
-	`°_ö£π
-(
-cuºítSc›e
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-, 
-loˇti⁄Cou¡î
-++, 
-ty≥
-);
-
-74 
-FuncK
-:
-
-75 i‡(
-	`°_lookup
-(
-t
-->
-©å
-.
-«me
-)) {
-
-76 
-	`ªp‹tEº‹
-(
-ERR_REDEFINED_SYMBOL
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-);
-
-78 
-P¨amëîLi°
- 
-∑øms
- = 
-	`exåa˘P¨ams
-(
-t
-);
-
-79 
-	`°_ö£π_fun˘i⁄
-(
-cuºítSc›e
-, 
-t
-->
-©å
-.
-«me
-,Å->
-ty≥
- =
-I¡egî
- ? "öt" : "void", 
-∑øms
-);
-
-80 
-	`pushSc›e
-(
-	`√wSc›e
-(
-t
-->
-©å
-.
-«me
-));
-
-84 
-P¨amK
-:
-
-85 
-AºP¨amK
-:
-
-86 i‡(
-	`°_lookup
-(
-t
-->
-©å
-.
-«me
-)) {
-
-87 
-	`ªp‹tEº‹
-(
-ERR_REDEFINED_SYMBOL
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-);
-
-89 c⁄° *
-ty≥
- = (
-t
-->
-köd
-.
-de˛
- =
-AºP¨amK
-) ? "int[]" : "int";
-
-90 
-	`°_ö£π
-(
-cuºítSc›e
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-, 
-loˇti⁄Cou¡î
-++, 
-ty≥
-);
-
-94 
-VoidP¨amK
-:
-
-95 
-	`ªp‹tEº‹
-(
-ERR_VOID_TYPE_VARIABLE
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-);
-
-103 
-StmtK
-:
-
-104 
-t
-->
-köd
-.
-°mt
-) {
-
-105 
-IfK
-:
-
-106 
-WhûeK
-:
-
-107 i‡(
-t
-->
-chûd
-[0] !
-NULL
- &&Å->chûd[0]->
-ty≥
- !
-I¡egî
-) {
-
-108 
-	`ªp‹tEº‹
-(
-ERR_INVALID_CONDITION
-, 
-NULL
-, 
-t
-->
-löío
-);
-
-112 
-CompoundK
-:
-
-113 
-	`pushSc›e
-(
-	`√wSc›e
-("Compound"));
-
-116 
-Rëu∫K
-:
-
-117 i‡(
-cuºítFun˘i⁄
- !
-NULL
-) {
-
-118 c⁄° *
-ex≥˘edTy≥
- = 
-cuºítFun˘i⁄
-->
-ty≥
-;
-
-119 c⁄° *
-a˘uÆTy≥
- = (
-t
-->
-chûd
-[0] !
-NULL
-Ë?Å->chûd[0]->
-ty≥
- : "void";
-
-120 i‡(
-	`°rcmp
-(
-ex≥˘edTy≥
-, 
-a˘uÆTy≥
-) != 0) {
-
-121 
-	`ªp‹tEº‹
-(
-ERR_INVALID_RETURN
-, 
-NULL
-, 
-t
-->
-löío
-);
-
-126 
-RódK
-:
-
-127 i‡(!
-	`°_lookup
-(
-t
-->
-©å
-.
-«me
-)) {
-
-128 
-	`ªp‹tEº‹
-(
-ERR_UNDECLARED_VARIABLE
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-);
-
-130 
-	`°_ö£π
-(
-cuºítSc›e
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-, 0, 
-NULL
-);
-
-139 
-ExpK
-:
-
-140 
-t
-->
-köd
-.
-exp
-) {
-
-141 
-CÆlK
-:
-
-142 i‡(!
-	`°_lookup
-(
-t
-->
-©å
-.
-«me
-)) {
-
-143 
-	`ªp‹tEº‹
-(
-ERR_UNDECLARED_FUNCTION
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-);
-
-145 
-	`°_ö£π
-(
-cuºítSc›e
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-, 0, 
-NULL
-);
-
-149 
-IdK
-:
-
-150 i‡(!
-	`°_lookup
-(
-t
-->
-©å
-.
-«me
-)) {
-
-151 
-	`ªp‹tEº‹
-(
-ERR_UNDECLARED_VARIABLE
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-);
-
-153 
-	`°_ö£π
-(
-cuºítSc›e
-, 
-t
-->
-©å
-.
-«me
-,Å->
-löío
-, 0, 
-NULL
-);
-
-157 
-AssignK
-:
-
-158 i‡(
-t
-->
-chûd
-[0] !
-NULL
- &&Å->chûd[0]->
-köd
-.
-exp
- =
-IdK
-) {
-
-159 i‡(!
-	`°_lookup
-(
-t
-->
-chûd
-[0]->
-©å
-.
-«me
-)) {
-
-160 
-	`ªp‹tEº‹
-(
-ERR_UNDECLARED_VARIABLE
-, 
-t
-->
-chûd
-[0]->
-©å
-.
-«me
-,Å->chûd[0]->
-löío
-);
-
-165 
-OpK
-:
-
-166 i‡(
-t
-->
-chûd
-[0] !
-NULL
- &&Å->child[1] != NULL) {
-
-167 i‡(
-t
-->
-chûd
-[0]->
-ty≥
- !
-I¡egî
- ||Å->child[1]->type != Integer) {
-
-168 
-	`ªp‹tEº‹
-(
-ERR_INVALID_OPERATION
-, 
-NULL
-, 
-t
-->
-löío
-);
-
-170 
-t
-->
-ty≥
- = 
-I¡egî
-;
-
-174 
-C⁄°K
-:
-
-175 
-t
-->
-ty≥
- = 
-I¡egî
-;
-
-186 
-	}
-}
-
-187 
-	$pushSc›e
-(
-Sc›e
- 
-sc›e
-) {
-
-188 i‡(
-t›Sc›e
- >
-MAX_SCOPE_STACK_SIZE
- - 1) {
-
-189 
-	`Ârötf
-(
-°dîr
-, "Error: Scope stack overflow\n");
-
-190 
-	`exô
-(
-EXIT_FAILURE
-);
-
-194 i‡(
-cuºítSc›e
- !
-NULL
-) {
-
-195 
-sc›e
-->
-∑ª¡
- = 
-cuºítSc›e
-;
-
-199 
-sc›eSèck
-[++
-t›Sc›e
-] = 
-sc›e
-;
-
 202 
-cuºítSc›e
- = 
-sc›e
-;
-
-205 
-√°edLevñ
-++;
-
-206 
 	}
 }
 
-208 
-	$p›Sc›e
-() {
-
-209 i‡(
-t›Sc›e
- < 0) {
-
-210 
-	`Ârötf
-(
-°dîr
-, "Error: Scope stack underflow\n");
-
-211 
-	`exô
-(
-EXIT_FAILURE
-);
-
-215 
-t›Sc›e
---;
-
-218 
-cuºítSc›e
- = (
-t›Sc›e
- >0Ë? 
-sc›eSèck
-[t›Sc›e] : 
-NULL
-;
-
-221 i‡(
-√°edLevñ
- > 0) {
-
-222 
-√°edLevñ
---;
-
-224 
-	}
-}
-
-226 
-	$ö£πSc›e
+205 
+	$po°Proc
 (
 TªeNode
  *
 t
 ) {
 
-228 i‡(
+206 i‡(
 t
 ->
 nodeköd
@@ -905,41 +751,759 @@ köd
 CompoundK
 ) {
 
-229 i‡(
-t
-->
-sc›eCª©ed
-) {
-
-230 
+207 
 	`p›Sc›e
 ();
 
-233 
-Sc›e
- 
-√wSc›e
- = 
-	`√wSc›e
-("Compound");
+208 
+sc›eDïth
+--;
 
-234 
-	`pushSc›e
-(
-√wSc›e
-);
-
-235 
-t
-->
-sc›eCª©ed
- = 1;
-
-238 
+210 
 	}
 }
 
-242 
+215 
+	$ö£πNode
+(
+TªeNode
+ *
+t
+) {
+
+216 
+t
+->
+nodeköd
+) {
+
+217 
+De˛K
+:
+
+218 
+t
+->
+köd
+.
+de˛
+) {
+
+219 
+V¨K
+:
+
+220 
+AºK
+:
+
+221 i‡(
+	`°_lookup_t›
+(
+t
+->
+©å
+.
+«me
+)) {
+
+222 
+	`îr‹_ªdeföe
+(
+li°ög
+, 
+t
+);
+
+223 } i‡(
+t
+->
+ty≥
+ =
+Void
+ ||Å->ty≥ =
+VoidAºay
+) {
+
+224 
+	`îr‹_void_ˇŒ_ödex
+(
+li°ög
+,"void",
+t
+->
+©å
+.
+«me
+,t->
+löío
+);
+
+226 *
+ty≥
+ = (
+t
+->
+köd
+.
+de˛
+ =
+AºK
+) ? "intArray" : "int";
+
+227 
+	`°_ö£π
+("V¨übÀ",
+t
+->
+©å
+.
+«me
+,Å->
+löío
+, 
+ty≥
+, 
+cuºítSc›e
+);
+
+232 
+FuncK
+:
+
+233 i‡(
+	`°_lookup_t›
+(
+t
+->
+©å
+.
+«me
+)) {
+
+234 
+	`îr‹_ªdeföe
+(
+li°ög
+, 
+t
+);
+
+236 
+P¨amëîLi°
+ 
+∑øms
+ = 
+NULL
+;
+
+237 * 
+ty≥
+=
+t
+->ty≥==
+I¡egî
+?"int":"void";
+
+238 
+	`°_ö£π_fun˘i⁄
+("Fun˘i⁄",
+t
+->
+©å
+.
+«me
+,t->
+löío
+,
+ty≥
+,
+cuºítSc›e
+,
+∑øms
+);
+
+239 
+√°edLevñ
+++;
+
+240 
+Sc›e
+ 
+funcSc›e
+ = 
+	`√wSc›e
+(
+t
+->
+©å
+.
+«me
+);
+
+241 
+funcSc›e
+->
+√°edLevñ
+=nestedLevel;
+
+242 
+	`pushSc›e
+(
+funcSc›e
+);
+
+243 
+sc›eDïth
+=1;
+
+245 
+cuºítP¨amëîLi°
+ = &(
+cuºítSc›e
+->
+∑ømli°
+[
+	`hash
+(
+t
+->
+©å
+.
+«me
+)]);
+
+250 
+P¨amK
+:
+
+251 
+	`¥ötf
+("cu∏sc›e=%s, v¨=%s\n",
+cuºítSc›e
+->
+«me
+,
+t
+->
+©å
+.name);
+
+252 i‡(
+	`°_lookup_t›
+(
+t
+->
+©å
+.
+«me
+)) {
+
+253 
+	`îr‹_ªdeföe
+(
+li°ög
+, 
+t
+);
+
+255 
+	`°_ö£π
+("V¨übÀ", 
+t
+->
+©å
+.
+«me
+,t->
+löío
+,"öt",
+cuºítSc›e
+);
+
+256 
+	`addP¨amëî
+(
+cuºítP¨amëîLi°
+, 
+t
+->
+©å
+.
+«me
+, "int");
+
+260 
+AºP¨amK
+:
+
+261 i‡(
+	`°_lookup
+(
+t
+->
+©å
+.
+«me
+)) {
+
+262 
+	`îr‹_ªdeföe
+(
+li°ög
+, 
+t
+);
+
+263 } i‡(
+t
+->
+ty≥
+ =
+VoidAºay
+) {
+
+264 
+	`îr‹_void_ˇŒ_ödex
+(
+li°ög
+,"void",
+t
+->
+©å
+.
+«me
+,t->
+löío
+);
+
+266 
+	`°_ö£π
+("V¨übÀ",
+t
+->
+©å
+.
+«me
+,Å->
+löío
+, "öt[]",
+cuºítSc›e
+);
+
+267 
+	`addP¨amëî
+(
+cuºítP¨amëîLi°
+, 
+t
+->
+©å
+.
+«me
+, "int");
+
+271 
+VoidP¨amK
+:
+
+279 
+StmtK
+:
+
+280 
+t
+->
+köd
+.
+°mt
+) {
+
+281 
+CompoundK
+:
+
+282 
+	`¥ötf
+("compound. cursc›e=%s\n",
+cuºítSc›e
+->
+«me
+);
+
+283 
+sc›eName
+[64];
+
+285 i‡(
+sc›eDïth
+== 1) {
+
+286 
+	`¥ötf
+("scopeDepth==1\n");
+
+289 
+	`¥ötf
+("scopeDepth isÇot 1\n");
+
+291 
+	`¢¥ötf
+(
+sc›eName
+, (sc›eName), "%s_%d", 
+cuºítSc›e
+->
+«me
+,
+sc›eDïth
+- 1);
+
+292 
+Sc›e
+ 
+√wsc›e
+ = 
+	`√wSc›e
+(
+sc›eName
+);
+
+293 
+√°edLevñ
+++;
+
+294 
+√wsc›e
+->
+√°edLevñ
+=nestedLevel;
+
+295 
+	`pushSc›e
+(
+√wsc›e
+);
+
+296 
+sc›eDïth
+++;
+
+305 
+ExpK
+:
+
+306 
+t
+->
+köd
+.
+exp
+) {
+
+307 
+CÆlK
+:
+
+308 
+BuckëLi°
+ 
+li°
+ = 
+	`°_lookup_buckë
+(
+t
+->
+©å
+.
+«me
+);
+
+309 i‡(
+li°
+ =
+NULL
+) {
+
+310 
+	`îr‹_unde˛¨ed
+(
+li°ög
+,"unde˛¨ed_func",
+t
+->
+©å
+.
+«me
+,t->
+löío
+);
+
+312 
+	`¥ötf
+("ExpK(ˇŒ): %s\n",
+t
+->
+©å
+.
+«me
+);
+
+313 
+t
+->
+ty≥
+ = (
+	`°rcmp
+(
+li°
+->ty≥, "öt"Ë=0Ë? 
+I¡egî
+ : 
+Void
+;
+
+314 
+	`ö£πLöes
+(
+t
+->
+©å
+.
+«me
+,Å->
+löío
+);
+
+317 
+V¨ExpK
+:
+
+318 
+BuckëLi°
+ 
+li°2
+ = 
+	`°_lookup_buckë
+(
+t
+->
+©å
+.
+«me
+);
+
+319 i‡(
+li°2
+ =
+NULL
+) {
+
+320 
+	`îr‹_unde˛¨ed
+(
+li°ög
+,"unde˛¨ed_id",
+t
+->
+©å
+.
+«me
+,t->
+löío
+);
+
+322 
+	`¥ötf
+("ExpK: %s\n",
+t
+->
+©å
+.
+«me
+);
+
+323 
+t
+->
+ty≥
+ = (
+	`°rcmp
+(
+li°2
+->ty≥, "öt"Ë=0Ë? 
+I¡egî
+ : 
+Void
+;
+
+324 
+	`ö£πLöes
+(
+t
+->
+©å
+.
+«me
+,Å->
+löío
+);
+
+336 
+	}
+}
+
+337 
+	$pushSc›e
+(
+Sc›e
+ 
+sc›e
+) {
+
+338 i‡(
+t›Sc›e
+ >
+SIZE
+ - 1) {
+
+339 
+	`Ârötf
+(
+°dîr
+, "Error: Scope stack overflow. CannotÖush more scopes.\n");
+
+340 
+	`exô
+(
+EXIT_FAILURE
+);
+
+342 i‡(
+cuºítSc›e
+ !
+NULL
+) {
+
+343 
+sc›e
+->
+∑ª¡
+ = 
+cuºítSc›e
+;
+
+346 
+sc›e
+->
+cuºítP¨amLi°
+ = 
+NULL
+;
+
+347 
+sc›e
+->
+√°edLevñ
+ =ÇestedLevel;
+
+348 
+sc›eSèck
+[++
+t›Sc›e
+] = 
+sc›e
+;
+
+349 
+cuºítSc›e
+ = 
+sc›e
+;
+
+350 
+	`Ârötf
+(
+°dîr
+, "Pushed sc›e: %†(Ne°ed Levñ: %d)\n", 
+sc›e
+->
+«me
+, 
+√°edLevñ
+);
+
+351 
+	}
+}
+
+354 
+	$p›Sc›e
+() {
+
+355 i‡(
+t›Sc›e
+ < 0) {
+
+356 
+	`Ârötf
+(
+°dîr
+, "Error: Scope stack underflow. No scopesÅoÖop.\n");
+
+357 
+	`exô
+(
+EXIT_FAILURE
+);
+
+360 
+	`Ârötf
+(
+°dîr
+, "P›≥d sc›e: %†(Ne°ed Levñ: %d)\n", 
+cuºítSc›e
+->
+«me
+, 
+√°edLevñ
+);
+
+362 
+sc›eSèck
+[
+t›Sc›e
+] = 
+NULL
+;
+
+363 
+t›Sc›e
+--;
+
+365 
+cuºítSc›e
+ = (
+t›Sc›e
+ >0Ë? 
+sc›eSèck
+[t›Sc›e] : 
+NULL
+;
+
+367 i‡(
+√°edLevñ
+ > 0) {
+
+368 
+√°edLevñ
+--;
+
+370 
+	}
+}
+
+376 
 	$buûdSymèb
 (
 TªeNode
@@ -947,61 +1511,63 @@ TªeNode
 sy¡axTªe
 )
 
-244 
+379 
+Sc›e
+ 
 globÆSc›e
  = 
 	`√wSc›e
 ("global");
 
-245 
+380 
 	`pushSc›e
 (
 globÆSc›e
 );
 
-248 
-	`ö£πI≈utFunc
+382 
+	`öputFunc
 ();
 
-249 
-	`ö£πOuçutFunc
+383 
+	`ouçutFunc
 ();
 
-252 
+386 
 	`åavî£
 (
 sy¡axTªe
 , 
 ö£πNode
 , 
-p›Sc›e
+po°Proc
 );
 
-253 i‡(
+387 
+	`p›Sc›e
+();
+
+388 i‡(
 Tø˚A«lyze
 )
 
-254 { 
+389 { 
 	`Ârötf
 (
 li°ög
 ,"\nSymbolÅable:\n\n");
 
-255 
+390 
 	`¥ötSymTab
 (
 li°ög
-,
-sc›eLi°
-,
-sizeOfLi°
 );
 
-257 
+392 
 	}
 }
 
-259 
+394 
 	$ty≥Eº‹
 (
 TªeNode
@@ -1011,7 +1577,7 @@ t
 mesßge
 )
 
-260 { 
+395 { 
 	`Ârötf
 (
 li°ög
@@ -1023,17 +1589,17 @@ löío
 mesßge
 );
 
-261 
+396 
 Eº‹
  = 
 TRUE
 ;
 
-262 
+397 
 	}
 }
 
-267 
+402 
 	$checkNode
 (
 TªeNode
@@ -1041,203 +1607,11 @@ TªeNode
 t
 )
 
-268 { 
-t
-->
-nodeköd
-)
-
-269 { 
-ExpK
-:
-
-270 
-t
-->
-köd
-.
-exp
-)
-
-271 { 
-OpK
-:
-
-272 i‡((
-t
-->
-chûd
-[0]->
-ty≥
- !
-I¡egî
-) ||
-
-273 (
-t
-->
-chûd
-[1]->
-ty≥
- !
-I¡egî
-))
-
-274 
-	`ty≥Eº‹
-(
-t
-,"OpáppliedÅoÇon-integer");
-
-275 i‡((
-t
-->
-©å
-.
-›
- =
-EQ
-Ë|| (t->©å.› =
-LT
-))
-
-276 
-t
-->
-ty≥
- = 
-Boﬁón
-;
-
-278 
-t
-->
-ty≥
- = 
-I¡egî
-;
-
-280 
-C⁄°K
-:
-
-281 
-IdK
-:
-
-282 
-t
-->
-ty≥
- = 
-I¡egî
-;
-
-288 
-StmtK
-:
-
-289 
-t
-->
-köd
-.
-°mt
-)
-
-290 { 
-IfK
-:
-
-291 i‡(
-t
-->
-chûd
-[0]->
-ty≥
- =
-I¡egî
-)
-
-292 
-	`ty≥Eº‹
-(
-t
-->
-chûd
-[0],"ifÅest isÇot Boolean");
-
-294 
-AssignK
-:
-
-295 i‡(
-t
-->
-chûd
-[0]->
-ty≥
- !
-I¡egî
-)
-
-296 
-	`ty≥Eº‹
-(
-t
-->
-chûd
-[0],"assignment ofÇon-integer value");
-
-298 
-WrôeK
-:
-
-299 i‡(
-t
-->
-chûd
-[0]->
-ty≥
- !
-I¡egî
-)
-
-300 
-	`ty≥Eº‹
-(
-t
-->
-chûd
-[0],"write ofÇon-integer value");
-
-302 
-RïótK
-:
-
-303 i‡(
-t
-->
-chûd
-[1]->
-ty≥
- =
-I¡egî
-)
-
-304 
-	`ty≥Eº‹
-(
-t
-->
-chûd
-[1],"repeatÅest isÇot Boolean");
-
-314 
+450 
 	}
 }
 
-319 
+455 
 	$ty≥Check
 (
 TªeNode
@@ -1245,7 +1619,7 @@ TªeNode
 sy¡axTªe
 )
 
-320 { 
+456 { 
 	`åavî£
 (
 sy¡axTªe
@@ -1255,7 +1629,7 @@ nuŒProc
 checkNode
 );
 
-321 
+457 
 	}
 }
 
@@ -1271,79 +1645,13 @@ _ANALYZE_H_
 
 	)
 
-10 
-	#ERR_UNDECLARED_FUNCTION
- "Eº‹: Unde˛¨ed fun˘i⁄ \"%s\" i†ˇŒedáàlöê%d\n"
-
-	)
-
-11 
-	#ERR_UNDECLARED_VARIABLE
- "Eº‹: Unde˛¨ed v¨übÀ \"%s\" i†u£dáàlöê%d\n"
-
-	)
-
-12 
-	#ERR_REDEFINED_SYMBOL
- "Eº‹: Symbﬁ \"%s\" i†ªdeföedáàlöê%d\n"
-
-	)
-
-13 
-	#ERR_INVALID_ARRAY_INDEX
- "Eº‹: InvÆidáºay indexögáàlöê%d («me: \"%s\"). Indi˚†should bêöãgî\n"
-
-	)
-
-14 
-	#ERR_INVALID_ARRAY_INDEXING
- "Eº‹: InvÆidáºay indexögáàlöê%d («me: \"%s\"). Indexög c™ o∆y bêÆlowed f‹ i¡[] v¨übÀs\n"
-
-	)
-
-15 
-	#ERR_INVALID_FUNC_CALL
- "Eº‹: InvÆid fun˘i⁄ cÆ»©Üöê%d («me: \"%s\")\n"
-
-	)
-
-16 
-	#ERR_VOID_TYPE_VARIABLE
- "Eº‹: Thêvoid-ty≥ v¨übÀ i†de˛¨edáàlöê%d («me: \"%s\")\n"
-
-	)
-
-17 
-	#ERR_INVALID_OPERATION
- "Eº‹: InvÆid o≥øti⁄áàlöê%d\n"
-
-	)
-
-18 
-	#ERR_INVALID_ASSIGNMENT
- "Eº‹: InvÆidássignmíà©Üöê%d\n"
-
-	)
-
-19 
-	#ERR_INVALID_CONDITION
- "Eº‹: InvÆid c⁄dôi⁄áàlöê%d\n"
-
-	)
-
-20 
-	#ERR_INVALID_RETURN
- "Eº‹: InvÆidÑëu∫áàlöê%d\n"
-
-	)
-
-24 
+14 
 buûdSymèb
 (
 TªeNode
  *);
 
-29 
+19 
 ty≥Check
 (
 TªeNode
@@ -2529,7 +2837,7 @@ cuºítTokí
 	~"∑r£.h
 "
 
-21 
+22 
 	#YYSTYPE
  
 TªeNode
@@ -2537,45 +2845,45 @@ TªeNode
 
 	)
 
-22 
+23 
 	gßvedNumbî
 ;
 
-23 * 
+24 * 
 	gßvedName
 ;
 
-25 
+26 
 ExpTy≥
  
 	gßvedTy≥
 ;
 
-26 
+27 
 	gßvedLöeNo
 ;
 
-27 
+28 
 TªeNode
  * 
 	gßvedTªe
 ;
 
-28 
+29 
 yyÀx
 ();
 
-29 
+30 
 ¥öt_debug_öfo
 ();
 
-31 
+32 
 yyîr‹
 (* 
 mesßge
 );
 
-39 %
+40 %
 tokí
  
 IF
@@ -2591,7 +2899,7 @@ VOID
 WHILE
 
 
-40 %
+41 %
 tokí
  
 ID
@@ -2599,7 +2907,7 @@ ID
 NUM
 
 
-41 %
+42 %
 tokí
  
 LT
@@ -2617,7 +2925,7 @@ NE
 SEMI
 
 
-42 %
+43 %
 tokí
  
 LPAREN
@@ -2633,7 +2941,7 @@ LBRACE
 RBRACE
 
 
-43 %
+44 %
 À·
  
 PLUS
@@ -2641,7 +2949,7 @@ PLUS
 MINUS
 
 
-44 %
+45 %
 À·
  
 TIMES
@@ -2651,13 +2959,13 @@ OVER
 COMMA
 
 
-46 %
+47 %
 right
  
 ASSIGN
 
 
-47 %
+48 %
 right
  
 THEN
@@ -2665,19 +2973,19 @@ THEN
 ELSE
 
 
-48 %
+49 %
 tokí
  
 ERROR
 
 
-51 %% /* 
+52 %% /* 
 	$yy∑r£
  */ 
 	`yyÀx
 ()
 
-57 
+58 
 ¥ogøm
  : 
 de˛_li°
@@ -2687,13 +2995,13 @@ de˛_li°
 $1
 ;}
 
-60 
+61 
 de˛_li°
  : de˛_li° 
 de˛¨©i⁄
 
 
-61 { 
+62 { 
 YYSTYPE
  
 t
@@ -2701,13 +3009,13 @@ t
 $1
 ;
 
-62 i‡(
+63 i‡(
 t
  !
 NULL
 )
 
-63 { 
+64 { 
 t
 ->
 siblög
@@ -2715,13 +3023,13 @@ siblög
 NULL
 )
 
-64 
+65 
 t
  =Å->
 siblög
 ;
 
-65 
+66 
 t
 ->
 siblög
@@ -2729,19 +3037,19 @@ siblög
 $2
 ;
 
-66 
+67 
 $$
  = 
 $1
 ; }
 
-67 
+68 
 $$
  = 
 $2
 ;
 
-69 | 
+70 | 
 de˛¨©i⁄
  { 
 $$
@@ -2749,7 +3057,7 @@ $$
 $1
 ; }
 
-72 
+73 
 de˛¨©i⁄
  : 
 v¨_de˛
@@ -2759,7 +3067,7 @@ $$
 $1
 ; }
 
-73 | 
+74 | 
 func_de˛
  { 
 $$
@@ -2767,21 +3075,23 @@ $$
 $1
 ; }
 
-76 
+77 
 id
  : 
 ID
 
 
-77 { 
+78 { 
 $$
  = 
 	`√wExpNode
 (
 IdK
+, 
+löío
 );
 
-78 
+79 
 ßvedName
  = 
 	`c›ySåög
@@ -2789,43 +3099,45 @@ IdK
 tokíSåög
 );
 
-79 
+80 
 ßvedLöeNo
  = 
 löío
 ;
 
-80 
+81 
 $$
 ->
 ©å
 .
 «me
-=
+ = 
 ßvedName
 ;
 
-81 
+82 
 $$
 ->
 löío
-=lineno;
+ =Üineno;
 
-84 
+85 
 num
  : 
 NUM
 
 
-85 { 
+87 
 $$
  = 
 	`√wExpNode
 (
 C⁄°K
+, 
+löío
 );
 
-86 
+88 
 ßvedNumbî
  = 
 	`©oi
@@ -2833,7 +3145,7 @@ C⁄°K
 tokíSåög
 );
 
-87 
+89 
 $$
 ->
 ©å
@@ -2843,13 +3155,13 @@ vÆ
 ßvedNumbî
 ;
 
-88 
+90 
 $$
 ->
 löío
  =Üineno;
 
-92 
+94 
 v¨_de˛
  : 
 ty≥_•ec
@@ -2859,15 +3171,19 @@ id
 SEMI
 
 
-93 { 
+95 { 
 $$
  = 
 	`√wDe˛Node
 (
 V¨K
+,
+$2
+->
+löío
 );
 
-94 
+96 
 $$
 ->
 ty≥
@@ -2875,7 +3191,7 @@ ty≥
 $1
 ->type;
 
-95 
+97 
 $$
 ->
 ©å
@@ -2885,15 +3201,7 @@ $$
 $2
 ->attr.name;
 
-96 
-$$
-->
-löío
- = 
-ßvedLöeNo
-;
-
-99 | 
+101 | 
 ty≥_•ec
  
 id
@@ -2907,15 +3215,19 @@ RBRACE
 SEMI
 
 
-100 { 
+102 { 
 $$
  = 
 	`√wDe˛Node
 (
 AºK
+, 
+$2
+->
+löío
 );
 
-101 
+103 
 $$
 ->
 ty≥
@@ -2929,7 +3241,7 @@ I¡Aºay
 VoidAºay
 ;
 
-102 
+104 
 $$
 ->
 ©å
@@ -2939,7 +3251,7 @@ $$
 $2
 ->attr.name;
 
-103 
+105 
 $$
 ->
 chûd
@@ -2947,29 +3259,23 @@ chûd
 $4
 ;
 
-104 
-$$
-->
-löío
- = 
-ßvedLöeNo
-;
-
-108 
+110 
 ty≥_•ec
  : 
 INT
 
 
-109 { 
+111 { 
 $$
  = 
 	`√wDe˛Node
 (
 Ty≥K
+, 
+löío
 );
 
-110 
+112 
 $$
 ->
 ty≥
@@ -2977,19 +3283,21 @@ ty≥
 I¡egî
 ;
 
-112 | 
+114 | 
 VOID
 
 
-113 { 
+115 { 
 $$
  = 
 	`√wDe˛Node
 (
 Ty≥K
+,
+löío
 );
 
-114 
+116 
 $$
 ->
 ty≥
@@ -2997,7 +3305,7 @@ ty≥
 Void
 ;
 
-118 
+120 
 func_de˛
  : 
 ty≥_•ec
@@ -3013,15 +3321,19 @@ RPAREN
 comp_°mt
 
 
-119 { 
+121 { 
 $$
  = 
 	`√wDe˛Node
 (
 FuncK
+, 
+$2
+->
+löío
 );
 
-120 
+122 
 $$
 ->
 ty≥
@@ -3029,7 +3341,7 @@ ty≥
 $1
 ->type;
 
-121 
+123 
 $$
 ->
 ©å
@@ -3039,13 +3351,7 @@ $$
 $2
 ->attr.name;
 
-122 
-$$
-->
-löío
- =Üineno;
-
-123 
+125 
 $$
 ->
 chûd
@@ -3053,7 +3359,7 @@ chûd
 $4
 ;
 
-124 
+126 
 $$
 ->
 chûd
@@ -3061,7 +3367,7 @@ chûd
 $6
 ;
 
-128 
+130 
 ∑øms
  : 
 ∑øm_li°
@@ -3071,7 +3377,7 @@ $$
 $1
 ; }
 
-129 | 
+131 | 
 VOID
  { 
 $$
@@ -3079,9 +3385,11 @@ $$
 	`√wDe˛Node
 (
 VoidP¨amK
+,
+löío
 ); }
 
-131 
+133 
 ∑øm_li°
  :Ö¨am_li° 
 COMMA
@@ -3089,7 +3397,7 @@ COMMA
 ∑øm
 
 
-132 { 
+134 { 
 YYSTYPE
  
 t
@@ -3097,13 +3405,13 @@ t
 $1
 ;
 
-133 i‡(
+135 i‡(
 t
  !
 NULL
 )
 
-134 { 
+136 { 
 t
 ->
 siblög
@@ -3111,13 +3419,13 @@ siblög
 NULL
 )
 
-135 
+137 
 t
  =Å->
 siblög
 ;
 
-136 
+138 
 t
 ->
 siblög
@@ -3125,19 +3433,19 @@ siblög
 $3
 ;
 
-137 
+139 
 $$
  = 
 $1
 ; }
 
-138 
+140 
 $$
  = 
 $3
 ;
 
-140 | 
+142 | 
 ∑øm
  { 
 $$
@@ -3145,7 +3453,7 @@ $$
 $1
 ; }
 
-143 
+145 
 ∑øm
  : 
 ty≥_•ec
@@ -3153,15 +3461,19 @@ ty≥_•ec
 id
 
 
-144 { 
+146 { 
 $$
  = 
 	`√wDe˛Node
 (
 P¨amK
+, 
+$2
+->
+löío
 );
 
-145 
+147 
 $$
 ->
 ty≥
@@ -3169,7 +3481,7 @@ ty≥
 $1
 ->type;
 
-146 
+148 
 $$
 ->
 ©å
@@ -3178,18 +3490,10 @@ $$
  = 
 	`c›ySåög
 (
-ßvedName
-);
+$2
+->attr.name);
 
-147 
-$$
-->
-löío
- = 
-ßvedLöeNo
-;
-
-149 | 
+151 | 
 ty≥_•ec
  
 id
@@ -3199,29 +3503,33 @@ LBRACE
 RBRACE
 
 
-150 { 
+152 { 
 $$
  = 
 	`√wDe˛Node
 (
 AºP¨amK
+, 
+$2
+->
+löío
 );
 
-151 
+153 
 $$
 ->
 ty≥
  = (
 $1
-->ty≥==
+->ty≥ =
 I¡egî
-)?
+Ë? 
 I¡Aºay
-:
+ : 
 VoidAºay
 ;
 
-152 
+154 
 $$
 ->
 ©å
@@ -3230,18 +3538,10 @@ $$
  = 
 	`c›ySåög
 (
-ßvedName
-);
+$2
+->attr.name);
 
-153 
-$$
-->
-löío
- = 
-ßvedLöeNo
-;
-
-157 
+159 
 comp_°mt
  : 
 LCURLY
@@ -3253,15 +3553,17 @@ loˇl_de˛
 RCURLY
 
 
-158 { 
+160 { 
 $$
  = 
 	`√wStmtNode
 (
 CompoundK
+, 
+löío
 );
 
-159 
+161 
 $$
 ->
 chûd
@@ -3271,7 +3573,7 @@ $2
 NULL
 ;
 
-160 
+162 
 $$
 ->
 chûd
@@ -3281,13 +3583,13 @@ $3
 NULL
 ;
 
-164 
+166 
 loˇl_de˛
  :Üoˇl_de˛ 
 v¨_de˛
 
 
-165 { 
+167 { 
 YYSTYPE
  
 t
@@ -3295,13 +3597,13 @@ t
 $1
 ;
 
-166 i‡(
+168 i‡(
 t
  !
 NULL
 )
 
-167 { 
+169 { 
 t
 ->
 siblög
@@ -3309,13 +3611,13 @@ siblög
 NULL
 )
 
-168 
+170 
 t
  =Å->
 siblög
 ;
 
-169 
+171 
 t
 ->
 siblög
@@ -3323,31 +3625,31 @@ siblög
 $2
 ;
 
-170 
+172 
 $$
  = 
 $1
 ; }
 
-171 
+173 
 $$
  = 
 $2
 ;
 
-173 | { 
+175 | { 
 $$
  = 
 NULL
 ; }
 
-176 
+178 
 °mt_li°
  : stmt_li° 
 °©emít
 
 
-177 { 
+179 { 
 YYSTYPE
  
 t
@@ -3355,13 +3657,13 @@ t
 $1
 ;
 
-178 i‡(
+180 i‡(
 t
  !
 NULL
 )
 
-179 { 
+181 { 
 t
 ->
 siblög
@@ -3369,13 +3671,13 @@ siblög
 NULL
 )
 
-180 
+182 
 t
  =Å->
 siblög
 ;
 
-181 
+183 
 t
 ->
 siblög
@@ -3383,25 +3685,25 @@ siblög
 $2
 ;
 
-182 
+184 
 $$
  = 
 $1
 ; }
 
-183 
+185 
 $$
  = 
 $2
 ;
 
-185 | { 
+187 | { 
 $$
  = 
 NULL
 ; }
 
-188 
+190 
 °©emít
  : 
 exp_°mt
@@ -3411,7 +3713,7 @@ $$
 $1
 ; }
 
-189 | 
+191 | 
 comp_°mt
  { 
 $$
@@ -3419,7 +3721,7 @@ $$
 $1
 ; }
 
-190 | 
+192 | 
 £À˘_°mt
  { 
 $$
@@ -3427,7 +3729,7 @@ $$
 $1
 ; }
 
-191 | 
+193 | 
 ôî_°mt
  { 
 $$
@@ -3435,7 +3737,7 @@ $$
 $1
 ; }
 
-192 | 
+194 | 
 ªtu∫_°mt
  { 
 $$
@@ -3443,7 +3745,7 @@ $$
 $1
 ; }
 
-193 | 
+195 | 
 ERROR
  
 SEMI
@@ -3453,7 +3755,7 @@ SEMI
 yyîrok
 ; }
 
-196 
+198 
 exp_°mt
  : 
 ex¥essi⁄
@@ -3465,7 +3767,7 @@ $$
 $1
 ; }
 
-197 | 
+199 | 
 SEMI
  { 
 $$
@@ -3473,7 +3775,7 @@ $$
 NULL
 ; }
 
-200 
+202 
 £À˘_°mt
 : 
 IF
@@ -3487,15 +3789,19 @@ RPAREN
 °©emít
 
 
-201 { 
+203 { 
 $$
  = 
 	`√wStmtNode
 (
 IfK
+, 
+$1
+->
+löío
 );
 
-202 
+204 
 $$
 ->
 chûd
@@ -3503,7 +3809,7 @@ chûd
 $3
 ;
 
-203 
+205 
 $$
 ->
 chûd
@@ -3511,13 +3817,13 @@ chûd
 $5
 ;
 
-204 } %
+206 } %
 ¥ec
  
 THEN
 
 
-205 | 
+207 | 
 IF
  
 LPAREN
@@ -3531,15 +3837,19 @@ RPAREN
 ELSE
  statement
 
-206 { 
+208 { 
 $$
  = 
 	`√wStmtNode
 (
 El£K
+, 
+$1
+->
+löío
 );
 
-207 
+209 
 $$
 ->
 chûd
@@ -3547,7 +3857,7 @@ chûd
 $3
 ;
 
-208 
+210 
 $$
 ->
 chûd
@@ -3555,7 +3865,7 @@ chûd
 $5
 ;
 
-209 
+211 
 $$
 ->
 chûd
@@ -3563,7 +3873,7 @@ chûd
 $7
 ;
 
-212 
+214 
 ôî_°mt
  : 
 WHILE
@@ -3577,15 +3887,19 @@ RPAREN
 °©emít
 
 
-213 { 
+215 { 
 $$
  = 
 	`√wStmtNode
 (
 WhûeK
+, 
+$1
+->
+löío
 );
 
-214 
+216 
 $$
 ->
 chûd
@@ -3593,7 +3907,7 @@ chûd
 $3
 ;
 
-215 
+217 
 $$
 ->
 chûd
@@ -3601,7 +3915,7 @@ chûd
 $5
 ;
 
-219 
+221 
 ªtu∫_°mt
  : 
 RETURN
@@ -3609,15 +3923,17 @@ RETURN
 SEMI
 
 
-220 { 
+222 { 
 $$
  = 
 	`√wStmtNode
 (
 Rëu∫K
+, 
+löío
 );
 
-222 | 
+224 | 
 RETURN
  
 ex¥essi⁄
@@ -3625,15 +3941,17 @@ ex¥essi⁄
 SEMI
 
 
-223 { 
+225 { 
 $$
  = 
 	`√wStmtNode
 (
 Rëu∫K
+, 
+löío
 );
 
-224 
+226 
 $$
 ->
 chûd
@@ -3641,7 +3959,7 @@ chûd
 $2
 ;
 
-228 
+230 
 ex¥essi⁄
  : 
 v¨
@@ -3649,15 +3967,19 @@ v¨
 ASSIGN
 Éxpression
 
-229 { 
+231 { 
 $$
  = 
 	`√wExpNode
 (
 AssignK
+, 
+$1
+->
+löío
 );
 
-230 
+232 
 $$
 ->
 chûd
@@ -3665,7 +3987,7 @@ chûd
 $1
 ;
 
-231 
+233 
 $$
 ->
 chûd
@@ -3673,7 +3995,7 @@ chûd
 $3
 ;
 
-233 | 
+235 | 
 sim∂e_exp
  { 
 $$
@@ -3681,21 +4003,25 @@ $$
 $1
 ; }
 
-236 
+238 
 v¨
  : 
 id
 
 
-237 { 
+239 { 
 $$
  = 
 	`√wExpNode
 (
 V¨ExpK
+, 
+$1
+->
+löío
 );
 
-238 
+240 
 $$
 ->
 ©å
@@ -3707,7 +4033,7 @@ $$
 ßvedName
 );
 
-240 | 
+242 | 
 id
  
 LBRACE
@@ -3717,15 +4043,19 @@ ex¥essi⁄
 RBRACE
 
 
-241 { 
+243 { 
 $$
  = 
 	`√wExpNode
 (
 V¨ExpK
+, 
+$1
+->
+löío
 );
 
-242 
+244 
 $$
 ->
 ©å
@@ -3735,7 +4065,7 @@ $$
 $1
 ->attr.name;
 
-243 
+245 
 $$
 ->
 chûd
@@ -3743,7 +4073,7 @@ chûd
 $3
 ;
 
-247 
+249 
 sim∂e_exp
  : 
 add_exp
@@ -3751,15 +4081,19 @@ add_exp
 LT
 ádd_exp
 
-248 { 
+250 { 
 $$
  = 
 	`√wExpNode
 (
 OpK
+, 
+$1
+->
+löío
 );
 
-249 
+251 
 $$
 ->
 chûd
@@ -3767,7 +4101,7 @@ chûd
 $1
 ;
 
-250 
+252 
 $$
 ->
 ©å
@@ -3777,7 +4111,7 @@ $$
 LT
 ;
 
-251 
+253 
 $$
 ->
 chûd
@@ -3785,21 +4119,25 @@ chûd
 $3
 ;
 
-253 | 
+255 | 
 add_exp
  
 LE
 ádd_exp
 
-254 { 
+256 { 
 $$
  = 
 	`√wExpNode
 (
 OpK
+, 
+$1
+->
+löío
 );
 
-255 
+257 
 $$
 ->
 chûd
@@ -3807,7 +4145,7 @@ chûd
 $1
 ;
 
-256 
+258 
 $$
 ->
 ©å
@@ -3817,7 +4155,7 @@ $$
 LE
 ;
 
-257 
+259 
 $$
 ->
 chûd
@@ -3825,141 +4163,157 @@ chûd
 $3
 ;
 
-259 |
+261 |
 add_exp
  
 GT
 ádd_exp
 
-260 { 
+262 { 
 $$
  = 
 	`√wExpNode
 (
 OpK
-);
-
-261 
-$$
-->
-chûd
-[0] = 
+, 
 $1
-;
-
-262 
-$$
 ->
-©å
-.
-›
- = 
-GT
-;
+löío
+);
 
 263 
 $$
 ->
 chûd
-[1] = 
-$3
-;
-
-265 |
-add_exp
- 
-GE
-ádd_exp
-
-266 { 
-$$
- = 
-	`√wExpNode
-(
-OpK
-);
-
-267 
-$$
-->
-chûd
 [0] = 
 $1
 ;
 
-268 
+264 
 $$
 ->
 ©å
 .
 ›
  = 
-GE
+GT
 ;
+
+265 
+$$
+->
+chûd
+[1] = 
+$3
+;
+
+267 |
+add_exp
+ 
+GE
+ádd_exp
+
+268 { 
+$$
+ = 
+	`√wExpNode
+(
+OpK
+, 
+$1
+->
+löío
+);
 
 269 
 $$
 ->
 chûd
-[1] = 
-$3
-;
-
-271 | 
-add_exp
- 
-EQ
-ádd_exp
-
-272 { 
-$$
- = 
-	`√wExpNode
-(
-OpK
-);
-
-273 
-$$
-->
-chûd
 [0] = 
 $1
 ;
 
-274 
+270 
 $$
 ->
 ©å
 .
 ›
  = 
-EQ
+GE
 ;
+
+271 
+$$
+->
+chûd
+[1] = 
+$3
+;
+
+273 | 
+add_exp
+ 
+EQ
+ádd_exp
+
+274 { 
+$$
+ = 
+	`√wExpNode
+(
+OpK
+, 
+$1
+->
+löío
+);
 
 275 
 $$
 ->
 chûd
+[0] = 
+$1
+;
+
+276 
+$$
+->
+©å
+.
+›
+ = 
+EQ
+;
+
+277 
+$$
+->
+chûd
 [1] = 
 $3
 ;
 
-277 | 
+279 | 
 add_exp
  
 NE
 ádd_exp
 
-278 { 
+280 { 
 $$
  = 
 	`√wExpNode
 (
 OpK
+, 
+$1
+->
+löío
 );
 
-279 
+281 
 $$
 ->
 chûd
@@ -3967,7 +4321,7 @@ chûd
 $1
 ;
 
-280 
+282 
 $$
 ->
 ©å
@@ -3977,7 +4331,7 @@ $$
 NE
 ;
 
-281 
+283 
 $$
 ->
 chûd
@@ -3985,7 +4339,7 @@ chûd
 $3
 ;
 
-283 | 
+285 | 
 add_exp
  { 
 $$
@@ -3993,7 +4347,7 @@ $$
 $1
 ; }
 
-288 
+290 
 add_exp
  :ádd_ex∞
 PLUS
@@ -4001,15 +4355,19 @@ PLUS
 ãrm
 
 
-289 { 
+291 { 
 $$
  = 
 	`√wExpNode
 (
 OpK
+, 
+$1
+->
+löío
 );
 
-290 
+292 
 $$
 ->
 chûd
@@ -4017,7 +4375,7 @@ chûd
 $1
 ;
 
-291 
+293 
 $$
 ->
 chûd
@@ -4025,7 +4383,7 @@ chûd
 $3
 ;
 
-292 
+294 
 $$
 ->
 ©å
@@ -4035,7 +4393,7 @@ $$
 PLUS
 ;
 
-294 | 
+296 | 
 add_exp
  
 MINUS
@@ -4043,15 +4401,19 @@ MINUS
 ãrm
 
 
-295 { 
+297 { 
 $$
  = 
 	`√wExpNode
 (
 OpK
+, 
+$1
+->
+löío
 );
 
-296 
+298 
 $$
 ->
 chûd
@@ -4059,7 +4421,7 @@ chûd
 $1
 ;
 
-297 
+299 
 $$
 ->
 chûd
@@ -4067,7 +4429,7 @@ chûd
 $3
 ;
 
-298 
+300 
 $$
 ->
 ©å
@@ -4077,7 +4439,7 @@ $$
 MINUS
 ;
 
-300 | 
+302 | 
 ãrm
  { 
 $$
@@ -4085,7 +4447,7 @@ $$
 $1
 ; }
 
-303 
+305 
 ãrm
  :Åîm 
 TIMES
@@ -4093,15 +4455,19 @@ TIMES
 Á˘‹
 
 
-304 { 
+306 { 
 $$
  = 
 	`√wExpNode
 (
 OpK
+, 
+$1
+->
+löío
 );
 
-305 
+307 
 $$
 ->
 chûd
@@ -4109,7 +4475,7 @@ chûd
 $1
 ;
 
-306 
+308 
 $$
 ->
 ©å
@@ -4119,7 +4485,7 @@ $$
 TIMES
 ;
 
-307 
+309 
 $$
 ->
 chûd
@@ -4127,7 +4493,7 @@ chûd
 $3
 ;
 
-309 | 
+311 | 
 ãrm
  
 OVER
@@ -4135,15 +4501,19 @@ OVER
 Á˘‹
 
 
-310 { 
+312 { 
 $$
  = 
 	`√wExpNode
 (
 OpK
+, 
+$1
+->
+löío
 );
 
-311 
+313 
 $$
 ->
 chûd
@@ -4151,7 +4521,7 @@ chûd
 $1
 ;
 
-312 
+314 
 $$
 ->
 ©å
@@ -4161,7 +4531,7 @@ $$
 OVER
 ;
 
-313 
+315 
 $$
 ->
 chûd
@@ -4169,7 +4539,7 @@ chûd
 $3
 ;
 
-315 | 
+317 | 
 Á˘‹
  { 
 $$
@@ -4177,7 +4547,7 @@ $$
 $1
 ; }
 
-318 
+320 
 Á˘‹
  : 
 LPAREN
@@ -4191,7 +4561,7 @@ $$
 $2
 ; }
 
-319 | 
+321 | 
 v¨
  { 
 $$
@@ -4199,7 +4569,7 @@ $$
 $1
 ; }
 
-320 | 
+322 | 
 ˇŒ
  { 
 $$
@@ -4207,19 +4577,23 @@ $$
 $1
 ; }
 
-321 | 
+323 | 
 num
 
 
-322 { 
+324 { 
 $$
  = 
 	`√wExpNode
 (
 C⁄°K
+, 
+$1
+->
+löío
 );
 
-323 
+325 
 $$
 ->
 ©å
@@ -4229,7 +4603,7 @@ vÆ
 ßvedNumbî
 ;
 
-327 
+329 
 ˇŒ
  : 
 id
@@ -4241,15 +4615,19 @@ LPAREN
 RPAREN
 
 
-328 { 
+330 { 
 $$
  = 
 	`√wExpNode
 (
 CÆlK
+, 
+$1
+->
+löío
 );
 
-329 
+331 
 $$
 ->
 ©å
@@ -4259,7 +4637,7 @@ $$
 $1
 ->attr.name;
 
-330 
+332 
 $$
 ->
 chûd
@@ -4267,7 +4645,7 @@ chûd
 $3
 ;
 
-334 
+336 
 ¨gs
  : 
 ¨g_li°
@@ -4277,13 +4655,13 @@ $$
 $1
 ; }
 
-335 | { 
+337 | { 
 $$
  = 
 NULL
 ; }
 
-338 
+340 
 ¨g_li°
  :árg_li° 
 COMMA
@@ -4291,7 +4669,7 @@ COMMA
 ex¥essi⁄
 
 
-339 { 
+341 { 
 YYSTYPE
  
 t
@@ -4299,13 +4677,13 @@ t
 $1
 ;
 
-340 i‡(
+342 i‡(
 t
  !
 NULL
 )
 
-341 { 
+343 { 
 t
 ->
 siblög
@@ -4313,13 +4691,13 @@ siblög
 NULL
 )
 
-342 
+344 
 t
  =Å->
 siblög
 ;
 
-343 
+345 
 t
 ->
 siblög
@@ -4327,19 +4705,19 @@ siblög
 $3
 ;
 
-344 
+346 
 $$
  = 
 $1
 ; }
 
-345 
+347 
 $$
  = 
 $3
 ;
 
-347 | 
+349 | 
 ex¥essi⁄
  { 
 $$
@@ -4347,17 +4725,17 @@ $$
 $1
 ; }
 
-350 
+352 
 	}
 %%
 
-356 
+358 
 	$yyîr‹
 (* 
 mesßge
 ) {
 
-357 
+359 
 	`Ârötf
 (
 li°ög
@@ -4367,13 +4745,13 @@ löío
 mesßge
 );
 
-358 
+360 
 	`Ârötf
 (
 li°ög
 ,"CurrentÅoken: ");
 
-359 
+361 
 	`¥ötTokí
 (
 yych¨
@@ -4381,43 +4759,43 @@ yych¨
 tokíSåög
 );
 
-360 
+362 
 Eº‹
  = 
 TRUE
 ;
 
-362 
+364 
 	}
 }
 
-366 
+368 
 	$yyÀx
 () {
 
-367  
+369  
 	`gëTokí
 ();
 
-368 
+370 
 	}
 }
 
-370 
+372 
 TªeNode
  * 
 	$∑r£
 () {
 
-371 
+373 
 	`yy∑r£
 ();
 
-372  
+374  
 ßvedTªe
 ;
 
-373 
+375 
 	}
 }
 
@@ -4799,100 +5177,6 @@ r
 a
 , * 
 c
-);
-
-	@error_messages.c
-
-1 
-Ârötf
-(
-li°ög
-, "Eº‹: unde˛¨ed fun˘i⁄ \"%s\" i†ˇŒedáàlöê%d\n", 
-«me
-, 
-löío
-);
-
-2 
-Ârötf
-(
-li°ög
-, "Eº‹: unde˛¨ed v¨übÀ \"%s\" i†u£dáàlöê%d\n", 
-«me
-, 
-löío
-);
-
-3 
-Ârötf
-(
-li°ög
-, "Eº‹: Thêvoid-ty≥ v¨übÀ i†de˛¨edáàlöê%d («mê: \"%s\")\n", 
-löío
-, 
-«me
-);
-
-4 
-Ârötf
-(
-li°ög
-, "Eº‹: InvÆidáºay indexögáàlöê%d («mê: \"%s\"). indicõ†should bêöãgî\n", 
-löío
-, 
-«me
-);
-
-5 
-Ârötf
-(
-li°ög
-, "Eº‹: InvÆidáºay indexögáàlöê%d («mê: \"%s\"). indexög c™ o∆yáŒowed f‹ i¡[] v¨übÀs\n", 
-löío
-, 
-«me
-);
-
-6 
-Ârötf
-(
-li°ög
-, "Eº‹: InvÆid fun˘i⁄ cÆ»©Üöê%d («mê: \"%s\")\n", 
-löío
-, 
-«me
-);
-
-7 
-Ârötf
-(
-li°ög
-, "Eº‹: InvÆidÑëu∫áàlöê%d\n", 
-löío
-);
-
-8 
-Ârötf
-(
-li°ög
-, "Eº‹: invÆidássignmíà©Üöê%d\n", 
-löío
-);
-
-9 
-Ârötf
-(
-li°ög
-, "Eº‹: invÆid o≥øti⁄áàlöê%d\n", 
-löío
-);
-
-10 
-Ârötf
-(
-li°ög
-, "Eº‹: invÆid c⁄dôi⁄áàlöê%d\n", 
-löío
 );
 
 	@globals.h
@@ -10098,7 +10382,7 @@ FALSE
 18 
 	#NO_CODE
  
-FALSE
+TRUE
 
 
 	)
@@ -12631,203 +12915,7 @@ gëTokí
 	~"symèb.h
 "
 
-17 
-	#SIZE
- 211
-
-	)
-
-21 
-	#SHIFT
- 4
-
-	)
-
-24 
-	$hash
- ( * 
-key
- )
-
-25 { 
-ãmp
- = 0;
-
-26 
-i
- = 0;
-
-27 
-key
-[
-i
-] != '\0')
-
-28 { 
-ãmp
- = (—em∞<< 
-SHIFT
-Ë+ 
-key
-[
-i
-]Ë% 
-SIZE
-;
-
-29 ++
-i
-;
-
-31  
-ãmp
-;
-
-32 
-	}
-}
-
-37 
-	sLöeLi°Rec
-
-
-38 { 
-	mlöío
-;
-
-39 
-LöeLi°Rec
- * 
-	m√xt
-;
-
-40 } * 
-	tLöeLi°
-;
-
-48 
-	sBuckëLi°Rec
-
-
-49 { * 
-	m«me
-;
-
-50 
-LöeLi°
- 
-	mlöes
-;
-
-51 
-	mmemloc
- ;
-
-52 
-BuckëLi°Rec
- * 
-	m√xt
-;
-
-53 *
-	mty≥
-;
-
-54 *
-	mköd
-;
-
-55 
-P¨amëîLi°
- 
-	m∑øms
-;
-
-56 } * 
-	tBuckëLi°
-;
-
-58 
-	sP¨amLi°Rec
- {
-
-59 *
-	m«me
-;
-
-60 *
-	mty≥
-;
-
-61 
-P¨amLi°Rec
- *
-	m√xt
-;
-
-62 } *
-	tP¨amëîLi°
-;
-
-63 
-	sSc›eLi°Rec
-{
-
-64 * 
-	m«me
-;
-
-65 
-	m√°edLevñ
-;
-
-66 
-Sc›eLi°Rec
-* 
-	m∑ª¡
-;
-
-67 
-BuckëLi°
- 
-	mhashTabÀ
-[
-SIZE
-];
-
-68 
-P¨amëîLi°
- 
-	m∑ømli°
-[
-SIZE
-];
-
-71 
-	tSc›e
- 
-	tsc›eLi°
-[
-SIZE
-];
-
-72 
-	gsizeOfLi°
- = 0;
-
-75 
-Sc›e
- 
-	gsc›eSèck
-[
-SIZE
-];
-
-76 
-	gt›Sc›e
- = -1;
-
-77 
+17 
 Sc›e
  
 	gcuºítSc›e
@@ -12835,7 +12923,31 @@ Sc›e
 NULL
 ;
 
-80 
+18 
+	gt›Sc›e
+ = -1;
+
+19 
+	gsizeOfLi°
+ = 0;
+
+20 
+Sc›e
+ 
+	gsc›eLi°
+[
+SIZE
+] = {0};
+
+21 
+Sc›e
+ 
+	gsc›eSèck
+[
+SIZE
+];
+
+37 
 Sc›e
  
 	$√wSc›e
@@ -12843,7 +12955,7 @@ Sc›e
 «me
 ) {
 
-81 
+38 
 Sc›e
  
 sc›e
@@ -12853,7 +12965,13 @@ sc›e
 Sc›eLi°Rec
 ));
 
-82 
+39 
+sc›e
+->
+loˇti⁄
+=0;
+
+40 
 sc›e
 ->
 «me
@@ -12861,7 +12979,7 @@ sc›e
 	`°rdup
 (name);
 
-83 
+41 
 sc›e
 ->
 √°edLevñ
@@ -12871,7 +12989,7 @@ cuºítSc›e
 NULL
 ) ? 0 : currentScope->nestedLevel + 1;
 
-84 
+42 
 sc›e
 ->
 ∑ª¡
@@ -12879,7 +12997,7 @@ sc›e
 cuºítSc›e
 ;
 
-85 
+43 
 	`mem£t
 (
 sc›e
@@ -12887,7 +13005,7 @@ sc›e
 hashTabÀ
 , 0, (scope->hashTable));
 
-86 
+44 
 	`mem£t
 (
 sc›e
@@ -12895,29 +13013,57 @@ sc›e
 ∑ømli°
 , 0, (scope->paramlist));
 
-87  
+47 i‡(
+sizeOfLi°
+ < 
+SIZE
+) {
+
+48 
+sc›eLi°
+[
+sizeOfLi°
+++] = 
 sc›e
 ;
 
-88 
+50 
+	`Ârötf
+(
+°dîr
+, "Error: scopeList overflow.\n");
+
+51 
+	`exô
+(
+EXIT_FAILURE
+);
+
+54  
+sc›e
+;
+
+55 
 	}
 }
 
-95 
+62 
 	$°_ö£π
 –* 
+köd
+,* 
 «me
 , 
 löío
-, 
-loc
 , *
 ty≥
-, *
+, 
+Sc›e
+ 
 sc›e
  )
 
-96 { 
+63 { 
 h
  = 
 	`hash
@@ -12925,7 +13071,7 @@ h
 «me
 );
 
-97 
+64 
 BuckëLi°
  
 l
@@ -12937,7 +13083,7 @@ hashTabÀ
 h
 ];
 
-99 (
+66 (
 l
  !
 NULL
@@ -12947,19 +13093,19 @@ NULL
 «me
 ,l->name) != 0))
 
-100 
+67 
 l
  =Ü->
 √xt
 ;
 
-102 i‡(
+69 i‡(
 l
  =
 NULL
 ) {
 
-103 
+70 
 l
  = (
 BuckëLi°
@@ -12969,7 +13115,7 @@ BuckëLi°
 BuckëLi°Rec
 ));
 
-104 
+71 
 l
 ->
 «me
@@ -12977,7 +13123,7 @@ l
 	`°rdup
 (name);
 
-105 
+72 
 l
 ->
 löes
@@ -12989,7 +13135,7 @@ LöeLi°
 LöeLi°Rec
 ));
 
-106 
+73 
 l
 ->
 löes
@@ -12997,15 +13143,17 @@ löes
 löío
  =Üineno;
 
-107 
+74 
 l
 ->
 memloc
  = 
-loc
-;
+sc›e
+->
+loˇti⁄
+++;
 
-108 
+75 
 l
 ->
 löes
@@ -13015,7 +13163,7 @@ löes
 NULL
 ;
 
-109 
+76 
 l
 ->
 ty≥
@@ -13023,17 +13171,15 @@ ty≥
 	`°rdup
 (type);
 
-110 
+77 
 l
 ->
-sc›e
- = 
+köd
+=
 	`°rdup
-(sc›e->
-«me
-);
+(kind);
 
-111 
+78 
 l
 ->
 √xt
@@ -13045,7 +13191,7 @@ hashTabÀ
 h
 ];
 
-112 
+79 
 sc›e
 ->
 hashTabÀ
@@ -13055,7 +13201,7 @@ h
 l
 ;}
 
-114 { 
+81 { 
 LöeLi°
  
 t
@@ -13065,7 +13211,7 @@ l
 löes
 ;
 
-115 
+82 
 t
 ->
 √xt
@@ -13073,7 +13219,7 @@ t
 NULL
 )Å =Å->next;
 
-116 
+83 
 t
 ->
 √xt
@@ -13085,7 +13231,7 @@ LöeLi°
 LöeLi°Rec
 ));
 
-117 
+84 
 t
 ->
 √xt
@@ -13093,7 +13239,7 @@ t
 löío
  =Üineno;
 
-118 
+85 
 t
 ->
 √xt
@@ -13101,27 +13247,31 @@ t
 NULL
 ;
 
-120 
+87 
 	}
 }
 
-121 
+88 
 	$°_ö£π_fun˘i⁄
-(
+(* 
+köd
+,* 
+«me
+, 
+löío
+, *
+ty≥
+, 
 Sc›e
  
 sc›e
-, *
-«me
-, *
-ty≥
 , 
 P¨amëîLi°
  
 ∑øms
 ) {
 
-122 
+89 
 h
  = 
 	`hash
@@ -13129,7 +13279,7 @@ h
 «me
 );
 
-123 
+90 
 BuckëLi°
  
 l
@@ -13141,29 +13291,7 @@ hashTabÀ
 h
 ];
 
-126 
-l
- !
-NULL
- && 
-	`°rcmp
-(
-«me
-,Ü->name) != 0) {
-
-127 
-l
- =Ü->
-√xt
-;
-
-130 i‡(
-l
- =
-NULL
-) {
-
-131 
+92 
 l
  = (
 BuckëLi°
@@ -13173,7 +13301,7 @@ BuckëLi°
 BuckëLi°Rec
 ));
 
-132 
+93 
 l
 ->
 «me
@@ -13181,7 +13309,47 @@ l
 	`°rdup
 (name);
 
-133 
+94 
+l
+->
+löes
+ = (
+LöeLi°
+)
+	`mÆloc
+((
+LöeLi°Rec
+));
+
+95 
+l
+->
+löes
+->
+löío
+ =Üineno;
+
+96 
+l
+->
+memloc
+ = 
+sc›e
+->
+loˇti⁄
+++;
+
+97 
+l
+->
+löes
+->
+√xt
+ = 
+NULL
+;
+
+98 
 l
 ->
 ty≥
@@ -13189,35 +13357,15 @@ ty≥
 	`°rdup
 (type);
 
-134 
+99 
 l
 ->
 köd
- = 
+=
 	`°rdup
-("Function");
+(kind);
 
-135 
-l
-->
-memloc
- = 0;
-
-136 
-l
-->
-löes
- = 
-NULL
-;
-
-137 
-l
-->
-∑øms
- =Öarams;
-
-138 
+100 
 l
 ->
 √xt
@@ -13229,7 +13377,7 @@ hashTabÀ
 h
 ];
 
-139 
+101 
 sc›e
 ->
 hashTabÀ
@@ -13239,7 +13387,7 @@ h
 l
 ;
 
-142 
+104 
 sc›e
 ->
 ∑ømli°
@@ -13249,19 +13397,21 @@ h
 ∑øms
 ;
 
-144 
+105 
 	`Ârötf
 (
 °dîr
-, "Eº‹: Redeföôi⁄ o‡fun˘i⁄ %s\n", 
+, "Fun˘i⁄ '%s' in£πed wôhÑëu∫Åy≥ '%s'.\n", 
 «me
+, 
+ty≥
 );
 
-146 
+107 
 	}
 }
 
-147 
+108 
 	$addP¨amëî
 (
 P¨amëîLi°
@@ -13273,7 +13423,7 @@ P¨amëîLi°
 ty≥
 ) {
 
-148 
+109 
 P¨amëîLi°
  
 √wP¨am
@@ -13283,19 +13433,23 @@ P¨amëîLi°
 P¨amLi°Rec
 ));
 
-149 
+110 
 √wP¨am
 ->
 «me
- =Çame;
+ = 
+	`°rdup
+(name);
 
-150 
+111 
 √wP¨am
 ->
 ty≥
- =Åype;
+ = 
+	`°rdup
+(type);
 
-151 
+112 
 √wP¨am
 ->
 √xt
@@ -13303,19 +13457,19 @@ ty≥
 NULL
 ;
 
-153 i‡(*
+114 i‡(*
 ∂i°
  =
 NULL
 ) {
 
-154 *
+115 *
 ∂i°
  = 
 √wP¨am
 ;
 
-156 
+117 
 P¨amëîLi°
  
 ãmp
@@ -13323,7 +13477,7 @@ P¨amëîLi°
 ∂i°
 ;
 
-157 
+118 
 ãmp
 ->
 √xt
@@ -13331,13 +13485,13 @@ P¨amëîLi°
 NULL
 ) {
 
-158 
+119 
 ãmp
  =Åemp->
 √xt
 ;
 
-160 
+121 
 ãmp
 ->
 √xt
@@ -13345,25 +13499,33 @@ NULL
 √wP¨am
 ;
 
-162 
+123 
 	}
 }
 
-166 
-	$°_lookup
- ( * 
+124 
+BuckëLi°
+ 
+	$°_lookup_buckë
+(*
 «me
- )
+) {
 
-167 { 
+125 
 Sc›e
  
 sc›e
-=
-	`curSc›e
-();
+ = 
+cuºítSc›e
+;
 
-168 
+126 
+sc›e
+ !
+NULL
+) {
+
+127 
 h
  = 
 	`hash
@@ -13371,7 +13533,7 @@ h
 «me
 );
 
-169 
+128 
 BuckëLi°
  
 l
@@ -13383,39 +13545,331 @@ hashTabÀ
 h
 ];
 
-170 (
+129 
 l
  !
 NULL
-Ë&& (
+) {
+
+130 i‡(
 	`°rcmp
 (
 «me
-,l->name) != 0))
+, 
+l
+->name) == 0) {
 
-171 
+131  
+l
+;
+
+133 
 l
  =Ü->
 √xt
 ;
 
-172 i‡(
-l
+135 
+sc›e
+ = sc›e->
+∑ª¡
+;
+
+137  
+NULL
+;
+
+138 
+	}
+}
+
+140 
+	$ö£πLöes
+(*
+«me
+, 
+löío
+) {
+
+141 
+BuckëLi°
+ 
+symbﬁ
+ = 
+	`°_lookup_buckë
+(
+«me
+);
+
+142 
+LöeLi°
+ 
+cuºítLöe
+ = 
+symbﬁ
+->
+löes
+;
+
+143 i‡(
+cuºítLöe
  =
 NULL
-)  -1;
+) {
 
-173  
+145 
+symbﬁ
+->
+löes
+ = (
+LöeLi°
+Ë
+	`mÆloc
+((
+LöeLi°Rec
+));
+
+146 i‡(
+symbﬁ
+->
+löes
+ =
+NULL
+) {
+
+147 
+	`Ârötf
+(
+°dîr
+, "Error: Memoryállocation failed for LineList.\n");
+
+148 
+	`exô
+(
+EXIT_FAILURE
+);
+
+150 
+symbﬁ
+->
+löes
+->
+löío
+ =Üineno;
+
+151 
+symbﬁ
+->
+löes
+->
+√xt
+ = 
+NULL
+;
+
+154 
+cuºítLöe
+->
+√xt
+ !
+NULL
+) {
+
+155 
+cuºítLöe
+ = cuºítLöe->
+√xt
+;
+
+158 
+cuºítLöe
+->
+√xt
+ = (
+LöeLi°
+Ë
+	`mÆloc
+((
+LöeLi°Rec
+));
+
+159 i‡(
+cuºítLöe
+->
+√xt
+ =
+NULL
+) {
+
+160 
+	`Ârötf
+(
+°dîr
+, "Error: Memoryállocation failed for LineList.\n");
+
+161 
+	`exô
+(
+EXIT_FAILURE
+);
+
+163 
+cuºítLöe
+->
+√xt
+->
+löío
+ =Üineno;
+
+164 
+cuºítLöe
+->
+√xt
+->√xà
+NULL
+;
+
+167 
+	}
+}
+
+170 
+BuckëLi°
+ 
+	$°_lookup_t›
+(*
+«me
+){
+
+171 
+h
+ = 
+	`hash
+(
+«me
+);
+
+172 
+BuckëLi°
+ 
+l
+ = 
+cuºítSc›e
+->
+hashTabÀ
+[
+h
+];
+
+173 
+l
+ !
+NULL
+) {
+
+174 i‡(
+	`°rcmp
+(
+«me
+, 
+l
+->name) == 0) {
+
+175  
+l
+;
+
+177 
+l
+ =Ü->
+√xt
+;
+
+179  
+NULL
+;
+
+180 
+	}
+}
+
+184 
+	$°_lookup
+(*
+«me
+) {
+
+185 
+Sc›e
+ 
+sc›e
+ = 
+cuºítSc›e
+;
+
+186 
+sc›e
+ !
+NULL
+) {
+
+187 
+h
+ = 
+	`hash
+(
+«me
+);
+
+188 
+BuckëLi°
+ 
+l
+ = 
+sc›e
+->
+hashTabÀ
+[
+h
+];
+
+189 
+l
+ !
+NULL
+) {
+
+190 i‡(
+	`°rcmp
+(
+«me
+, 
+l
+->name) == 0) {
+
+191  
 l
 ->
 memloc
 ;
 
-174 
+193 
+l
+ =Ü->
+√xt
+;
+
+195 
+sc›e
+ = sc›e->
+∑ª¡
+;
+
+198 
 	}
 }
 
-180 
+204 
 	$¥ötSymTab
 (
 FILE
@@ -13423,29 +13877,29 @@ FILE
 li°ög
 )
 
-181 { 
+205 { 
 i
 ;
 
-182 
+206 
 	`Ârötf
 (
 li°ög
 ," Symbol Name Symbol Kind Symbol Type Scope Name Location Line Numbers\n");
 
-183 
+207 
 	`Ârötf
 (
 li°ög
 ,"------------- ----------- ------------ ---------- -------- ------------\n");
 
-184 
+208 
 i
 =0;i<
 SIZE
 ;++i){
 
-185 
+209 
 Sc›e
  
 sc›e
@@ -13455,13 +13909,13 @@ sc›eLi°
 i
 ];
 
-186 
+210 
 j
  = 0; j < 
 SIZE
 ; ++j) {
 
-187 
+211 
 BuckëLi°
  
 l
@@ -13473,13 +13927,13 @@ hashTabÀ
 j
 ];
 
-188 
+212 
 l
  !
 NULL
 ) {
 
-189 
+213 
 LöeLi°
  
 t
@@ -13489,11 +13943,11 @@ l
 löes
 ;
 
-190 
+214 
 	`Ârötf
 (
 li°ög
-, "%-14†%-14†%-14†%-14†%-8d ", 
+, "%-14†%-12†%-12†%-11†%-8d ", 
 l
 ->
 «me
@@ -13507,13 +13961,13 @@ sc›e
 memloc
 );
 
-191 
+215 
 t
  !
 NULL
 )
 
-192 { 
+216 { 
 	`Ârötf
 (
 li°ög
@@ -13523,53 +13977,53 @@ t
 löío
 );
 
-193 
+217 
 t
  =Å->
 √xt
 ;
 
-195 
+219 
 	`Ârötf
 (
 li°ög
 ,"\n");
 
-196 
+220 
 l
  =Ü->
 √xt
 ;
 
-200 
+224 
 	`Ârötf
 (
 li°ög
 ,"\n");
 
-201 
+225 
 	`¥ötFunc
 (
 li°ög
 );
 
-202 
+226 
 	`¥ötGlob
 (
 li°ög
 );
 
-203 
+227 
 	`¥ötSc›e
 (
 li°ög
 );
 
-204 
+228 
 	}
 }
 
-206 
+230 
 	$¥ötFunc
 (
 FILE
@@ -13577,29 +14031,25 @@ FILE
 li°ög
 )
 
-207 { 
-i
-;
-
-208 
+232 
 	`Ârötf
 (
 li°ög
 ,"Function Name Return Type Parameter Name Parameter Type\n");
 
-209 
+233 
 	`Ârötf
 (
 li°ög
 ,"------------- ----------- -------------- --------------\n");
 
-210 
+234 
 i
  = 0; i < 
 SIZE
 ; i++) {
 
-211 
+235 
 Sc›e
  
 sc›e
@@ -13609,13 +14059,13 @@ sc›eLi°
 i
 ];
 
-212 
+236 
 j
  = 0; j < 
 SIZE
 ; ++j) {
 
-213 
+237 
 BuckëLi°
  
 l
@@ -13627,13 +14077,13 @@ hashTabÀ
 j
 ];
 
-214 
+238 
 l
  !
 NULL
 ) {
 
-215 i‡(
+239 i‡(
 	`°rcmp
 (
 l
@@ -13641,7 +14091,7 @@ l
 köd
 , "Function") == 0) {
 
-216 
+240 
 	`Ârötf
 (
 li°ög
@@ -13653,7 +14103,7 @@ l
 ty≥
 );
 
-217 
+241 
 P¨amëîLi°
  
 p
@@ -13665,13 +14115,13 @@ sc›e
 j
 ];
 
-218 
+242 
 p
  !
 NULL
 ) {
 
-219 
+243 
 	`Ârötf
 (
 li°ög
@@ -13683,35 +14133,35 @@ p
 ty≥
 );
 
-220 
+244 
 p
  =Ö->
 √xt
 ;
 
-222 
+246 
 	`Ârötf
 (
 li°ög
 , "\n");
 
-224 
+248 
 l
  =Ü->
 √xt
 ;
 
-228 
+252 
 	`Ârötf
 (
 li°ög
 ,"\n");
 
-229 
+253 
 	}
 }
 
-232 
+256 
 	$¥ötGlob
 (
 FILE
@@ -13719,31 +14169,31 @@ FILE
 li°ög
 ) {
 
-233 
+257 
 	`Ârötf
 (
 li°ög
 , "< Global Symbols >\n");
 
-234 
+258 
 	`Ârötf
 (
 li°ög
 , "Symbol Name Symbol Kind Symbol Type\n");
 
-235 
+259 
 	`Ârötf
 (
 li°ög
 , "---------------------------------------\n");
 
-237 
+261 
 i
  = 0; i < 
 SIZE
 ; i++) {
 
-238 
+262 
 Sc›e
  
 sc›e
@@ -13753,13 +14203,13 @@ sc›eLi°
 i
 ];
 
-239 
+263 
 j
  = 0; j < 
 SIZE
 ; ++j) {
 
-240 
+264 
 BuckëLi°
  
 l
@@ -13771,13 +14221,13 @@ hashTabÀ
 j
 ];
 
-241 
+265 
 l
  !
 NULL
 ) {
 
-242 i‡(
+266 i‡(
 	`°rcmp
 (
 sc›e
@@ -13785,7 +14235,7 @@ sc›e
 «me
 , "global") == 0) {
 
-243 
+267 
 	`Ârötf
 (
 li°ög
@@ -13799,23 +14249,23 @@ köd
 ty≥
 );
 
-245 
+269 
 l
  =Ü->
 √xt
 ;
 
-249 
+273 
 	`Ârötf
 (
 li°ög
 , "\n");
 
-250 
+274 
 	}
 }
 
-253 
+277 
 	$¥ötSc›e
 (
 FILE
@@ -13823,31 +14273,31 @@ FILE
 li°ög
 ) {
 
-254 
+278 
 	`Ârötf
 (
 li°ög
 , "< Scopes >\n");
 
-255 
+279 
 	`Ârötf
 (
 li°ög
 , "Scope Name Nested Level Symbol Name Symbol Type\n");
 
-256 
+280 
 	`Ârötf
 (
 li°ög
 , "-----------------------------------------------------\n");
 
-258 
+282 
 i
  = 0; i < 
 SIZE
 ; i++) {
 
-259 
+283 
 Sc›e
  
 sc›e
@@ -13857,13 +14307,13 @@ sc›eLi°
 i
 ];
 
-260 
+284 
 j
  = 0; j < 
 SIZE
 ; ++j) {
 
-261 
+285 
 BuckëLi°
  
 l
@@ -13875,13 +14325,13 @@ hashTabÀ
 j
 ];
 
-262 
+286 
 l
  !
 NULL
 ) {
 
-263 
+287 
 	`Ârötf
 (
 li°ög
@@ -13897,59 +14347,401 @@ l
 ty≥
 );
 
-264 
+288 
 l
  =Ü->
 √xt
 ;
 
-268 
+292 
 	`Ârötf
 (
 li°ög
 , "\n");
 
-269 
+293 
 	}
 }
 
 	@symtab.h
 
-9 #i‚de‡
-_SYMTAB_H_
+1 #i‚de‡
+SYMTAB_H
 
 
-10 
-	#_SYMTAB_H_
+2 
+	#SYMTAB_H
 
 
 	)
 
-17 
+4 
+	~<°dio.h
+>
+
+7 
+	#SIZE
+ 211
+
+	)
+
+10 
+	#SHIFT
+ 4
+
+	)
+
+13 íum { 
+	mFUNCTION
+, 
+	mVARIABLE
+ } 
+	tSymbﬁKöd
+;
+
+16 
+	sLöeLi°Rec
+ {
+
+17 
+	mlöío
+;
+
+18 
+LöeLi°Rec
+ *
+	m√xt
+;
+
+19 } *
+	tLöeLi°
+;
+
+22 
+	sP¨amLi°Rec
+ {
+
+23 *
+	m«me
+;
+
+24 *
+	mty≥
+;
+
+25 
+P¨amLi°Rec
+ *
+	m√xt
+;
+
+26 } *
+	tP¨amëîLi°
+;
+
+29 
+	sBuckëLi°Rec
+
+
+30 { * 
+	m«me
+;
+
+31 
+LöeLi°
+ 
+	mlöes
+;
+
+32 
+	mmemloc
+ ;
+
+33 
+BuckëLi°Rec
+ * 
+	m√xt
+;
+
+34 *
+	mty≥
+;
+
+35 *
+	mköd
+;
+
+36 
+P¨amëîLi°
+ 
+	m∑øms
+;
+
+37 } * 
+	tBuckëLi°
+;
+
+40 
+	sSc›eLi°Rec
+ {
+
+41 
+	mloˇti⁄
+;
+
+42 *
+	m«me
+;
+
+43 
+	m√°edLevñ
+;
+
+44 
+Sc›eLi°Rec
+ *
+	m∑ª¡
+;
+
+45 
+BuckëLi°
+ 
+	mhashTabÀ
+[
+SIZE
+];
+
+46 
+P¨amëîLi°
+ 
+	m∑ømli°
+[
+SIZE
+];
+
+47 
+P¨amëîLi°
+ *
+	mcuºítP¨amLi°
+;
+
+48 } *
+	tSc›e
+;
+
+50 
+	#SIZE
+ 211
+
+	)
+
+53 
+	#SHIFT
+ 4
+
+	)
+
+55 
+Sc›e
+ 
+sc›eSèck
+[
+SIZE
+];
+
+56 
+t›Sc›e
+;
+
+57 
+Sc›e
+ 
+cuºítSc›e
+;
+
+58 
+Sc›e
+ 
+sc›eLi°
+[
+SIZE
+];
+
+59 
+sizeOfLi°
+;
+
+61 
+	$hash
+ ( * 
+key
+ )
+
+62 { 
+ãmp
+ = 0;
+
+63 
+i
+ = 0;
+
+64 
+key
+[
+i
+] != '\0')
+
+65 { 
+ãmp
+ = (—em∞<< 
+SHIFT
+Ë+ 
+key
+[
+i
+]Ë% 
+SIZE
+;
+
+66 ++
+i
+;
+
+68  
+ãmp
+;
+
+69 
+	}
+}
+
+71 
+Sc›e
+ 
+√wSc›e
+(*
+«me
+);
+
+72 
+pushSc›e
+(
+Sc›e
+ 
+sc›e
+);
+
+73 
+p›Sc›e
+();
+
+76 
 °_ö£π
 –* 
+köd
+,* 
 «me
 , 
 löío
-, 
-loc
 , *
 ty≥
-, *
+, 
+Sc›e
+ 
 sc›e
  );
 
-22 
-°_lookup
- ( * 
+77 
+°_ö£π_fun˘i⁄
+(* 
+köd
+,* 
 «me
- );
+, 
+löío
+, *
+ty≥
+, 
+Sc›e
+ 
+sc›e
+, 
+P¨amëîLi°
+ 
+∑øms
+);
 
-28 
+78 
+BuckëLi°
+ 
+°_lookup_buckë
+(*
+«me
+);
+
+79 
+°_lookup
+(*
+«me
+);
+
+80 
+BuckëLi°
+ 
+°_lookup_t›
+(*
+«me
+);
+
+83 
+ö£πLöes
+(*
+«me
+, 
+löío
+);
+
+86 
+addP¨amëî
+(
+P¨amëîLi°
+ *
+∂i°
+, *
+«me
+, *
+ty≥
+);
+
+89 
 ¥ötSymTab
 (
 FILE
- * 
+ *
+li°ög
+);
+
+90 
+¥ötFunc
+(
+FILE
+ *
+li°ög
+);
+
+91 
+¥ötGlob
+(
+FILE
+ *
+li°ög
+);
+
+92 
+¥ötSc›e
+(
+FILE
+ *
 li°ög
 );
 
@@ -16477,6 +17269,8 @@ TªeNode
 StmtKöd
  
 köd
+, 
+löío
 )
 
 67 { 
@@ -16563,6 +17357,8 @@ TªeNode
 ExpKöd
  
 köd
+, 
+löío
 )
 
 85 { 
@@ -16657,6 +17453,8 @@ TªeNode
 De˛Köd
  
 köd
+, 
+löío
 )
 
 100 { 
@@ -17243,7 +18041,7 @@ TªeNode
 √wStmtNode
 (
 StmtKöd
-);
+,);
 
 24 
 TªeNode
@@ -17251,7 +18049,7 @@ TªeNode
 √wExpNode
 (
 ExpKöd
-);
+,);
 
 25 
 TªeNode
@@ -17259,7 +18057,7 @@ TªeNode
 √wDe˛Node
 (
 De˛Köd
-);
+,);
 
 29 * 
 c›ySåög
@@ -17273,65 +18071,65 @@ TªeNode
 
 	@y.tab.c
 
-48 
+49 
 	#YYBISON
- 1
+ 30802
 
 	)
 
-51 
+52 
 	#YYBISON_VERSION
- "3.5.1"
+ "3.8.2"
 
 	)
 
-54 
+55 
 	#YYSKELETON_NAME
  "yacc.c"
 
 	)
 
-57 
+58 
 	#YYPURE
  0
 
 	)
 
-60 
+61 
 	#YYPUSH
  0
 
 	)
 
-63 
+64 
 	#YYPULL
  1
 
 	)
 
-71 
+72 
 	#YYPARSER
 
 
 	)
 
-73 
+74 
 	~"globÆs.h
 "
 
-74 
+75 
 	~"utû.h
 "
 
-75 
+76 
 	~"sˇn.h
 "
 
-76 
+77 
 	~"∑r£.h
 "
 
-80 
+82 
 	#YYSTYPE
  
 TªeNode
@@ -17339,53 +18137,53 @@ TªeNode
 
 	)
 
-81 
+83 
 	gßvedNumbî
 ;
 
-82 * 
+84 * 
 	gßvedName
 ;
 
-84 
+86 
 ExpTy≥
  
 	gßvedTy≥
 ;
 
-85 
+87 
 	gßvedLöeNo
 ;
 
-86 
+88 
 TªeNode
  * 
 	gßvedTªe
 ;
 
-87 
+89 
 yyÀx
 ();
 
-88 
+90 
 ¥öt_debug_öfo
 ();
 
-90 
+92 
 yyîr‹
 (* 
 mesßge
 );
 
-95 #i‚de‡
+97 #i‚de‡
 YY_CAST
 
 
-96 #ifde‡
+98 #ifde‡
 __˝lu•lus
 
 
-97 
+99 
 	#YY_CAST
 (
 Ty≥
@@ -17397,7 +18195,7 @@ VÆ
 
 	)
 
-98 
+100 
 	#YY_REINTERPRET_CAST
 (
 Ty≥
@@ -17409,7 +18207,7 @@ VÆ
 
 	)
 
-100 
+102 
 	#YY_CAST
 (
 Ty≥
@@ -17419,7 +18217,7 @@ VÆ
 
 	)
 
-101 
+103 
 	#YY_REINTERPRET_CAST
 (
 Ty≥
@@ -17429,21 +18227,21 @@ VÆ
 
 	)
 
-104 #i‚de‡
+106 #i‚de‡
 YY_NULLPTR
 
 
-105 #i‡
+107 #i‡
 deföed
  
 __˝lu•lus
 
 
-106 #i‡201103L <
+108 #i‡201103L <
 __˝lu•lus
 
 
-107 
+109 
 	#YY_NULLPTR
  
 nuŒ±r
@@ -17451,371 +18249,397 @@ nuŒ±r
 
 	)
 
-109 
+111 
 	#YY_NULLPTR
  0
 
 	)
 
-112 
+114 
 	#YY_NULLPTR
  ((*)0)
 
 	)
 
-117 #ifde‡
-YYERROR_VERBOSE
-
-
-118 #unde‡
-YYERROR_VERBOSE
-
-
-119 
-	#YYERROR_VERBOSE
- 1
-
-	)
-
-121 
-	#YYERROR_VERBOSE
- 0
-
-	)
-
-126 #i‚de‡
+120 #i‚de‡
 YY_YY_Y_TAB_H_INCLUDED
 
 
-127 
+121 
 	#YY_YY_Y_TAB_H_INCLUDED
 
 
 	)
 
-129 #i‚de‡
+123 #i‚de‡
 YYDEBUG
 
 
-130 
+124 
 	#YYDEBUG
  0
 
 	)
 
-132 #i‡
+126 #i‡
 YYDEBUG
 
 
-133 
+127 
 yydebug
 ;
 
-137 #i‚de‡
+131 #i‚de‡
 YYTOKENTYPE
 
 
-138 
+132 
 	#YYTOKENTYPE
 
 
 	)
 
-139 
+133 
 	eyytokíty≥
 
 
-141 
+135 
+	mYYEMPTY
+ = -2,
+
+136 
+	mYYEOF
+ = 0,
+
+137 
+	mYYîr‹
+ = 256,
+
+138 
+	mYYUNDEF
+ = 257,
+
+139 
 	mIF
  = 258,
 
-142 
+140 
 	mELSE
  = 259,
 
-143 
+141 
 	mINT
  = 260,
 
-144 
+142 
 	mRETURN
  = 261,
 
-145 
+143 
 	mVOID
  = 262,
 
-146 
+144 
 	mWHILE
  = 263,
 
-147 
+145 
 	mID
  = 264,
 
-148 
+146 
 	mNUM
  = 265,
 
-149 
+147 
 	mLT
  = 266,
 
-150 
+148 
 	mLE
  = 267,
 
-151 
+149 
 	mGT
  = 268,
 
-152 
+150 
 	mGE
  = 269,
 
-153 
+151 
 	mEQ
  = 270,
 
-154 
+152 
 	mNE
  = 271,
 
-155 
+153 
 	mSEMI
  = 272,
 
-156 
+154 
 	mLPAREN
  = 273,
 
-157 
+155 
 	mRPAREN
  = 274,
 
-158 
+156 
 	mLCURLY
  = 275,
 
-159 
+157 
 	mRCURLY
  = 276,
 
-160 
+158 
 	mLBRACE
  = 277,
 
-161 
+159 
 	mRBRACE
  = 278,
 
-162 
+160 
 	mPLUS
  = 279,
 
-163 
+161 
 	mMINUS
  = 280,
 
-164 
+162 
 	mTIMES
  = 281,
 
-165 
+163 
 	mOVER
  = 282,
 
-166 
+164 
 	mCOMMA
  = 283,
 
-167 
+165 
 	mASSIGN
  = 284,
 
-168 
+166 
 	mTHEN
  = 285,
 
-169 
+167 
 	mERROR
  = 286
 
+169 
+yytokíty≥
+ 
+	tyytokí_köd_t
+;
+
+172 
+	#YYEMPTY
+ -2
+
+	)
+
 173 
+	#YYEOF
+ 0
+
+	)
+
+174 
+	#YYîr‹
+ 256
+
+	)
+
+175 
+	#YYUNDEF
+ 257
+
+	)
+
+176 
 	#IF
  258
 
 	)
 
-174 
+177 
 	#ELSE
  259
 
 	)
 
-175 
+178 
 	#INT
  260
 
 	)
 
-176 
+179 
 	#RETURN
  261
 
 	)
 
-177 
+180 
 	#VOID
  262
 
 	)
 
-178 
+181 
 	#WHILE
  263
 
 	)
 
-179 
+182 
 	#ID
  264
 
 	)
 
-180 
+183 
 	#NUM
  265
 
 	)
 
-181 
+184 
 	#LT
  266
 
 	)
 
-182 
+185 
 	#LE
  267
 
 	)
 
-183 
+186 
 	#GT
  268
 
 	)
 
-184 
+187 
 	#GE
  269
 
 	)
 
-185 
+188 
 	#EQ
  270
 
 	)
 
-186 
+189 
 	#NE
  271
 
 	)
 
-187 
+190 
 	#SEMI
  272
 
 	)
 
-188 
+191 
 	#LPAREN
  273
 
 	)
 
-189 
+192 
 	#RPAREN
  274
 
 	)
 
-190 
+193 
 	#LCURLY
  275
 
 	)
 
-191 
+194 
 	#RCURLY
  276
 
 	)
 
-192 
+195 
 	#LBRACE
  277
 
 	)
 
-193 
+196 
 	#RBRACE
  278
 
 	)
 
-194 
+197 
 	#PLUS
  279
 
 	)
 
-195 
+198 
 	#MINUS
  280
 
 	)
 
-196 
+199 
 	#TIMES
  281
 
 	)
 
-197 
+200 
 	#OVER
  282
 
 	)
 
-198 
+201 
 	#COMMA
  283
 
 	)
 
-199 
+202 
 	#ASSIGN
  284
 
 	)
 
-200 
+203 
 	#THEN
  285
 
 	)
 
-201 
+204 
 	#ERROR
  286
 
 	)
 
-204 #i‡! 
+207 #i‡! 
 deföed
  
 YYSTYPE
@@ -17823,109 +18647,391 @@ YYSTYPE
 YYSTYPE_IS_DECLARED
 
 
-205 
+208 
 	tYYSTYPE
 ;
 
-206 
+209 
 	#YYSTYPE_IS_TRIVIAL
  1
 
 	)
 
-207 
+210 
 	#YYSTYPE_IS_DECLARED
  1
 
 	)
 
-211 
+214 
 YYSTYPE
  
 yylvÆ
 ;
 
-213 
+217 
 yy∑r£
  ();
 
-227 #i‚de‡
+222 
+	eyysymbﬁ_köd_t
+
+
+224 
+	mYYSYMBOL_YYEMPTY
+ = -2,
+
+225 
+	mYYSYMBOL_YYEOF
+ = 0,
+
+226 
+	mYYSYMBOL_YYîr‹
+ = 1,
+
+227 
+	mYYSYMBOL_YYUNDEF
+ = 2,
+
+228 
+	mYYSYMBOL_IF
+ = 3,
+
+229 
+	mYYSYMBOL_ELSE
+ = 4,
+
+230 
+	mYYSYMBOL_INT
+ = 5,
+
+231 
+	mYYSYMBOL_RETURN
+ = 6,
+
+232 
+	mYYSYMBOL_VOID
+ = 7,
+
+233 
+	mYYSYMBOL_WHILE
+ = 8,
+
+234 
+	mYYSYMBOL_ID
+ = 9,
+
+235 
+	mYYSYMBOL_NUM
+ = 10,
+
+236 
+	mYYSYMBOL_LT
+ = 11,
+
+237 
+	mYYSYMBOL_LE
+ = 12,
+
+238 
+	mYYSYMBOL_GT
+ = 13,
+
+239 
+	mYYSYMBOL_GE
+ = 14,
+
+240 
+	mYYSYMBOL_EQ
+ = 15,
+
+241 
+	mYYSYMBOL_NE
+ = 16,
+
+242 
+	mYYSYMBOL_SEMI
+ = 17,
+
+243 
+	mYYSYMBOL_LPAREN
+ = 18,
+
+244 
+	mYYSYMBOL_RPAREN
+ = 19,
+
+245 
+	mYYSYMBOL_LCURLY
+ = 20,
+
+246 
+	mYYSYMBOL_RCURLY
+ = 21,
+
+247 
+	mYYSYMBOL_LBRACE
+ = 22,
+
+248 
+	mYYSYMBOL_RBRACE
+ = 23,
+
+249 
+	mYYSYMBOL_PLUS
+ = 24,
+
+250 
+	mYYSYMBOL_MINUS
+ = 25,
+
+251 
+	mYYSYMBOL_TIMES
+ = 26,
+
+252 
+	mYYSYMBOL_OVER
+ = 27,
+
+253 
+	mYYSYMBOL_COMMA
+ = 28,
+
+254 
+	mYYSYMBOL_ASSIGN
+ = 29,
+
+255 
+	mYYSYMBOL_THEN
+ = 30,
+
+256 
+	mYYSYMBOL_ERROR
+ = 31,
+
+257 
+	mYYSYMBOL_YYACCEPT
+ = 32,
+
+258 
+	mYYSYMBOL_¥ogøm
+ = 33,
+
+259 
+	mYYSYMBOL_de˛_li°
+ = 34,
+
+260 
+	mYYSYMBOL_de˛¨©i⁄
+ = 35,
+
+261 
+	mYYSYMBOL_id
+ = 36,
+
+262 
+	mYYSYMBOL_num
+ = 37,
+
+263 
+	mYYSYMBOL_v¨_de˛
+ = 38,
+
+264 
+	mYYSYMBOL_ty≥_•ec
+ = 39,
+
+265 
+	mYYSYMBOL_func_de˛
+ = 40,
+
+266 
+	mYYSYMBOL_∑øms
+ = 41,
+
+267 
+	mYYSYMBOL_∑øm_li°
+ = 42,
+
+268 
+	mYYSYMBOL_∑øm
+ = 43,
+
+269 
+	mYYSYMBOL_comp_°mt
+ = 44,
+
+270 
+	mYYSYMBOL_loˇl_de˛
+ = 45,
+
+271 
+	mYYSYMBOL_°mt_li°
+ = 46,
+
+272 
+	mYYSYMBOL_°©emít
+ = 47,
+
+273 
+	mYYSYMBOL_exp_°mt
+ = 48,
+
+274 
+	mYYSYMBOL_£À˘_°mt
+ = 49,
+
+275 
+	mYYSYMBOL_ôî_°mt
+ = 50,
+
+276 
+	mYYSYMBOL_ªtu∫_°mt
+ = 51,
+
+277 
+	mYYSYMBOL_ex¥essi⁄
+ = 52,
+
+278 
+	mYYSYMBOL_v¨
+ = 53,
+
+279 
+	mYYSYMBOL_sim∂e_exp
+ = 54,
+
+280 
+	mYYSYMBOL_add_exp
+ = 55,
+
+281 
+	mYYSYMBOL_ãrm
+ = 56,
+
+282 
+	mYYSYMBOL_Á˘‹
+ = 57,
+
+283 
+	mYYSYMBOL_ˇŒ
+ = 58,
+
+284 
+	mYYSYMBOL_¨gs
+ = 59,
+
+285 
+	mYYSYMBOL_¨g_li°
+ = 60
+
+287 
+yysymbﬁ_köd_t
+ 
+	tyysymbﬁ_köd_t
+;
+
+300 #i‚de‡
 __PTRDIFF_MAX__
 
 
-228 
+301 
 	~<limôs.h
 >
 
-229 #i‡
+302 #i‡
 deföed
  
 __STDC_VERSION__
  && 199901 <= __STDC_VERSION__
 
-230 
+303 
 	~<°döt.h
 >
 
-231 
+304 
 	#YY_STDINT_H
 
 
 	)
 
-240 #ifde‡
+313 #ifde‡
 __INT_LEAST8_MAX__
 
 
-241 
+314 
 __INT_LEAST8_TYPE__
  
 	tyyty≥_öt8
 ;
 
-242 #ñi‡
+315 #ñi‡
 deföed
  
 YY_STDINT_H
 
 
-243 
+316 
 öt_Àa°8_t
  
 	tyyty≥_öt8
 ;
 
-245 sig√d 
+318 sig√d 
 	tyyty≥_öt8
 ;
 
-248 #ifde‡
+321 #ifde‡
 __INT_LEAST16_MAX__
 
 
-249 
+322 
 __INT_LEAST16_TYPE__
  
 	tyyty≥_öt16
 ;
 
-250 #ñi‡
+323 #ñi‡
 deföed
  
 YY_STDINT_H
 
 
-251 
+324 
 öt_Àa°16_t
  
 	tyyty≥_öt16
 ;
 
-253 
+326 
 	tyyty≥_öt16
 ;
 
-256 #i‡
+334 #ifde‡
+__hpux
+
+
+335 #unde‡
+UINT_LEAST8_MAX
+
+
+336 #unde‡
+UINT_LEAST16_MAX
+
+
+337 
+	#UINT_LEAST8_MAX
+ 255
+
+	)
+
+338 
+	#UINT_LEAST16_MAX
+ 65535
+
+	)
+
+341 #i‡
 deföed
  
 __UINT_LEAST8_MAX__
@@ -17933,13 +19039,13 @@ __UINT_LEAST8_MAX__
 __INT_MAX__
 
 
-257 
+342 
 __UINT_LEAST8_TYPE__
  
 	tyyty≥_uöt8
 ;
 
-258 #ñi‡(!
+343 #ñi‡(!
 deföed
  
 __UINT_LEAST8_MAX__
@@ -17947,19 +19053,19 @@ __UINT_LEAST8_MAX__
 YY_STDINT_H
  \
 
-259 && 
+344 && 
 	gUINT_LEAST8_MAX
  <
 INT_MAX
 )
 
-260 
+345 
 uöt_Àa°8_t
  
 	tyyty≥_uöt8
 ;
 
-261 #ñi‡!
+346 #ñi‡!
 deföed
  
 __UINT_LEAST8_MAX__
@@ -17969,15 +19075,15 @@ UCHAR_MAX
 INT_MAX
 
 
-262 
+347 
 	tyyty≥_uöt8
 ;
 
-264 
+349 
 	tyyty≥_uöt8
 ;
 
-267 #i‡
+352 #i‡
 deföed
  
 __UINT_LEAST16_MAX__
@@ -17985,13 +19091,13 @@ __UINT_LEAST16_MAX__
 __INT_MAX__
 
 
-268 
+353 
 __UINT_LEAST16_TYPE__
  
 	tyyty≥_uöt16
 ;
 
-269 #ñi‡(!
+354 #ñi‡(!
 deföed
  
 __UINT_LEAST16_MAX__
@@ -17999,19 +19105,19 @@ __UINT_LEAST16_MAX__
 YY_STDINT_H
  \
 
-270 && 
+355 && 
 	gUINT_LEAST16_MAX
  <
 INT_MAX
 )
 
-271 
+356 
 uöt_Àa°16_t
  
 	tyyty≥_uöt16
 ;
 
-272 #ñi‡!
+357 #ñi‡!
 deföed
  
 __UINT_LEAST16_MAX__
@@ -18021,19 +19127,19 @@ USHRT_MAX
 INT_MAX
 
 
-273 
+358 
 	tyyty≥_uöt16
 ;
 
-275 
+360 
 	tyyty≥_uöt16
 ;
 
-278 #i‚de‡
+363 #i‚de‡
 YYPTRDIFF_T
 
 
-279 #i‡
+364 #i‡
 deföed
  
 __PTRDIFF_TYPE__
@@ -18041,7 +19147,7 @@ __PTRDIFF_TYPE__
 __PTRDIFF_MAX__
 
 
-280 
+365 
 	#YYPTRDIFF_T
  
 __PTRDIFF_TYPE__
@@ -18049,7 +19155,7 @@ __PTRDIFF_TYPE__
 
 	)
 
-281 
+366 
 	#YYPTRDIFF_MAXIMUM
  
 __PTRDIFF_MAX__
@@ -18057,21 +19163,21 @@ __PTRDIFF_MAX__
 
 	)
 
-282 #ñi‡
+367 #ñi‡
 deföed
  
 PTRDIFF_MAX
 
 
-283 #i‚de‡
+368 #i‚de‡
 ±rdiff_t
 
 
-284 
+369 
 	~<°ddef.h
 >
 
-286 
+371 
 	#YYPTRDIFF_T
  
 ±rdiff_t
@@ -18079,7 +19185,7 @@ PTRDIFF_MAX
 
 	)
 
-287 
+372 
 	#YYPTRDIFF_MAXIMUM
  
 PTRDIFF_MAX
@@ -18087,13 +19193,13 @@ PTRDIFF_MAX
 
 	)
 
-289 
+374 
 	#YYPTRDIFF_T
  
 
 	)
 
-290 
+375 
 	#YYPTRDIFF_MAXIMUM
  
 LONG_MAX
@@ -18101,15 +19207,15 @@ LONG_MAX
 
 	)
 
-294 #i‚de‡
+379 #i‚de‡
 YYSIZE_T
 
 
-295 #ifde‡
+380 #ifde‡
 __SIZE_TYPE__
 
 
-296 
+381 
 	#YYSIZE_T
  
 __SIZE_TYPE__
@@ -18117,13 +19223,13 @@ __SIZE_TYPE__
 
 	)
 
-297 #ñi‡
+382 #ñi‡
 deföed
  
 size_t
 
 
-298 
+383 
 	#YYSIZE_T
  
 size_t
@@ -18131,17 +19237,17 @@ size_t
 
 	)
 
-299 #ñi‡
+384 #ñi‡
 deföed
  
 __STDC_VERSION__
  && 199901 <= __STDC_VERSION__
 
-300 
+385 
 	~<°ddef.h
 >
 
-301 
+386 
 	#YYSIZE_T
  
 size_t
@@ -18149,43 +19255,43 @@ size_t
 
 	)
 
-303 
+388 
 	#YYSIZE_T
  
 
 	)
 
-307 
+392 
 	#YYSIZE_MAXIMUM
  \
 
-	)
-
-308 
-YY_CAST
+393 
+	`YY_CAST
  (
 YYPTRDIFF_T
 , \
 
-309 (
+394 (
 YYPTRDIFF_MAXIMUM
  < 
-YY_CAST
+	`YY_CAST
  (
 YYSIZE_T
 , -1) \
 
-310 ? 
+395 ? 
 YYPTRDIFF_MAXIMUM
  \
 
-311 : 
-YY_CAST
+396 : 
+	`YY_CAST
  (
 YYSIZE_T
 , -1)))
 
-313 
+	)
+
+398 
 	#YYSIZEOF
 (
 X
@@ -18197,35 +19303,35 @@ YYPTRDIFF_T
 
 	)
 
-316 
+402 
 yyty≥_öt8
  
 	tyy_°©e_t
 ;
 
-319 
+405 
 	tyy_°©e_Á°_t
 ;
 
-321 #i‚de‡
+407 #i‚de‡
 YY_
 
 
-322 #i‡
+408 #i‡
 deföed
  
 YYENABLE_NLS
  && YYENABLE_NLS
 
-323 #i‡
+409 #i‡
 ENABLE_NLS
 
 
-324 
+410 
 	~<liböé.h
 >
 
-325 
+411 
 	#YY_
 (
 Msgid
@@ -18235,11 +19341,11 @@ Msgid
 
 	)
 
-328 #i‚de‡
+414 #i‚de‡
 YY_
 
 
-329 
+415 
 	#YY_
 (
 Msgid
@@ -18247,11 +19353,11 @@ Msgid
 	)
 Msgid
 
-333 #i‚de‡
+420 #i‚de‡
 YY_ATTRIBUTE_PURE
 
 
-334 #i‡
+421 #i‡
 deföed
  
 __GNUC__
@@ -18259,7 +19365,7 @@ __GNUC__
 __GNUC_MINOR__
 )
 
-335 
+422 
 	#YY_ATTRIBUTE_PURE
  
 	`__©åibuã__
@@ -18269,17 +19375,17 @@ __puª__
 
 	)
 
-337 
+424 
 	#YY_ATTRIBUTE_PURE
 
 
 	)
 
-341 #i‚de‡
+428 #i‚de‡
 YY_ATTRIBUTE_UNUSED
 
 
-342 #i‡
+429 #i‡
 deföed
  
 __GNUC__
@@ -18287,7 +19393,7 @@ __GNUC__
 __GNUC_MINOR__
 )
 
-343 
+430 
 	#YY_ATTRIBUTE_UNUSED
  
 	`__©åibuã__
@@ -18297,13 +19403,13 @@ __unu£d__
 
 	)
 
-345 
+432 
 	#YY_ATTRIBUTE_UNUSED
 
 
 	)
 
-350 #i‡! 
+437 #i‡! 
 deföed
  
 löt
@@ -18311,61 +19417,81 @@ löt
 __GNUC__
 
 
-351 
-	#YYUSE
+438 
+	#YY_USE
 (
 E
 Ë((Ë(E))
 
 	)
 
-353 
-	#YYUSE
+440 
+	#YY_USE
 (
 E
 Ë
 
 	)
 
-356 #i‡
+444 #i‡
 deföed
  
 __GNUC__
  && ! deföed 
 __ICC
- && 407 <__GNUC__ * 100 + 
+ && 406 <__GNUC__ * 100 + 
 __GNUC_MINOR__
 
 
-358 
+445 #i‡
+__GNUC__
+ * 100 + 
+__GNUC_MINOR__
+ < 407
+
+446 
 	#YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
  \
 
-	)
-
-359 
-_Pøgma
+447 
+	`_Pøgma
  ("GCC diagnosticÖush") \
 
-360 
-_Pøgma
+448 
+	`_Pøgma
+ ("GCC dügno°i¯ign‹ed \"-Wunöôülized\"")
+
+	)
+
+450 
+	#YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+ \
+
+451 
+	`_Pøgma
+ ("GCC diagnosticÖush") \
+
+452 
+	`_Pøgma
  ("GCC diagnostic ignored \"-Wuninitialized\"") \
 
-361 
-_Pøgma
- ("GCC diagnostic ignored \"-Wmaybe-uninitialized\"")
+453 
+	`_Pøgma
+ ("GCC dügno°i¯ign‹ed \"-Wmaybe-unöôülized\"")
 
-362 
+	)
+
+455 
 	#YY_IGNORE_MAYBE_UNINITIALIZED_END
  \
 
+456 
+	`_Pøgma
+ ("GCC dügno°i¯p›")
+
 	)
 
-363 
-_Pøgma
- ("GCC diagnosticÖop")
-
-365 
+458 
 	#YY_INITIAL_VALUE
 (
 VÆue
@@ -18373,27 +19499,27 @@ VÆue
 	)
 Value
 
-367 #i‚de‡
+460 #i‚de‡
 YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
 
 
-368 
+461 
 	#YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
 
 
 	)
 
-369 
+462 
 	#YY_IGNORE_MAYBE_UNINITIALIZED_END
 
 
 	)
 
-371 #i‚de‡
+464 #i‚de‡
 YY_INITIAL_VALUE
 
 
-372 
+465 
 	#YY_INITIAL_VALUE
 (
 VÆue
@@ -18401,7 +19527,7 @@ VÆue
 
 	)
 
-375 #i‡
+468 #i‡
 deföed
  
 __˝lu•lus
@@ -18411,47 +19537,47 @@ __GNUC__
 __ICC
  && 6 <= __GNUC__
 
-376 
+469 
 	#YY_IGNORE_USELESS_CAST_BEGIN
  \
 
-	)
-
-377 
-_Pøgma
+470 
+	`_Pøgma
  ("GCC diagnosticÖush") \
 
-378 
-_Pøgma
- ("GCC diagnostic ignored \"-Wuseless-cast\"")
+471 
+	`_Pøgma
+ ("GCC dügno°i¯ign‹ed \"-Wu£Àss-ˇ°\"")
 
-379 
+	)
+
+472 
 	#YY_IGNORE_USELESS_CAST_END
  \
 
+473 
+	`_Pøgma
+ ("GCC dügno°i¯p›")
+
 	)
 
-380 
-_Pøgma
- ("GCC diagnosticÖop")
-
-382 #i‚de‡
+475 #i‚de‡
 YY_IGNORE_USELESS_CAST_BEGIN
 
 
-383 
+476 
 	#YY_IGNORE_USELESS_CAST_BEGIN
 
 
 	)
 
-384 
+477 
 	#YY_IGNORE_USELESS_CAST_END
 
 
 	)
 
-388 
+481 
 	#YY_ASSERT
 (
 E
@@ -18459,27 +19585,25 @@ E
 
 	)
 
-390 #i‡! 
+483 #i‡!
 deföed
  
 yyovîÊow
- || 
-YYERROR_VERBOSE
 
 
-394 #ifde‡
+487 #ifde‡
 YYSTACK_USE_ALLOCA
 
 
-395 #i‡
+488 #i‡
 YYSTACK_USE_ALLOCA
 
 
-396 #ifde‡
+489 #ifde‡
 __GNUC__
 
 
-397 
+490 
 	#YYSTACK_ALLOC
  
 __buûtö_Æloˇ
@@ -18487,23 +19611,23 @@ __buûtö_Æloˇ
 
 	)
 
-398 #ñi‡
+491 #ñi‡
 deföed
  
 __BUILTIN_VA_ARG_INCR
 
 
-399 
+492 
 	~<Æloˇ.h
 >
 
-400 #ñi‡
+493 #ñi‡
 deföed
  
 _AIX
 
 
-401 
+494 
 	#YYSTACK_ALLOC
  
 __Æloˇ
@@ -18511,17 +19635,17 @@ __Æloˇ
 
 	)
 
-402 #ñi‡
+495 #ñi‡
 deföed
  
 _MSC_VER
 
 
-403 
+496 
 	~<mÆloc.h
 >
 
-404 
+497 
 	#Æloˇ
  
 _Æloˇ
@@ -18529,7 +19653,7 @@ _Æloˇ
 
 	)
 
-406 
+499 
 	#YYSTACK_ALLOC
  
 Æloˇ
@@ -18537,7 +19661,7 @@ _Æloˇ
 
 	)
 
-407 #i‡! 
+500 #i‡! 
 deföed
  
 _ALLOCA_H
@@ -18545,25 +19669,25 @@ _ALLOCA_H
 EXIT_SUCCESS
 
 
-408 
+501 
 	~<°dlib.h
 >
 
-410 #i‚de‡
+503 #i‚de‡
 EXIT_SUCCESS
 
 
-411 
+504 
 	#EXIT_SUCCESS
  0
 
 	)
 
-418 #ifde‡
+511 #ifde‡
 YYSTACK_ALLOC
 
 
-420 
+513 
 	#YYSTACK_FREE
 (
 På
@@ -18571,17 +19695,17 @@ På
 
 	)
 
-421 #i‚de‡
+514 #i‚de‡
 YYSTACK_ALLOC_MAXIMUM
 
 
-426 
+519 
 	#YYSTACK_ALLOC_MAXIMUM
  4032
 
 	)
 
-429 
+522 
 	#YYSTACK_ALLOC
  
 YYMALLOC
@@ -18589,7 +19713,7 @@ YYMALLOC
 
 	)
 
-430 
+523 
 	#YYSTACK_FREE
  
 YYFREE
@@ -18597,11 +19721,11 @@ YYFREE
 
 	)
 
-431 #i‚de‡
+524 #i‚de‡
 YYSTACK_ALLOC_MAXIMUM
 
 
-432 
+525 
 	#YYSTACK_ALLOC_MAXIMUM
  
 YYSIZE_MAXIMUM
@@ -18609,7 +19733,7 @@ YYSIZE_MAXIMUM
 
 	)
 
-434 #i‡(
+527 #i‡(
 deföed
  
 __˝lu•lus
@@ -18617,7 +19741,7 @@ __˝lu•lus
 EXIT_SUCCESS
  \
 
-435 && ! ((
+528 && ! ((
 deföed
  
 	gYYMALLOC
@@ -18625,7 +19749,7 @@ deföed
 	gmÆloc
 ) \
 
-436 && (
+529 && (
 deföed
  
 	gYYFREE
@@ -18633,25 +19757,25 @@ deföed
 	g‰ì
 )))
 
-437 
+530 
 	~<°dlib.h
 >
 
-438 #i‚de‡
+531 #i‚de‡
 EXIT_SUCCESS
 
 
-439 
+532 
 	#EXIT_SUCCESS
  0
 
 	)
 
-442 #i‚de‡
+535 #i‚de‡
 YYMALLOC
 
 
-443 
+536 
 	#YYMALLOC
  
 mÆloc
@@ -18659,7 +19783,7 @@ mÆloc
 
 	)
 
-444 #i‡! 
+537 #i‡! 
 deföed
  
 mÆloc
@@ -18667,17 +19791,17 @@ mÆloc
 EXIT_SUCCESS
 
 
-445 *
+538 *
 mÆloc
  (
 YYSIZE_T
 );
 
-448 #i‚de‡
+541 #i‚de‡
 YYFREE
 
 
-449 
+542 
 	#YYFREE
  
 ‰ì
@@ -18685,7 +19809,7 @@ YYFREE
 
 	)
 
-450 #i‡! 
+543 #i‡! 
 deföed
  
 ‰ì
@@ -18693,45 +19817,45 @@ deföed
 EXIT_SUCCESS
 
 
-451 
+544 
 ‰ì
  (*);
 
-458 #i‡(! 
+550 #i‡(! 
 deföed
  
 yyovîÊow
  \
 
-459 && (! 
+551 && (! 
 deföed
  
 	g__˝lu•lus
  \
 
-460 || (
+552 || (
 deföed
  
 	gYYSTYPE_IS_TRIVIAL
  && YYSTYPE_IS_TRIVIAL)))
 
-463 
+555 
 	uyyÆloc
 
 
-465 
+557 
 yy_°©e_t
  
 	myyss_Æloc
 ;
 
-466 
+558 
 YYSTYPE
  
 	myyvs_Æloc
 ;
 
-470 
+562 
 	#YYSTACK_GAP_MAXIMUM
  (
 	`YYSIZEOF
@@ -18741,52 +19865,50 @@ yyÆloc
 
 	)
 
-474 
+566 
 	#YYSTACK_BYTES
 (
 N
-Ë\
+) \
 
-	)
-
-475 ((
-	gN
+567 ((
+N
 Ë* (
-YYSIZEOF
+	`YYSIZEOF
  (
 yy_°©e_t
 Ë+ YYSIZEOF (
 YYSTYPE
 )) \
 
-476 + 
-	gYYSTACK_GAP_MAXIMUM
+568 + 
+YYSTACK_GAP_MAXIMUM
 )
 
-478 
+	)
+
+570 
 	#YYCOPY_NEEDED
  1
 
 	)
 
-485 
+577 
 	#YYSTACK_RELOCATE
 (
 Sèck_Æloc
 , 
 Sèck
-Ë\
+) \
 
-	)
-
-488 
+580 
 YYPTRDIFF_T
  
-	gyy√wbyãs
+yy√wbyãs
 ; \
 
-489 
-YYCOPY
+581 
+	`YYCOPY
  (&
 yy±r
 ->
@@ -18797,53 +19919,55 @@ Sèck
 yysize
 ); \
 
-490 
-	gSèck
+582 
+Sèck
  = &
 yy±r
 ->
 Sèck_Æloc
 ; \
 
-491 
-	gyy√wbyãs
+583 
+yy√wbyãs
  = 
 yy°acksize
  * 
-YYSIZEOF
+	`YYSIZEOF
  (*
 Sèck
 Ë+ 
 YYSTACK_GAP_MAXIMUM
 ; \
 
-492 
-	gyy±r
+584 
+yy±r
  +
 yy√wbyãs
  / 
-YYSIZEOF
- (*
-yy±r
-); \
+	`YYSIZEOF
+ (*yyptr); \
 
-498 #i‡
+586 0)
+
+	)
+
+590 #i‡
 deföed
  
 YYCOPY_NEEDED
  && YYCOPY_NEEDED
 
-501 #i‚de‡
+593 #i‚de‡
 YYCOPY
 
 
-502 #i‡
+594 #i‡
 deföed
  
 __GNUC__
  && 1 < __GNUC__
 
-503 
+595 
 	#YYCOPY
 (
 D°
@@ -18851,11 +19975,9 @@ D°
 Src
 , 
 Cou¡
-Ë\
+) \
 
-	)
-
-504 
+596 
 	`__buûtö_mem˝y
  (
 D°
@@ -18867,9 +19989,11 @@ Src
 YYSIZE_T
 , (
 Cou¡
-)) *  (*(Src)))
+)Ë*  (*(Src)))
 
-506 
+	)
+
+598 
 	#YYCOPY
 (
 D°
@@ -18877,23 +20001,21 @@ D°
 Src
 , 
 Cou¡
-Ë\
+) \
 
-	)
-
-509 
+601 
 YYPTRDIFF_T
  
 yyi
 ; \
 
-510 
+602 
 yyi
  = 0; yyò< (
 Cou¡
 ); yyi++) \
 
-511 (
+603 (
 D°
 )[
 yyi
@@ -18901,209 +20023,249 @@ yyi
 Src
 )[yyi]; \
 
-512 
-	}
-} \
+605 0)
 
-519 
+	)
+
+611 
 	#YYFINAL
  9
 
 	)
 
-521 
+613 
 	#YYLAST
  116
 
 	)
 
-524 
+616 
 	#YYNTOKENS
  32
 
 	)
 
-526 
+618 
 	#YYNNTS
  29
 
 	)
 
-528 
+620 
 	#YYNRULES
  63
 
 	)
 
-530 
+622 
 	#YYNSTATES
  110
 
 	)
 
-532 
-	#YYUNDEFTOK
- 2
-
-	)
-
-533 
+625 
 	#YYMAXUTOK
  286
 
 	)
 
-538 
+630 
 	#YYTRANSLATE
 (
 YYX
-Ë\
+) \
 
-	)
-
-539 (0 <(
+631 (0 <(
 YYX
 Ë&& (YYXË<
 YYMAXUTOK
- ? 
+ \
+
+632 ? 
+	`YY_CAST
+ (
+yysymbﬁ_köd_t
+, 
 yyå™¶©e
-[YYX] : 
-YYUNDEFTOK
+[
+YYX
+]) \
+
+633 : 
+YYSYMBOL_YYUNDEF
 )
 
-543 c⁄° 
+	)
+
+637 c⁄° 
 yyty≥_öt8
  
-yyå™¶©e
+	gyyå™¶©e
 [] =
 
-574 
-	}
-};
-
-576 #i‡
+670 #i‡
 YYDEBUG
 
 
-578 c⁄° 
+672 c⁄° 
 yyty≥_öt16
  
 	gyyæöe
 [] =
 
-590 #i‡
+685 
+	#YY_ACCESSING_SYMBOL
+(
+Sèã
+Ë
+	`YY_CAST
+ (
+yysymbﬁ_köd_t
+, 
+yy°os
+[Sèã])
+
+	)
+
+687 #i‡
 YYDEBUG
- || 
-YYERROR_VERBOSE
  || 0
 
-593 c⁄° *c⁄° 
-	gyyäame
+690 c⁄° *
+	$yysymbﬁ_«me
+ (
+yysymbﬁ_köd_t
+ 
+yysymbﬁ
+Ë
+YY_ATTRIBUTE_UNUSED
+;
+
+694 c⁄° *c⁄° 
+yyäame
 [] =
 
-603 "ãrm", "Á˘‹", "ˇŒ", "¨gs", "¨g_li°", 
+704 "sim∂e_exp", "add_exp", "ãrm", "Á˘‹", "ˇŒ", "¨gs", "¨g_li°", 
 YY_NULLPTR
 
 
-607 #ifde‡
-YYPRINT
+705 
+	}
+};
 
-
-610 c⁄° 
-yyty≥_öt16
+708 
+	$yysymbﬁ_«me
+ (
+yysymbﬁ_köd_t
  
-	gyytoknum
-[] =
+yysymbﬁ
+)
 
-619 
+710  
+yyäame
+[
+yysymbﬁ
+];
+
+711 
+	}
+}
+
+714 
 	#YYPACT_NINF
  (-92)
 
 	)
 
-621 
+716 
 	#yy∑˘_vÆue_is_deÁu…
 (
 Yyn
-Ë\
+) \
 
-	)
-
-622 ((
-	gYyn
+717 ((
+Yyn
 Ë=
 YYPACT_NINF
 )
 
-624 
+	)
+
+719 
 	#YYTABLE_NINF
  (-16)
 
 	)
 
-626 
+721 
 	#yyèbÀ_vÆue_is_îr‹
 (
 Yyn
-Ë\
+) \
+
+722 0
 
 	)
 
-631 c⁄° 
+726 c⁄° 
 yyty≥_öt8
  
-yy∑˘
+	gyy∑˘
 [] =
 
-649 c⁄° 
+744 c⁄° 
 yyty≥_öt8
  
 	gyydeÁ˘
 [] =
 
-665 c⁄° 
+760 c⁄° 
 yyty≥_öt8
  
 	gyypgŸo
 [] =
 
-673 c⁄° 
+768 c⁄° 
 yyty≥_öt8
  
 	gyydefgŸo
 [] =
 
-683 c⁄° 
+778 c⁄° 
 yyty≥_öt8
  
 	gyyèbÀ
 [] =
 
-699 c⁄° 
+794 c⁄° 
 yyty≥_öt8
  
 	gyycheck
 [] =
 
-717 c⁄° 
+812 c⁄° 
 yyty≥_öt8
  
 	gyy°os
 [] =
 
-733 c⁄° 
+828 c⁄° 
 yyty≥_öt8
  
 	gyyr1
 [] =
 
-745 c⁄° 
+840 c⁄° 
 yyty≥_öt8
  
 	gyyr2
 [] =
 
-757 
+852 íum { 
+	mYYENOMEM
+ = -2 };
+
+854 
 	#yyîrok
  (
 yyîr°©us
@@ -19111,7 +20273,7 @@ yyîr°©us
 
 	)
 
-758 
+855 
 	#yy˛órö
  (
 yych¨
@@ -19121,19 +20283,7 @@ YYEMPTY
 
 	)
 
-759 
-	#YYEMPTY
- (-2)
-
-	)
-
-760 
-	#YYEOF
- 0
-
-	)
-
-762 
+857 
 	#YYACCEPT
  
 yyac˚±œb
@@ -19141,7 +20291,7 @@ yyac˚±œb
 
 	)
 
-763 
+858 
 	#YYABORT
  
 yyab‹éab
@@ -19149,7 +20299,7 @@ yyab‹éab
 
 	)
 
-764 
+859 
 	#YYERROR
  
 yyîr‹œb
@@ -19157,7 +20307,15 @@ yyîr‹œb
 
 	)
 
-767 
+860 
+	#YYNOMEM
+ 
+yyexhau°edœb
+
+
+	)
+
+863 
 	#YYRECOVERING
 (Ë(!!
 yyîr°©us
@@ -19165,85 +20323,83 @@ yyîr°©us
 
 	)
 
-769 
+865 
 	#YYBACKUP
 (
 Tokí
 , 
 VÆue
-Ë\
+) \
 
-	)
-
-771 i‡(
-	gyych¨
+867 i‡(
+yych¨
  =
 YYEMPTY
 ) \
 
-773 
+869 
 yych¨
  = (
 Tokí
 ); \
 
-774 
-	gyylvÆ
+870 
+yylvÆ
  = (
 VÆue
 ); \
 
-775 
-YYPOPSTACK
+871 
+	`YYPOPSTACK
  (
 yyÀn
 ); \
 
-776 
-	gyy°©e
+872 
+yy°©e
  = *
 yys•
 ; \
 
-777 
-	gyybackup
+873 
+yybackup
 ; \
 
-781 
-yyîr‹
+877 
+	`yyîr‹
  (
-YY_
+	`YY_
 ("syntaxÉrror: cannot back up")); \
 
-782 
-	gYYERROR
+878 
+YYERROR
 ; \
 
-787 
-	#YYTERROR
- 1
+880 0)
 
 	)
 
-788 
+884 
 	#YYERRCODE
- 256
+ 
+YYUNDEF
+
 
 	)
 
-793 #i‡
+888 #i‡
 YYDEBUG
 
 
-795 #i‚de‡
+890 #i‚de‡
 YYFPRINTF
 
 
-796 
+891 
 	~<°dio.h
 >
 
-797 
+892 
 	#YYFPRINTF
  
 Ârötf
@@ -19251,61 +20407,43 @@ YYFPRINTF
 
 	)
 
-800 
+895 
 	#YYDPRINTF
 (
 Args
-Ë\
+) \
 
-	)
-
-802 i‡(
+897 i‡(
 yydebug
 ) \
 
-803 
+898 
 YYFPRINTF
  
 Args
 ; \
 
-804 
-	}
-} 0)
-
-807 #i‚de‡
-YY_LOCATION_PRINT
-
-
-808 
-	#YY_LOCATION_PRINT
-(
-Fûe
-, 
-Loc
-Ë((Ë0)
+899 } 0)
 
 	)
 
-812 
+904 
 	#YY_SYMBOL_PRINT
 (
 TôÀ
 , 
-Ty≥
+Köd
 , 
 VÆue
 , 
 Loˇti⁄
-Ë\
+) \
 
-	)
-
-814 i‡(
+906 i‡(
 yydebug
 ) \
 
-816 
+908 
 	`YYFPRINTF
  (
 °dîr
@@ -19313,43 +20451,47 @@ yydebug
 TôÀ
 ); \
 
-817 
+909 
 	`yy_symbﬁ_¥öt
  (
 °dîr
 , \
 
-818 
-Ty≥
+910 
+Köd
 , 
 VÆue
 ); \
 
-819 
+911 
 	`YYFPRINTF
  (
 °dîr
 , "\n"); \
 
-821 
-	}
-} 0)
+913 } 0)
 
-829 
+	)
+
+921 
 	$yy_symbﬁ_vÆue_¥öt
  (
 FILE
  *
 yyo
-, 
-yyty≥
+,
+
+922 
+yysymbﬁ_köd_t
+ 
+yyköd
 , 
 YYSTYPE
  c⁄° * c⁄° 
 yyvÆuï
 )
 
-831 
+924 
 FILE
  *
 yyouçut
@@ -19357,105 +20499,87 @@ yyouçut
 yyo
 ;
 
-832 
-	`YYUSE
+925 
+	`YY_USE
  (
 yyouçut
 );
 
-833 i‡(!
+926 i‡(!
 yyvÆuï
 )
 
-835 #ifde‡
-YYPRINT
-
-
-836 i‡(
-yyty≥
- < 
-YYNTOKENS
-)
-
-837 
-	`YYPRINT
- (
-yyo
-, 
-yytoknum
-[
-yyty≥
-], *
-yyvÆuï
-);
-
-839 
+928 
 YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
 
 
-840 
-	`YYUSE
+929 
+	`YY_USE
  (
-yyty≥
+yyköd
 );
 
-841 
+930 
 YY_IGNORE_MAYBE_UNINITIALIZED_END
 
 
-842 
+931 
 	}
 }
 
-850 
+939 
 	$yy_symbﬁ_¥öt
  (
 FILE
  *
 yyo
-, 
-yyty≥
+,
+
+940 
+yysymbﬁ_köd_t
+ 
+yyköd
 , 
 YYSTYPE
  c⁄° * c⁄° 
 yyvÆuï
 )
 
-852 
+942 
 	`YYFPRINTF
  (
 yyo
 , "%s %s (",
 
-853 
-yyty≥
+943 
+yyköd
  < 
 YYNTOKENS
  ? "tokí" : "¡îm", 
-yyäame
-[yytype]);
+	`yysymbﬁ_«me
+ (yykind));
 
-855 
+945 
 	`yy_symbﬁ_vÆue_¥öt
  (
 yyo
 , 
-yyty≥
+yyköd
 , 
 yyvÆuï
 );
 
-856 
+946 
 	`YYFPRINTF
  (
 yyo
 , ")");
 
-857 
+947 
 	}
 }
 
-865 
+955 
 	$yy_°ack_¥öt
  (
 yy_°©e_t
@@ -19465,25 +20589,25 @@ yybŸtom
 yyt›
 )
 
-867 
+957 
 	`YYFPRINTF
  (
 °dîr
 , "StackÇow");
 
-868 ; 
+958 ; 
 yybŸtom
  <
 yyt›
 ; yybottom++)
 
-870 
+960 
 yybŸ
  = *
 yybŸtom
 ;
 
-871 
+961 
 	`YYFPRINTF
  (
 °dîr
@@ -19491,39 +20615,41 @@ yybŸtom
 yybŸ
 );
 
-873 
+963 
 	`YYFPRINTF
  (
 °dîr
 , "\n");
 
-874 
+964 
 	}
 }
 
-876 
+966 
 	#YY_STACK_PRINT
 (
 BŸtom
 , 
 T›
-Ë\
-
-	)
-
-878 i‡(
-	gyydebug
 ) \
 
-879 
-yy_°ack_¥öt
+968 i‡(
+yydebug
+) \
+
+969 
+	`yy_°ack_¥öt
  ((
 BŸtom
 ), (
 T›
 )); \
 
-888 
+970 } 0)
+
+	)
+
+978 
 	$yy_ªdu˚_¥öt
  (
 yy_°©e_t
@@ -19533,11 +20659,13 @@ yys•
 YYSTYPE
  *
 yyv•
-, 
+,
+
+979 
 yyruÀ
 )
 
-890 
+981 
 yy o
  = 
 yyæöe
@@ -19545,7 +20673,7 @@ yyæöe
 yyruÀ
 ];
 
-891 
+982 
 yyƒhs
  = 
 yyr2
@@ -19553,29 +20681,29 @@ yyr2
 yyruÀ
 ];
 
-892 
+983 
 yyi
 ;
 
-893 
+984 
 	`YYFPRINTF
  (
 °dîr
 , "Reducing stack byÑule %d (line %d):\n",
 
-894 
+985 
 yyruÀ
  - 1, 
 yy o
 );
 
-896 
+987 
 yyi
  = 0; yyò< 
 yyƒhs
 ; yyi++)
 
-898 
+989 
 	`YYFPRINTF
  (
 °dîr
@@ -19583,54 +20711,52 @@ yyƒhs
 yyi
  + 1);
 
-899 
+990 
 	`yy_symbﬁ_¥öt
  (
 °dîr
 ,
 
-900 
-yy°os
-[+
+991 
+	`YY_ACCESSING_SYMBOL
+ (+
 yys•
 [
 yyi
  + 1 - 
 yyƒhs
-]],
+]),
 
-901 &
+992 &
 yyv•
 [(
 yyi
  + 1Ë- (
 yyƒhs
-)]
+)]);
 
-903 
+993 
 	`YYFPRINTF
  (
 °dîr
 , "\n");
 
-905 
+995 
 	}
 }
 
-907 
+997 
 	#YY_REDUCE_PRINT
 (
 RuÀ
-Ë\
-
-	)
-
-909 i‡(
-	gyydebug
 ) \
 
-910 
-yy_ªdu˚_¥öt
+999 i‡(
+yydebug
+) \
+
+1000 
+	`yy_ªdu˚_¥öt
  (
 yys•
 , 
@@ -19639,24 +20765,28 @@ yyv•
 RuÀ
 ); \
 
-915 
-yydebug
-;
-
-917 
-	#YYDPRINTF
-(
-Args
-)
+1001 } 0)
 
 	)
 
-918 
+1005 
+	gyydebug
+;
+
+1007 
+	#YYDPRINTF
+(
+Args
+Ë((Ë0)
+
+	)
+
+1008 
 	#YY_SYMBOL_PRINT
 (
 TôÀ
 , 
-Ty≥
+Köd
 , 
 VÆue
 , 
@@ -19665,7 +20795,7 @@ Loˇti⁄
 
 	)
 
-919 
+1009 
 	#YY_STACK_PRINT
 (
 BŸtom
@@ -19675,7 +20805,7 @@ T›
 
 	)
 
-920 
+1010 
 	#YY_REDUCE_PRINT
 (
 RuÀ
@@ -19683,719 +20813,123 @@ RuÀ
 
 	)
 
-925 #i‚de‡
+1015 #i‚de‡
 YYINITDEPTH
 
 
-926 
+1016 
 	#YYINITDEPTH
  200
 
 	)
 
-936 #i‚de‡
+1026 #i‚de‡
 YYMAXDEPTH
 
 
-937 
+1027 
 	#YYMAXDEPTH
  10000
 
 	)
 
-941 #i‡
-YYERROR_VERBOSE
-
-
-943 #i‚de‡
-yy°æí
-
-
-944 #i‡
-deföed
- 
-__GLIBC__
- && deföed 
-_STRING_H
-
-
-945 
-	#yy°æí
-(
-S
-Ë(
-	`YY_CAST
- (
-YYPTRDIFF_T
-, 
-	`°æí
- (S)))
-
-	)
-
-948 
-YYPTRDIFF_T
-
-
-949 
-	$yy°æí
- (c⁄° *
-yy°r
-)
-
-951 
-YYPTRDIFF_T
- 
-yyÀn
-;
-
-952 
-yyÀn
- = 0; 
-yy°r
-[yylen]; yylen++)
-
-954  
-yyÀn
-;
-
-955 
-	}
-}
-
-959 #i‚de‡
-yy°p˝y
-
-
-960 #i‡
-deföed
- 
-__GLIBC__
- && deföed 
-_STRING_H
- && deföed 
-_GNU_SOURCE
-
-
-961 
-	#yy°p˝y
- 
-°p˝y
-
-
-	)
-
-966 
-	$yy°p˝y
- (*
-yyde°
-, c⁄° *
-yy§c
-)
-
-968 *
-yyd
- = 
-yyde°
-;
-
-969 c⁄° *
-yys
- = 
-yy§c
-;
-
-971 (*
-yyd
-++ = *
-yys
-++) != '\0')
-
-974  
-yyd
- - 1;
-
-975 
-	}
-}
-
-979 #i‚de‡
-yyäamîr
-
-
-987 
-YYPTRDIFF_T
-
-
-988 
-	$yyäamîr
- (*
-yyªs
-, c⁄° *
-yy°r
-)
-
-990 i‡(*
-yy°r
- == '"')
-
-992 
-YYPTRDIFF_T
- 
-yyn
- = 0;
-
-993 c⁄° *
-yyp
- = 
-yy°r
-;
-
-996 *++
-yyp
-)
-
-1000 
-do_nŸ_°rù_quŸes
-;
-
-1003 i‡(*++
-yyp
- != '\\')
-
-1004 
-do_nŸ_°rù_quŸes
-;
-
-1006 
-≠≥nd
-;
-
-1008 
-≠≥nd
-:
-
-1010 i‡(
-yyªs
-)
-
-1011 
-yyªs
-[
-yyn
-] = *
-yyp
-;
-
-1012 
-yyn
-++;
-
-1016 i‡(
-yyªs
-)
-
-1017 
-yyªs
-[
-yyn
-] = '\0';
-
-1018  
-yyn
-;
-
-1020 
-do_nŸ_°rù_quŸes
-: ;
-
-1023 i‡(
-yyªs
-)
-
-1024  
-	`yy°p˝y
- (
-yyªs
-, 
-yy°r
-) - yyres;
-
-1026  
-	`yy°æí
- (
-yy°r
-);
-
-1027 
-	}
-}
-
-1039 
-	$yysy¡ax_îr‹
- (
-YYPTRDIFF_T
- *
-yymsg_Æloc
-, **
-yymsg
-,
-
 1040 
-yy_°©e_t
- *
-yys•
-, 
-yytokí
-)
-
-1042 íum { 
-YYERROR_VERBOSE_ARGS_MAXIMUM
- = 5 };
-
-1044 c⁄° *
-yyf‹m©
- = 
-YY_NULLPTR
-;
-
-1047 c⁄° *
-yy¨g
-[
-YYERROR_VERBOSE_ARGS_MAXIMUM
-];
-
-1049 
-yycou¡
- = 0;
-
-1051 
-YYPTRDIFF_T
- 
-yysize
- = 0;
-
-1076 i‡(
-yytokí
- !
-YYEMPTY
-)
-
-1078 
-yyn
- = 
-yy∑˘
-[+*
-yys•
-];
-
-1079 
-YYPTRDIFF_T
- 
-yysize0
- = 
-	`yyäamîr
- (
-YY_NULLPTR
-, 
-yyäame
-[
-yytokí
-]);
-
-1080 
-yysize
- = 
-yysize0
-;
-
-1081 
-yy¨g
-[
-yycou¡
-++] = 
-yyäame
-[
-yytokí
-];
-
-1082 i‡(!
-	`yy∑˘_vÆue_is_deÁu…
- (
-yyn
-))
-
-1087 
-yyxbegö
- = 
-yyn
- < 0 ? -yyn : 0;
-
-1089 
-yychecklim
- = 
-YYLAST
- - 
-yyn
- + 1;
-
-1090 
-yyxíd
- = 
-yychecklim
- < 
-YYNTOKENS
- ? yychecklim : YYNTOKENS;
-
-1091 
-yyx
-;
-
-1093 
-yyx
- = 
-yyxbegö
-; yyx < 
-yyxíd
-; ++yyx)
-
-1094 i‡(
-yycheck
-[
-yyx
- + 
-yyn
-] =yyx && yyx !
-YYTERROR
-
-
-1095 && !
-	`yyèbÀ_vÆue_is_îr‹
- (
-yyèbÀ
-[
-yyx
- + 
-yyn
-]))
-
-1097 i‡(
-yycou¡
- =
-YYERROR_VERBOSE_ARGS_MAXIMUM
-)
-
-1099 
-yycou¡
- = 1;
-
-1100 
-yysize
- = 
-yysize0
-;
-
-1103 
-yy¨g
-[
-yycou¡
-++] = 
-yyäame
-[
-yyx
-];
-
-1105 
-YYPTRDIFF_T
- 
-yysize1
-
-
-1106 
-yysize
- + 
-	`yyäamîr
- (
-YY_NULLPTR
-, 
-yyäame
-[
-yyx
-]);
-
-1107 i‡(
-yysize
- <
-yysize1
- && yysize1 <
-YYSTACK_ALLOC_MAXIMUM
-)
-
-1108 
-yysize
- = 
-yysize1
-;
-
-1116 
-yycou¡
-)
-
-1118 
-	#YYCASE_
-(
-N
-, 
-S
-Ë\
-
-	)
-
-1119 
-N
-: \
-
-1120 
-yyf‹m©
- = 
-S
-; \
-
-1123 
-	`YYCASE_
-(0, 
-	`YY_
-("syntaxÉrror"));
-
-1124 
-	`YYCASE_
-(1, 
-	`YY_
-("syntaxÉrror, unexpected %s"));
-
-1125 
-	`YYCASE_
-(2, 
-	`YY_
-("syntaxÉrror, unexpected %s,Éxpecting %s"));
-
-1126 
-	`YYCASE_
-(3, 
-	`YY_
-("syntaxÉrror, unexpected %s,Éxpecting %s or %s"));
-
-1127 
-	`YYCASE_
-(4, 
-	`YY_
-("syntaxÉrror, unexpected %s,Éxpecting %s or %s or %s"));
-
-1128 
-	`YYCASE_
-(5, 
-	`YY_
-("syntaxÉrror, unexpected %s,Éxpecting %s or %s or %s or %s"));
-
-1129 #unde‡
-YYCASE_
-
-
-1135 
-YYPTRDIFF_T
- 
-yysize1
- = 
-yysize
- + (
-	`yy°æí
- (
-yyf‹m©
-Ë- 2 * 
-yycou¡
-) + 1;
-
-1136 i‡(
-yysize
- <
-yysize1
- && yysize1 <
-YYSTACK_ALLOC_MAXIMUM
-)
-
-1137 
-yysize
- = 
-yysize1
-;
-
-1142 i‡(*
-yymsg_Æloc
- < 
-yysize
-)
-
-1144 *
-yymsg_Æloc
- = 2 * 
-yysize
-;
-
-1145 i‡(! (
-yysize
- <*
-yymsg_Æloc
-
-
-1146 && *
-yymsg_Æloc
- <
-YYSTACK_ALLOC_MAXIMUM
-))
-
-1147 *
-yymsg_Æloc
- = 
-YYSTACK_ALLOC_MAXIMUM
-;
-
-1155 *
-yyp
- = *
-yymsg
-;
-
-1156 
-yyi
- = 0;
-
-1157 (*
-yyp
- = *
-yyf‹m©
-) != '\0')
-
-1158 i‡(*
-yyp
- ='%' && 
-yyf‹m©
-[1] ='s' && 
-yyi
- < 
-yycou¡
-)
-
-1160 
-yyp
- +
-	`yyäamîr
- (yyp, 
-yy¨g
-[
-yyi
-++]);
-
-1161 
-yyf‹m©
- += 2;
-
-1165 ++
-yyp
-;
-
-1166 ++
-yyf‹m©
-;
-
-1170 
-	}
-}
-
-1178 
 	$yyde°ru˘
  (c⁄° *
 yymsg
-, 
-yyty≥
+,
+
+1041 
+yysymbﬁ_köd_t
+ 
+yyköd
 , 
 YYSTYPE
  *
 yyvÆuï
 )
 
-1180 
-	`YYUSE
+1043 
+	`YY_USE
  (
 yyvÆuï
 );
 
-1181 i‡(!
+1044 i‡(!
 yymsg
 )
 
-1182 
+1045 
 yymsg
  = "Deleting";
 
-1183 
+1046 
 	`YY_SYMBOL_PRINT
  (
 yymsg
 , 
-yyty≥
+yyköd
 , 
 yyvÆuï
 , 
 yyloˇti⁄p
 );
 
-1185 
+1048 
 YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
 
 
-1186 
-	`YYUSE
+1049 
+	`YY_USE
  (
-yyty≥
+yyköd
 );
 
-1187 
+1050 
 YY_IGNORE_MAYBE_UNINITIALIZED_END
 
 
-1188 
+1051 
 	}
 }
 
-1194 
+1055 
 	gyych¨
 ;
 
-1197 
+1058 
 YYSTYPE
  
 	gyylvÆ
 ;
 
-1199 
+1060 
 	gyy√ºs
 ;
 
-1207 
+1070 
 	$yy∑r£
  ()
 
-1209 
+1072 
 yy_°©e_Á°_t
  
 yy°©e
-;
+ = 0;
 
-1211 
+1074 
 yyîr°©us
+ = 0;
+
+1080 
+YYPTRDIFF_T
+ 
+yy°acksize
+ = 
+YYINITDEPTH
 ;
 
-1221 
+1083 
 yy_°©e_t
  
 yysß
@@ -20403,19 +20937,23 @@ yysß
 YYINITDEPTH
 ];
 
-1222 
+1084 
 yy_°©e_t
  *
 yyss
+ = 
+yysß
 ;
 
-1223 
+1085 
 yy_°©e_t
  *
 yys•
+ = 
+yyss
 ;
 
-1226 
+1088 
 YYSTYPE
  
 yyvß
@@ -20423,65 +20961,45 @@ yyvß
 YYINITDEPTH
 ];
 
-1227 
+1089 
 YYSTYPE
  *
 yyvs
+ = 
+yyvß
 ;
 
-1228 
+1090 
 YYSTYPE
  *
 yyv•
+ = 
+yyvs
 ;
 
-1230 
-YYPTRDIFF_T
- 
-yy°acksize
-;
-
-1232 
+1092 
 yyn
 ;
 
-1233 
+1094 
 yyªsu…
 ;
 
-1235 
+1096 
+yysymbﬁ_köd_t
+ 
 yytokí
- = 0;
+ = 
+YYSYMBOL_YYEMPTY
+;
 
-1238 
+1099 
 YYSTYPE
  
 yyvÆ
 ;
 
-1240 #i‡
-YYERROR_VERBOSE
-
-
-1242 
-yymsgbuf
-[128];
-
-1243 *
-yymsg
- = 
-yymsgbuf
-;
-
-1244 
-YYPTRDIFF_T
- 
-yymsg_Æloc
- =  
-yymsgbuf
-;
-
-1247 
+1103 
 	#YYPOPSTACK
 (
 N
@@ -20493,73 +21011,39 @@ yys•
 
 	)
 
-1251 
+1107 
 yyÀn
  = 0;
 
-1253 
-yys•
- = 
-yyss
- = 
-yysß
-;
-
-1254 
-yyv•
- = 
-yyvs
- = 
-yyvß
-;
-
-1255 
-yy°acksize
- = 
-YYINITDEPTH
-;
-
-1257 
+1109 
 	`YYDPRINTF
  ((
 °dîr
 , "StartingÖarse\n"));
 
-1259 
-yy°©e
- = 0;
-
-1260 
-yyîr°©us
- = 0;
-
-1261 
-yy√ºs
- = 0;
-
-1262 
+1111 
 yych¨
  = 
 YYEMPTY
 ;
 
-1263 
+1113 
 yy£t°©e
 ;
 
-1269 
+1119 
 yy√w°©e
 :
 
-1272 
+1122 
 yys•
 ++;
 
-1278 
+1128 
 yy£t°©e
 :
 
-1279 
+1129 
 	`YYDPRINTF
  ((
 °dîr
@@ -20567,7 +21051,7 @@ yy£t°©e
 yy°©e
 ));
 
-1280 
+1130 
 	`YY_ASSERT
  (0 <
 yy°©e
@@ -20575,11 +21059,11 @@ yy°©e
 YYNSTATES
 );
 
-1281 
+1131 
 YY_IGNORE_USELESS_CAST_BEGIN
 
 
-1282 *
+1132 *
 yys•
  = 
 	`YY_CAST
@@ -20589,11 +21073,19 @@ yy_°©e_t
 yy°©e
 );
 
-1283 
+1133 
 YY_IGNORE_USELESS_CAST_END
 
 
-1285 i‡(
+1134 
+	`YY_STACK_PRINT
+ (
+yyss
+, 
+yys•
+);
+
+1136 i‡(
 yyss
  + 
 yy°acksize
@@ -20601,7 +21093,7 @@ yy°acksize
 yys•
 )
 
-1286 #i‡!
+1137 #i‡!
 deföed
  
 yyovîÊow
@@ -20609,11 +21101,11 @@ yyovîÊow
 YYSTACK_RELOCATE
 
 
-1287 
-yyexhau°edœb
+1138 
+YYNOMEM
 ;
 
-1291 
+1142 
 YYPTRDIFF_T
  
 yysize
@@ -20623,13 +21115,13 @@ yys•
 yyss
  + 1;
 
-1293 #i‡
+1144 #i‡
 deföed
  
 yyovîÊow
 
 
-1298 
+1149 
 yy_°©e_t
  *
 yyss1
@@ -20637,7 +21129,7 @@ yyss1
 yyss
 ;
 
-1299 
+1150 
 YYSTYPE
  *
 yyvs1
@@ -20645,13 +21137,13 @@ yyvs1
 yyvs
 ;
 
-1305 
+1156 
 	`yyovîÊow
  (
 	`YY_
 ("memoryÉxhausted"),
 
-1306 &
+1157 &
 yyss1
 , 
 yysize
@@ -20661,7 +21153,7 @@ yysize
 yys•
 ),
 
-1307 &
+1158 &
 yyvs1
 , 
 yysize
@@ -20671,49 +21163,49 @@ yysize
 yyv•
 ),
 
-1308 &
+1159 &
 yy°acksize
 );
 
-1309 
+1160 
 yyss
  = 
 yyss1
 ;
 
-1310 
+1161 
 yyvs
  = 
 yyvs1
 ;
 
-1314 i‡(
+1165 i‡(
 YYMAXDEPTH
  <
 yy°acksize
 )
 
-1315 
-yyexhau°edœb
+1166 
+YYNOMEM
 ;
 
-1316 
+1167 
 yy°acksize
  *= 2;
 
-1317 i‡(
+1168 i‡(
 YYMAXDEPTH
  < 
 yy°acksize
 )
 
-1318 
+1169 
 yy°acksize
  = 
 YYMAXDEPTH
 ;
 
-1321 
+1172 
 yy_°©e_t
  *
 yyss1
@@ -20721,19 +21213,19 @@ yyss1
 yyss
 ;
 
-1322 
+1173 
 yyÆloc
  *
 yy±r
  =
 
-1323 
+1174 
 	`YY_CAST
  (
 yyÆloc
  *,
 
-1324 
+1175 
 	`YYSTACK_ALLOC
  (
 	`YY_CAST
@@ -20745,15 +21237,15 @@ YYSIZE_T
 yy°acksize
 ))));
 
-1325 i‡(! 
+1176 i‡(! 
 yy±r
 )
 
-1326 
-yyexhau°edœb
+1177 
+YYNOMEM
 ;
 
-1327 
+1178 
 	`YYSTACK_RELOCATE
  (
 yyss_Æloc
@@ -20761,7 +21253,7 @@ yyss_Æloc
 yyss
 );
 
-1328 
+1179 
 	`YYSTACK_RELOCATE
  (
 yyvs_Æloc
@@ -20769,23 +21261,23 @@ yyvs_Æloc
 yyvs
 );
 
-1329 #unde‡
+1180 #unde‡
 YYSTACK_RELOCATE
 
 
-1330 i‡(
+1181 i‡(
 yyss1
  !
 yysß
 )
 
-1331 
+1182 
 	`YYSTACK_FREE
  (
 yyss1
 );
 
-1335 
+1186 
 yys•
  = 
 yyss
@@ -20793,7 +21285,7 @@ yyss
 yysize
  - 1;
 
-1336 
+1187 
 yyv•
  = 
 yyvs
@@ -20801,27 +21293,27 @@ yyvs
 yysize
  - 1;
 
-1338 
+1189 
 YY_IGNORE_USELESS_CAST_BEGIN
 
 
-1339 
+1190 
 	`YYDPRINTF
  ((
 °dîr
 , "Stack size increasedÅo %ld\n",
 
-1340 
+1191 
 	`YY_CAST
  (, 
 yy°acksize
 )));
 
-1341 
+1192 
 YY_IGNORE_USELESS_CAST_END
 
 
-1343 i‡(
+1194 i‡(
 yyss
  + 
 yy°acksize
@@ -20829,29 +21321,29 @@ yy°acksize
 yys•
 )
 
-1344 
+1195 
 YYABORT
 ;
 
-1348 i‡(
+1200 i‡(
 yy°©e
  =
 YYFINAL
 )
 
-1349 
+1201 
 YYACCEPT
 ;
 
-1351 
+1203 
 yybackup
 ;
 
-1357 
+1209 
 yybackup
 :
 
-1362 
+1214 
 yyn
  = 
 yy∑˘
@@ -20859,55 +21351,81 @@ yy∑˘
 yy°©e
 ];
 
-1363 i‡(
+1215 i‡(
 	`yy∑˘_vÆue_is_deÁu…
  (
 yyn
 ))
 
-1364 
+1216 
 yydeÁu…
 ;
 
-1369 i‡(
+1221 i‡(
 yych¨
  =
 YYEMPTY
 )
 
-1371 
+1223 
 	`YYDPRINTF
  ((
 °dîr
-, "ReadingáÅoken: "));
+, "ReadingáÅoken\n"));
 
-1372 
+1224 
 yych¨
  = 
 	`yyÀx
  ();
 
-1375 i‡(
+1227 i‡(
 yych¨
  <
 YYEOF
 )
 
-1377 
+1229 
 yych¨
- = 
-yytokí
  = 
 YYEOF
 ;
 
-1378 
+1230 
+yytokí
+ = 
+YYSYMBOL_YYEOF
+;
+
+1231 
 	`YYDPRINTF
  ((
 °dîr
 , "NowátÉnd of input.\n"));
 
-1382 
+1233 i‡(
+yych¨
+ =
+YYîr‹
+)
+
+1239 
+yych¨
+ = 
+YYUNDEF
+;
+
+1240 
+yytokí
+ = 
+YYSYMBOL_YYîr‹
+;
+
+1241 
+yyîæab1
+;
+
+1245 
 yytokí
  = 
 	`YYTRANSLATE
@@ -20915,7 +21433,7 @@ yytokí
 yych¨
 );
 
-1383 
+1246 
 	`YY_SYMBOL_PRINT
  ("Nexàtokí is", 
 yytokí
@@ -20925,13 +21443,13 @@ yylvÆ
 yyŒoc
 );
 
-1388 
+1251 
 yyn
  +
 yytokí
 ;
 
-1389 i‡(
+1252 i‡(
 yyn
  < 0 || 
 YYLAST
@@ -20941,47 +21459,47 @@ yycheck
 yytokí
 )
 
-1390 
+1253 
 yydeÁu…
 ;
 
-1391 
+1254 
 yyn
  = 
 yyèbÀ
 [yyn];
 
-1392 i‡(
+1255 i‡(
 yyn
  <= 0)
 
-1394 i‡(
+1257 i‡(
 	`yyèbÀ_vÆue_is_îr‹
  (
 yyn
 ))
 
-1395 
+1258 
 yyîæab
 ;
 
-1396 
+1259 
 yyn
  = -yyn;
 
-1397 
+1260 
 yyªdu˚
 ;
 
-1402 i‡(
+1265 i‡(
 yyîr°©us
 )
 
-1403 
+1266 
 yyîr°©us
 --;
 
-1406 
+1269 
 	`YY_SYMBOL_PRINT
  ("Shi·ög", 
 yytokí
@@ -20991,41 +21509,41 @@ yylvÆ
 yyŒoc
 );
 
-1407 
+1270 
 yy°©e
  = 
 yyn
 ;
 
-1408 
+1271 
 YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
 
 
-1409 *++
+1272 *++
 yyv•
  = 
 yylvÆ
 ;
 
-1410 
+1273 
 YY_IGNORE_MAYBE_UNINITIALIZED_END
 
 
-1413 
+1276 
 yych¨
  = 
 YYEMPTY
 ;
 
-1414 
+1277 
 yy√w°©e
 ;
 
-1420 
+1283 
 yydeÁu…
 :
 
-1421 
+1284 
 yyn
  = 
 yydeÁ˘
@@ -21033,23 +21551,23 @@ yydeÁ˘
 yy°©e
 ];
 
-1422 i‡(
+1285 i‡(
 yyn
  == 0)
 
-1423 
+1286 
 yyîæab
 ;
 
-1424 
+1287 
 yyªdu˚
 ;
 
-1430 
+1293 
 yyªdu˚
 :
 
-1432 
+1295 
 yyÀn
  = 
 yyr2
@@ -21057,7 +21575,7 @@ yyr2
 yyn
 ];
 
-1442 
+1305 
 yyvÆ
  = 
 yyv•
@@ -21065,23 +21583,23 @@ yyv•
 yyÀn
 ];
 
-1445 
+1308 
 	`YY_REDUCE_PRINT
  (
 yyn
 );
 
-1446 
+1309 
 yyn
 )
 
-1450 { 
+1313 { 
 ßvedTªe
  = 
 yyv•
 [0];}
 
-1456 { 
+1319 { 
 YYSTYPE
  
 t
@@ -21089,13 +21607,13 @@ t
 yyv•
 [-1];
 
-1457 i‡(
+1320 i‡(
 t
  !
 NULL
 )
 
-1458 { 
+1321 { 
 t
 ->
 siblög
@@ -21103,13 +21621,13 @@ siblög
 NULL
 )
 
-1459 
+1322 
 t
  =Å->
 siblög
 ;
 
-1460 
+1323 
 t
 ->
 siblög
@@ -21117,45 +21635,47 @@ siblög
 yyv•
 [0];
 
-1461 
+1324 
 yyvÆ
  = 
 yyv•
 [-1]; }
 
-1462 
+1325 
 yyvÆ
  = 
 yyv•
 [0];
 
-1469 { 
+1332 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1475 { 
+1338 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1481 { 
+1344 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1487 { 
+1350 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 IdK
+, 
+löío
 );
 
-1488 
+1351 
 ßvedName
  = 
 	`c›ySåög
@@ -21163,37 +21683,39 @@ IdK
 tokíSåög
 );
 
-1489 
+1352 
 ßvedLöeNo
  = 
 löío
 ;
 
-1490 
+1353 
 yyvÆ
 ->
 ©å
 .
 «me
-=
+ = 
 ßvedName
 ;
 
-1491 
+1354 
 yyvÆ
 ->
 löío
-=lineno;
+ =Üineno;
 
-1498 { 
+1362 
 yyvÆ
  = 
 	`√wExpNode
 (
 C⁄°K
+, 
+löío
 );
 
-1499 
+1363 
 ßvedNumbî
  = 
 	`©oi
@@ -21201,7 +21723,7 @@ C⁄°K
 tokíSåög
 );
 
-1500 
+1364 
 yyvÆ
 ->
 ©å
@@ -21211,21 +21733,25 @@ vÆ
 ßvedNumbî
 ;
 
-1501 
+1365 
 yyvÆ
 ->
 löío
  =Üineno;
 
-1508 { 
+1372 { 
 yyvÆ
  = 
 	`√wDe˛Node
 (
 V¨K
+,
+yyv•
+[-1]->
+löío
 );
 
-1509 
+1373 
 yyvÆ
 ->
 ty≥
@@ -21233,7 +21759,7 @@ ty≥
 yyv•
 [-2]->type;
 
-1510 
+1374 
 yyvÆ
 ->
 ©å
@@ -21243,23 +21769,19 @@ yyvÆ
 yyv•
 [-1]->attr.name;
 
-1511 
-yyvÆ
-->
-löío
- = 
-ßvedLöeNo
-;
-
-1518 { 
+1382 { 
 yyvÆ
  = 
 	`√wDe˛Node
 (
 AºK
+, 
+yyv•
+[-4]->
+löío
 );
 
-1519 
+1383 
 yyvÆ
 ->
 ty≥
@@ -21273,7 +21795,7 @@ I¡Aºay
 VoidAºay
 ;
 
-1520 
+1384 
 yyvÆ
 ->
 ©å
@@ -21283,7 +21805,7 @@ yyvÆ
 yyv•
 [-4]->attr.name;
 
-1521 
+1385 
 yyvÆ
 ->
 chûd
@@ -21291,23 +21813,17 @@ chûd
 yyv•
 [-2];
 
-1522 
-yyvÆ
-->
-löío
- = 
-ßvedLöeNo
-;
-
-1529 { 
+1393 { 
 yyvÆ
  = 
 	`√wDe˛Node
 (
 Ty≥K
+, 
+löío
 );
 
-1530 
+1394 
 yyvÆ
 ->
 ty≥
@@ -21315,15 +21831,17 @@ ty≥
 I¡egî
 ;
 
-1537 { 
+1401 { 
 yyvÆ
  = 
 	`√wDe˛Node
 (
 Ty≥K
+,
+löío
 );
 
-1538 
+1402 
 yyvÆ
 ->
 ty≥
@@ -21331,15 +21849,19 @@ ty≥
 Void
 ;
 
-1545 { 
+1409 { 
 yyvÆ
  = 
 	`√wDe˛Node
 (
 FuncK
+, 
+yyv•
+[-4]->
+löío
 );
 
-1546 
+1410 
 yyvÆ
 ->
 ty≥
@@ -21347,7 +21869,7 @@ ty≥
 yyv•
 [-5]->type;
 
-1547 
+1411 
 yyvÆ
 ->
 ©å
@@ -21357,13 +21879,7 @@ yyvÆ
 yyv•
 [-4]->attr.name;
 
-1548 
-yyvÆ
-->
-löío
- =Üineno;
-
-1549 
+1413 
 yyvÆ
 ->
 chûd
@@ -21371,7 +21887,7 @@ chûd
 yyv•
 [-2];
 
-1550 
+1414 
 yyvÆ
 ->
 chûd
@@ -21379,21 +21895,23 @@ chûd
 yyv•
 [0];
 
-1557 { 
+1421 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1563 { 
+1427 { 
 yyvÆ
  = 
 	`√wDe˛Node
 (
 VoidP¨amK
+,
+löío
 ); }
 
-1569 { 
+1433 { 
 YYSTYPE
  
 t
@@ -21401,13 +21919,13 @@ t
 yyv•
 [-2];
 
-1570 i‡(
+1434 i‡(
 t
  !
 NULL
 )
 
-1571 { 
+1435 { 
 t
 ->
 siblög
@@ -21415,13 +21933,13 @@ siblög
 NULL
 )
 
-1572 
+1436 
 t
  =Å->
 siblög
 ;
 
-1573 
+1437 
 t
 ->
 siblög
@@ -21429,33 +21947,37 @@ siblög
 yyv•
 [0];
 
-1574 
+1438 
 yyvÆ
  = 
 yyv•
 [-2]; }
 
-1575 
+1439 
 yyvÆ
  = 
 yyv•
 [0];
 
-1582 { 
+1446 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1588 { 
+1452 { 
 yyvÆ
  = 
 	`√wDe˛Node
 (
 P¨amK
+, 
+yyv•
+[0]->
+löío
 );
 
-1589 
+1453 
 yyvÆ
 ->
 ty≥
@@ -21463,7 +21985,7 @@ ty≥
 yyv•
 [-1]->type;
 
-1590 
+1454 
 yyvÆ
 ->
 ©å
@@ -21472,40 +21994,36 @@ yyvÆ
  = 
 	`c›ySåög
 (
-ßvedName
-);
+yyv•
+[0]->attr.name);
 
-1591 
-yyvÆ
-->
-löío
- = 
-ßvedLöeNo
-;
-
-1598 { 
+1462 { 
 yyvÆ
  = 
 	`√wDe˛Node
 (
 AºP¨amK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1599 
+1463 
 yyvÆ
 ->
 ty≥
  = (
 yyv•
-[-3]->ty≥==
+[-3]->ty≥ =
 I¡egî
-)?
+Ë? 
 I¡Aºay
-:
+ : 
 VoidAºay
 ;
 
-1600 
+1464 
 yyvÆ
 ->
 ©å
@@ -21514,26 +22032,20 @@ yyvÆ
  = 
 	`c›ySåög
 (
-ßvedName
-);
+yyv•
+[-2]->attr.name);
 
-1601 
-yyvÆ
-->
-löío
- = 
-ßvedLöeNo
-;
-
-1608 { 
+1472 { 
 yyvÆ
  = 
 	`√wStmtNode
 (
 CompoundK
+, 
+löío
 );
 
-1609 
+1473 
 yyvÆ
 ->
 chûd
@@ -21543,7 +22055,7 @@ yyv•
 NULL
 ;
 
-1610 
+1474 
 yyvÆ
 ->
 chûd
@@ -21553,7 +22065,7 @@ yyv•
 NULL
 ;
 
-1617 { 
+1481 { 
 YYSTYPE
  
 t
@@ -21561,13 +22073,13 @@ t
 yyv•
 [-1];
 
-1618 i‡(
+1482 i‡(
 t
  !
 NULL
 )
 
-1619 { 
+1483 { 
 t
 ->
 siblög
@@ -21575,13 +22087,13 @@ siblög
 NULL
 )
 
-1620 
+1484 
 t
  =Å->
 siblög
 ;
 
-1621 
+1485 
 t
 ->
 siblög
@@ -21589,25 +22101,25 @@ siblög
 yyv•
 [0];
 
-1622 
+1486 
 yyvÆ
  = 
 yyv•
 [-1]; }
 
-1623 
+1487 
 yyvÆ
  = 
 yyv•
 [0];
 
-1630 { 
+1494 { 
 yyvÆ
  = 
 NULL
 ; }
 
-1636 { 
+1500 { 
 YYSTYPE
  
 t
@@ -21615,13 +22127,13 @@ t
 yyv•
 [-1];
 
-1637 i‡(
+1501 i‡(
 t
  !
 NULL
 )
 
-1638 { 
+1502 { 
 t
 ->
 siblög
@@ -21629,13 +22141,13 @@ siblög
 NULL
 )
 
-1639 
+1503 
 t
  =Å->
 siblög
 ;
 
-1640 
+1504 
 t
 ->
 siblög
@@ -21643,81 +22155,85 @@ siblög
 yyv•
 [0];
 
-1641 
+1505 
 yyvÆ
  = 
 yyv•
 [-1]; }
 
-1642 
+1506 
 yyvÆ
  = 
 yyv•
 [0];
 
-1649 { 
+1513 { 
 yyvÆ
  = 
 NULL
 ; }
 
-1655 { 
+1519 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1661 { 
+1525 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1667 { 
+1531 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1673 { 
+1537 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1679 { 
+1543 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1685 { 
+1549 { 
 	`yyîr‹
 ("Sy¡axÉº‹ i¿°©emít."); 
 yyîrok
 ; }
 
-1691 { 
+1555 { 
 yyvÆ
  = 
 yyv•
 [-1]; }
 
-1697 { 
+1561 { 
 yyvÆ
  = 
 NULL
 ; }
 
-1703 { 
+1567 { 
 yyvÆ
  = 
 	`√wStmtNode
 (
 IfK
+, 
+yyv•
+[-4]->
+löío
 );
 
-1704 
+1568 
 yyvÆ
 ->
 chûd
@@ -21725,7 +22241,7 @@ chûd
 yyv•
 [-2];
 
-1705 
+1569 
 yyvÆ
 ->
 chûd
@@ -21733,15 +22249,19 @@ chûd
 yyv•
 [0];
 
-1712 { 
+1576 { 
 yyvÆ
  = 
 	`√wStmtNode
 (
 El£K
+, 
+yyv•
+[-6]->
+löío
 );
 
-1713 
+1577 
 yyvÆ
 ->
 chûd
@@ -21749,7 +22269,7 @@ chûd
 yyv•
 [-4];
 
-1714 
+1578 
 yyvÆ
 ->
 chûd
@@ -21757,7 +22277,7 @@ chûd
 yyv•
 [-2];
 
-1715 
+1579 
 yyvÆ
 ->
 chûd
@@ -21765,15 +22285,19 @@ chûd
 yyv•
 [0];
 
-1722 { 
+1586 { 
 yyvÆ
  = 
 	`√wStmtNode
 (
 WhûeK
+, 
+yyv•
+[-4]->
+löío
 );
 
-1723 
+1587 
 yyvÆ
 ->
 chûd
@@ -21781,7 +22305,7 @@ chûd
 yyv•
 [-2];
 
-1724 
+1588 
 yyvÆ
 ->
 chûd
@@ -21789,23 +22313,27 @@ chûd
 yyv•
 [0];
 
-1731 { 
+1595 { 
 yyvÆ
  = 
 	`√wStmtNode
 (
 Rëu∫K
+, 
+löío
 );
 
-1738 { 
+1602 { 
 yyvÆ
  = 
 	`√wStmtNode
 (
 Rëu∫K
+, 
+löío
 );
 
-1739 
+1603 
 yyvÆ
 ->
 chûd
@@ -21813,15 +22341,19 @@ chûd
 yyv•
 [-1];
 
-1746 { 
+1610 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 AssignK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1747 
+1611 
 yyvÆ
 ->
 chûd
@@ -21829,7 +22361,7 @@ chûd
 yyv•
 [-2];
 
-1748 
+1612 
 yyvÆ
 ->
 chûd
@@ -21837,21 +22369,25 @@ chûd
 yyv•
 [0];
 
-1755 { 
+1619 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1761 { 
+1625 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 V¨ExpK
+, 
+yyv•
+[0]->
+löío
 );
 
-1762 
+1626 
 yyvÆ
 ->
 ©å
@@ -21863,15 +22399,19 @@ yyvÆ
 ßvedName
 );
 
-1769 { 
+1633 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 V¨ExpK
+, 
+yyv•
+[-3]->
+löío
 );
 
-1770 
+1634 
 yyvÆ
 ->
 ©å
@@ -21881,7 +22421,7 @@ yyvÆ
 yyv•
 [-3]->attr.name;
 
-1771 
+1635 
 yyvÆ
 ->
 chûd
@@ -21889,15 +22429,19 @@ chûd
 yyv•
 [-1];
 
-1778 { 
+1642 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 OpK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1779 
+1643 
 yyvÆ
 ->
 chûd
@@ -21905,7 +22449,7 @@ chûd
 yyv•
 [-2];
 
-1780 
+1644 
 yyvÆ
 ->
 ©å
@@ -21915,7 +22459,7 @@ yyvÆ
 LT
 ;
 
-1781 
+1645 
 yyvÆ
 ->
 chûd
@@ -21923,15 +22467,19 @@ chûd
 yyv•
 [0];
 
-1788 { 
+1652 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 OpK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1789 
+1653 
 yyvÆ
 ->
 chûd
@@ -21939,7 +22487,7 @@ chûd
 yyv•
 [-2];
 
-1790 
+1654 
 yyvÆ
 ->
 ©å
@@ -21949,7 +22497,7 @@ yyvÆ
 LE
 ;
 
-1791 
+1655 
 yyvÆ
 ->
 chûd
@@ -21957,15 +22505,19 @@ chûd
 yyv•
 [0];
 
-1798 { 
+1662 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 OpK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1799 
+1663 
 yyvÆ
 ->
 chûd
@@ -21973,7 +22525,7 @@ chûd
 yyv•
 [-2];
 
-1800 
+1664 
 yyvÆ
 ->
 ©å
@@ -21983,7 +22535,7 @@ yyvÆ
 GT
 ;
 
-1801 
+1665 
 yyvÆ
 ->
 chûd
@@ -21991,15 +22543,19 @@ chûd
 yyv•
 [0];
 
-1808 { 
+1672 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 OpK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1809 
+1673 
 yyvÆ
 ->
 chûd
@@ -22007,7 +22563,7 @@ chûd
 yyv•
 [-2];
 
-1810 
+1674 
 yyvÆ
 ->
 ©å
@@ -22017,7 +22573,7 @@ yyvÆ
 GE
 ;
 
-1811 
+1675 
 yyvÆ
 ->
 chûd
@@ -22025,15 +22581,19 @@ chûd
 yyv•
 [0];
 
-1818 { 
+1682 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 OpK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1819 
+1683 
 yyvÆ
 ->
 chûd
@@ -22041,7 +22601,7 @@ chûd
 yyv•
 [-2];
 
-1820 
+1684 
 yyvÆ
 ->
 ©å
@@ -22051,7 +22611,7 @@ yyvÆ
 EQ
 ;
 
-1821 
+1685 
 yyvÆ
 ->
 chûd
@@ -22059,15 +22619,19 @@ chûd
 yyv•
 [0];
 
-1828 { 
+1692 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 OpK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1829 
+1693 
 yyvÆ
 ->
 chûd
@@ -22075,7 +22639,7 @@ chûd
 yyv•
 [-2];
 
-1830 
+1694 
 yyvÆ
 ->
 ©å
@@ -22085,7 +22649,7 @@ yyvÆ
 NE
 ;
 
-1831 
+1695 
 yyvÆ
 ->
 chûd
@@ -22093,21 +22657,25 @@ chûd
 yyv•
 [0];
 
-1838 { 
+1702 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1844 { 
+1708 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 OpK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1845 
+1709 
 yyvÆ
 ->
 chûd
@@ -22115,7 +22683,7 @@ chûd
 yyv•
 [-2];
 
-1846 
+1710 
 yyvÆ
 ->
 chûd
@@ -22123,7 +22691,7 @@ chûd
 yyv•
 [0];
 
-1847 
+1711 
 yyvÆ
 ->
 ©å
@@ -22133,15 +22701,19 @@ yyvÆ
 PLUS
 ;
 
-1854 { 
+1718 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 OpK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1855 
+1719 
 yyvÆ
 ->
 chûd
@@ -22149,7 +22721,7 @@ chûd
 yyv•
 [-2];
 
-1856 
+1720 
 yyvÆ
 ->
 chûd
@@ -22157,7 +22729,7 @@ chûd
 yyv•
 [0];
 
-1857 
+1721 
 yyvÆ
 ->
 ©å
@@ -22167,21 +22739,25 @@ yyvÆ
 MINUS
 ;
 
-1864 { 
+1728 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1870 { 
+1734 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 OpK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1871 
+1735 
 yyvÆ
 ->
 chûd
@@ -22189,7 +22765,7 @@ chûd
 yyv•
 [-2];
 
-1872 
+1736 
 yyvÆ
 ->
 ©å
@@ -22199,7 +22775,7 @@ yyvÆ
 TIMES
 ;
 
-1873 
+1737 
 yyvÆ
 ->
 chûd
@@ -22207,15 +22783,19 @@ chûd
 yyv•
 [0];
 
-1880 { 
+1744 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 OpK
+, 
+yyv•
+[-2]->
+löío
 );
 
-1881 
+1745 
 yyvÆ
 ->
 chûd
@@ -22223,7 +22803,7 @@ chûd
 yyv•
 [-2];
 
-1882 
+1746 
 yyvÆ
 ->
 ©å
@@ -22233,7 +22813,7 @@ yyvÆ
 OVER
 ;
 
-1883 
+1747 
 yyvÆ
 ->
 chûd
@@ -22241,39 +22821,43 @@ chûd
 yyv•
 [0];
 
-1890 { 
+1754 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1896 { 
+1760 { 
 yyvÆ
  = 
 yyv•
 [-1]; }
 
-1902 { 
+1766 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1908 { 
+1772 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1914 { 
+1778 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 C⁄°K
-);
+, 
+yyv•
+[0]->
+löío
+)
 
-1915 
+1779 
 yyvÆ
 ->
 ©å
@@ -22283,15 +22867,19 @@ vÆ
 ßvedNumbî
 ;
 
-1922 { 
+1786 { 
 yyvÆ
  = 
 	`√wExpNode
 (
 CÆlK
+, 
+yyv•
+[-3]->
+löío
 );
 
-1923 
+1787 
 yyvÆ
 ->
 ©å
@@ -22301,7 +22889,7 @@ yyvÆ
 yyv•
 [-3]->attr.name;
 
-1924 
+1788 
 yyvÆ
 ->
 chûd
@@ -22309,19 +22897,19 @@ chûd
 yyv•
 [-1];
 
-1931 { 
+1795 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1937 { 
+1801 { 
 yyvÆ
  = 
 NULL
 ; }
 
-1943 { 
+1807 { 
 YYSTYPE
  
 t
@@ -22329,13 +22917,13 @@ t
 yyv•
 [-2];
 
-1944 i‡(
+1808 i‡(
 t
  !
 NULL
 )
 
-1945 { 
+1809 { 
 t
 ->
 siblög
@@ -22343,13 +22931,13 @@ siblög
 NULL
 )
 
-1946 
+1810 
 t
  =Å->
 siblög
 ;
 
-1947 
+1811 
 t
 ->
 siblög
@@ -22357,61 +22945,57 @@ siblög
 yyv•
 [0];
 
-1948 
+1812 
 yyvÆ
  = 
 yyv•
 [-2]; }
 
-1949 
+1813 
 yyvÆ
  = 
 yyv•
 [0];
 
-1956 { 
+1820 { 
 yyvÆ
  = 
 yyv•
 [0]; }
 
-1976 
+1840 
 	`YY_SYMBOL_PRINT
  ("-> $$ =", 
+	`YY_CAST
+ (
+yysymbﬁ_köd_t
+, 
 yyr1
 [
 yyn
-], &
+]), &
 yyvÆ
 , &
 yyloc
 );
 
-1978 
+1842 
 	`YYPOPSTACK
  (
 yyÀn
 );
 
-1979 
+1843 
 yyÀn
  = 0;
 
-1980 
-	`YY_STACK_PRINT
- (
-yyss
-, 
-yys•
-);
-
-1982 *++
+1845 *++
 yyv•
  = 
 yyvÆ
 ;
 
-1988 c⁄° 
+1851 c⁄° 
 yylhs
  = 
 yyr1
@@ -22421,7 +23005,7 @@ yyn
 YYNTOKENS
 ;
 
-1989 c⁄° 
+1852 c⁄° 
 yyi
  = 
 yypgŸo
@@ -22431,7 +23015,7 @@ yylhs
 yys•
 ;
 
-1990 
+1853 
 yy°©e
  = (0 <
 yyi
@@ -22443,235 +23027,115 @@ yycheck
 yys•
 
 
-1991 ? 
+1854 ? 
 yyèbÀ
 [
 yyi
 ]
 
-1992 : 
+1855 : 
 yydefgŸo
 [
 yylhs
 ]);
 
-1995 
+1858 
 yy√w°©e
 ;
 
-2001 
+1864 
 yyîæab
 :
 
-2004 
+1867 
 yytokí
  = 
 yych¨
  =
 YYEMPTY
- ? YYEMPTY : 
+ ? 
+YYSYMBOL_YYEMPTY
+ : 
 	`YYTRANSLATE
  (yychar);
 
-2007 i‡(!
+1869 i‡(!
 yyîr°©us
 )
 
-2009 ++
+1871 ++
 yy√ºs
 ;
 
-2010 #i‡! 
-YYERROR_VERBOSE
-
-
-2011 
+1872 
 	`yyîr‹
  (
 	`YY_
 ("syntaxÉrror"));
 
-2013 
-	#YYSYNTAX_ERROR
- 
-	`yysy¡ax_îr‹
- (&
-yymsg_Æloc
-, &
-yymsg
-, \
-
-	)
-
-2014 
-yys•
-, 
-yytokí
-)
-
-2016 c⁄° *
-yymsgp
- = 
-	`YY_
-("syntaxÉrror");
-
-2017 
-yysy¡ax_îr‹_°©us
-;
-
-2018 
-yysy¡ax_îr‹_°©us
- = 
-YYSYNTAX_ERROR
-;
-
-2019 i‡(
-yysy¡ax_îr‹_°©us
- == 0)
-
-2020 
-yymsgp
- = 
-yymsg
-;
-
-2021 i‡(
-yysy¡ax_îr‹_°©us
- == 1)
-
-2023 i‡(
-yymsg
- !
-yymsgbuf
-)
-
-2024 
-	`YYSTACK_FREE
- (
-yymsg
-);
-
-2025 
-yymsg
- = 
-	`YY_CAST
- (*, 
-	`YYSTACK_ALLOC
- (YY_CAST (
-YYSIZE_T
-, 
-yymsg_Æloc
-)));
-
-2026 i‡(!
-yymsg
-)
-
-2028 
-yymsg
- = 
-yymsgbuf
-;
-
-2029 
-yymsg_Æloc
- =  
-yymsgbuf
-;
-
-2030 
-yysy¡ax_îr‹_°©us
- = 2;
-
-2034 
-yysy¡ax_îr‹_°©us
- = 
-YYSYNTAX_ERROR
-;
-
-2035 
-yymsgp
- = 
-yymsg
-;
-
-2038 
-	`yyîr‹
- (
-yymsgp
-);
-
-2039 i‡(
-yysy¡ax_îr‹_°©us
- == 2)
-
-2040 
-yyexhau°edœb
-;
-
-2042 #unde‡
-YYSYNTAX_ERROR
-
-
-2048 i‡(
+1875 i‡(
 yyîr°©us
  == 3)
 
-2053 i‡(
+1880 i‡(
 yych¨
  <
 YYEOF
 )
 
-2056 i‡(
+1883 i‡(
 yych¨
  =
 YYEOF
 )
 
-2057 
+1884 
 YYABORT
 ;
 
-2061 
+1888 
 	`yyde°ru˘
  ("Error: discarding",
 
-2062 
+1889 
 yytokí
 , &
 yylvÆ
 );
 
-2063 
+1890 
 yych¨
  = 
 YYEMPTY
 ;
 
-2069 
+1896 
 yyîæab1
 ;
 
-2075 
+1902 
 yyîr‹œb
 :
 
-2079 
+1906 
 YYERROR
 ;
 
-2083 
+1907 ++
+yy√ºs
+;
+
+1911 
 	`YYPOPSTACK
  (
 yyÀn
 );
 
-2084 
+1912 
 yyÀn
  = 0;
 
-2085 
+1913 
 	`YY_STACK_PRINT
  (
 yyss
@@ -22679,25 +23143,25 @@ yyss
 yys•
 );
 
-2086 
+1914 
 yy°©e
  = *
 yys•
 ;
 
-2087 
+1915 
 yyîæab1
 ;
 
-2093 
+1921 
 yyîæab1
 :
 
-2094 
+1922 
 yyîr°©us
  = 3;
 
-2098 
+1927 
 yyn
  = 
 yy∑˘
@@ -22705,71 +23169,71 @@ yy∑˘
 yy°©e
 ];
 
-2099 i‡(!
+1928 i‡(!
 	`yy∑˘_vÆue_is_deÁu…
  (
 yyn
 ))
 
-2101 
+1930 
 yyn
  +
-YYTERROR
+YYSYMBOL_YYîr‹
 ;
 
-2102 i‡(0 <
+1931 i‡(0 <
 yyn
  && yy¿<
 YYLAST
  && 
 yycheck
 [yyn] =
-YYTERROR
+YYSYMBOL_YYîr‹
 )
 
-2104 
+1933 
 yyn
  = 
 yyèbÀ
 [yyn];
 
-2105 i‡(0 < 
+1934 i‡(0 < 
 yyn
 )
 
-2111 i‡(
+1940 i‡(
 yys•
  =
 yyss
 )
 
-2112 
+1941 
 YYABORT
 ;
 
-2115 
+1944 
 	`yyde°ru˘
  ("Error:Öopping",
 
-2116 
-yy°os
-[
+1945 
+	`YY_ACCESSING_SYMBOL
+ (
 yy°©e
-], 
+), 
 yyv•
 );
 
-2117 
+1946 
 	`YYPOPSTACK
  (1);
 
-2118 
+1947 
 yy°©e
  = *
 yys•
 ;
 
-2119 
+1948 
 	`YY_STACK_PRINT
  (
 yyss
@@ -22777,99 +23241,95 @@ yyss
 yys•
 );
 
-2122 
+1951 
 YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
 
 
-2123 *++
+1952 *++
 yyv•
  = 
 yylvÆ
 ;
 
-2124 
+1953 
 YY_IGNORE_MAYBE_UNINITIALIZED_END
 
 
-2128 
+1957 
 	`YY_SYMBOL_PRINT
  ("Shi·ög", 
-yy°os
-[
+	`YY_ACCESSING_SYMBOL
+ (
 yyn
-], 
+), 
 yyv•
 , 
 yyl•
 );
 
-2130 
+1959 
 yy°©e
  = 
 yyn
 ;
 
-2131 
+1960 
 yy√w°©e
 ;
 
-2137 
+1966 
 yyac˚±œb
 :
 
-2138 
+1967 
 yyªsu…
  = 0;
 
-2139 
-yyªtu∫
+1968 
+yyªtu∫œb
 ;
 
-2145 
+1974 
 yyab‹éab
 :
 
-2146 
+1975 
 yyªsu…
  = 1;
 
-2147 
-yyªtu∫
+1976 
+yyªtu∫œb
 ;
 
-2150 #i‡!
-deföed
- 
-yyovîÊow
- || 
-YYERROR_VERBOSE
-
-
-2154 
+1982 
 yyexhau°edœb
 :
 
-2155 
+1983 
 	`yyîr‹
  (
 	`YY_
 ("memoryÉxhausted"));
 
-2156 
+1984 
 yyªsu…
  = 2;
 
-2164 
-yyªtu∫
+1985 
+yyªtu∫œb
+;
+
+1991 
+yyªtu∫œb
 :
 
-2165 i‡(
+1992 i‡(
 yych¨
  !
 YYEMPTY
 )
 
-2169 
+1996 
 yytokí
  = 
 	`YYTRANSLATE
@@ -22877,23 +23337,23 @@ yytokí
 yych¨
 );
 
-2170 
+1997 
 	`yyde°ru˘
  ("Cleanup: discardingÜookahead",
 
-2171 
+1998 
 yytokí
 , &
 yylvÆ
 );
 
-2175 
+2002 
 	`YYPOPSTACK
  (
 yyÀn
 );
 
-2176 
+2003 
 	`YY_STACK_PRINT
  (
 yyss
@@ -22901,75 +23361,59 @@ yyss
 yys•
 );
 
-2177 
+2004 
 yys•
  !
 yyss
 )
 
-2179 
+2006 
 	`yyde°ru˘
  ("Cleanup:Öopping",
 
-2180 
-yy°os
-[+*
+2007 
+	`YY_ACCESSING_SYMBOL
+ (+*
 yys•
-], 
+), 
 yyv•
 );
 
-2181 
+2008 
 	`YYPOPSTACK
  (1);
 
-2183 #i‚de‡
+2010 #i‚de‡
 yyovîÊow
 
 
-2184 i‡(
+2011 i‡(
 yyss
  !
 yysß
 )
 
-2185 
+2012 
 	`YYSTACK_FREE
  (
 yyss
 );
 
-2187 #i‡
-YYERROR_VERBOSE
-
-
-2188 i‡(
-yymsg
- !
-yymsgbuf
-)
-
-2189 
-	`YYSTACK_FREE
- (
-yymsg
-);
-
-2191  
+2015  
 yyªsu…
 ;
 
-2192 
+2016 
 	}
 }
 
-2200 
+2025 
 	$yyîr‹
 (* 
 mesßge
 ) {
 
-2201 
+2026 
 	`Ârötf
 (
 li°ög
@@ -22979,13 +23423,13 @@ löío
 mesßge
 );
 
-2202 
+2027 
 	`Ârötf
 (
 li°ög
 ,"CurrentÅoken: ");
 
-2203 
+2028 
 	`¥ötTokí
 (
 yych¨
@@ -22993,381 +23437,427 @@ yych¨
 tokíSåög
 );
 
-2204 
+2029 
 Eº‹
  = 
 TRUE
 ;
 
-2206 
+2031 
 	}
 }
 
-2210 
+2035 
 	$yyÀx
 () {
 
-2211  
+2036  
 	`gëTokí
 ();
 
-2212 
+2037 
 	}
 }
 
-2214 
+2039 
 TªeNode
  * 
 	$∑r£
 () {
 
-2215 
+2040 
 	`yy∑r£
 ();
 
-2216  
+2041  
 ßvedTªe
 ;
 
-2217 
+2042 
 	}
 }
 
 	@y.tab.h
 
-37 #i‚de‡
+38 #i‚de‡
 YY_YY_Y_TAB_H_INCLUDED
 
 
-38 
+39 
 	#YY_YY_Y_TAB_H_INCLUDED
 
 
 	)
 
-40 #i‚de‡
+41 #i‚de‡
 YYDEBUG
 
 
-41 
+42 
 	#YYDEBUG
  0
 
 	)
 
-43 #i‡
+44 #i‡
 YYDEBUG
 
 
-44 
+45 
 yydebug
 ;
 
-48 #i‚de‡
+49 #i‚de‡
 YYTOKENTYPE
 
 
-49 
+50 
 	#YYTOKENTYPE
 
 
 	)
 
-50 
+51 
 	eyytokíty≥
 
 
-52 
+53 
+	mYYEMPTY
+ = -2,
+
+54 
+	mYYEOF
+ = 0,
+
+55 
+	mYYîr‹
+ = 256,
+
+56 
+	mYYUNDEF
+ = 257,
+
+57 
 	mIF
  = 258,
 
-53 
+58 
 	mELSE
  = 259,
 
-54 
+59 
 	mINT
  = 260,
 
-55 
+60 
 	mRETURN
  = 261,
 
-56 
+61 
 	mVOID
  = 262,
 
-57 
+62 
 	mWHILE
  = 263,
 
-58 
+63 
 	mID
  = 264,
 
-59 
+64 
 	mNUM
  = 265,
 
-60 
+65 
 	mLT
  = 266,
 
-61 
+66 
 	mLE
  = 267,
 
-62 
+67 
 	mGT
  = 268,
 
-63 
+68 
 	mGE
  = 269,
 
-64 
+69 
 	mEQ
  = 270,
 
-65 
+70 
 	mNE
  = 271,
 
-66 
+71 
 	mSEMI
  = 272,
 
-67 
+72 
 	mLPAREN
  = 273,
 
-68 
+73 
 	mRPAREN
  = 274,
 
-69 
+74 
 	mLCURLY
  = 275,
 
-70 
+75 
 	mRCURLY
  = 276,
 
-71 
+76 
 	mLBRACE
  = 277,
 
-72 
+77 
 	mRBRACE
  = 278,
 
-73 
+78 
 	mPLUS
  = 279,
 
-74 
+79 
 	mMINUS
  = 280,
 
-75 
+80 
 	mTIMES
  = 281,
 
-76 
+81 
 	mOVER
  = 282,
 
-77 
+82 
 	mCOMMA
  = 283,
 
-78 
+83 
 	mASSIGN
  = 284,
 
-79 
+84 
 	mTHEN
  = 285,
 
-80 
+85 
 	mERROR
  = 286
 
-84 
+87 
+yytokíty≥
+ 
+	tyytokí_köd_t
+;
+
+90 
+	#YYEMPTY
+ -2
+
+	)
+
+91 
+	#YYEOF
+ 0
+
+	)
+
+92 
+	#YYîr‹
+ 256
+
+	)
+
+93 
+	#YYUNDEF
+ 257
+
+	)
+
+94 
 	#IF
  258
 
 	)
 
-85 
+95 
 	#ELSE
  259
 
 	)
 
-86 
+96 
 	#INT
  260
 
 	)
 
-87 
+97 
 	#RETURN
  261
 
 	)
 
-88 
+98 
 	#VOID
  262
 
 	)
 
-89 
+99 
 	#WHILE
  263
 
 	)
 
-90 
+100 
 	#ID
  264
 
 	)
 
-91 
+101 
 	#NUM
  265
 
 	)
 
-92 
+102 
 	#LT
  266
 
 	)
 
-93 
+103 
 	#LE
  267
 
 	)
 
-94 
+104 
 	#GT
  268
 
 	)
 
-95 
+105 
 	#GE
  269
 
 	)
 
-96 
+106 
 	#EQ
  270
 
 	)
 
-97 
+107 
 	#NE
  271
 
 	)
 
-98 
+108 
 	#SEMI
  272
 
 	)
 
-99 
+109 
 	#LPAREN
  273
 
 	)
 
-100 
+110 
 	#RPAREN
  274
 
 	)
 
-101 
+111 
 	#LCURLY
  275
 
 	)
 
-102 
+112 
 	#RCURLY
  276
 
 	)
 
-103 
+113 
 	#LBRACE
  277
 
 	)
 
-104 
+114 
 	#RBRACE
  278
 
 	)
 
-105 
+115 
 	#PLUS
  279
 
 	)
 
-106 
+116 
 	#MINUS
  280
 
 	)
 
-107 
+117 
 	#TIMES
  281
 
 	)
 
-108 
+118 
 	#OVER
  282
 
 	)
 
-109 
+119 
 	#COMMA
  283
 
 	)
 
-110 
+120 
 	#ASSIGN
  284
 
 	)
 
-111 
+121 
 	#THEN
  285
 
 	)
 
-112 
+122 
 	#ERROR
  286
 
 	)
 
-115 #i‡! 
+125 #i‡! 
 deföed
  
 YYSTYPE
@@ -23375,29 +23865,29 @@ YYSTYPE
 YYSTYPE_IS_DECLARED
 
 
-116 
+126 
 	tYYSTYPE
 ;
 
-117 
+127 
 	#YYSTYPE_IS_TRIVIAL
  1
 
 	)
 
-118 
+128 
 	#YYSTYPE_IS_DECLARED
  1
 
 	)
 
-122 
+132 
 YYSTYPE
  
 yylvÆ
 ;
 
-124 
+135 
 yy∑r£
  ();
 
@@ -44640,8 +45130,8 @@ __GCC_IEC_559_COMPLEX
 .
 1
 /usr/include
-40
-583
+39
+566
 analyze.c
 analyze.h
 cgen.c
@@ -44650,7 +45140,6 @@ cminus.l
 cminus.y
 code.c
 code.h
-error_messages.c
 globals.h
 lex.yy.c
 main.c

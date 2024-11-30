@@ -63,26 +63,27 @@ void printToken( TokenType token, const char* tokenString )
 /* Function newStmtNode creates a new statement
  * node for syntax tree construction
  */
-TreeNode * newStmtNode(StmtKind kind)
-{ TreeNode * t = (TreeNode *) malloc(sizeof(TreeNode));
-  int i;
-  if (t==NULL)
-    fprintf(listing,"Out of memory error at line %d\n",lineno);
-  else {
-    for (i=0;i<MAXCHILDREN;i++) t->child[i] = NULL;
+TreeNode * newStmtNode(StmtKind kind, int lineno) {
+    
+    TreeNode * t = (TreeNode *) malloc(sizeof(TreeNode));
+    if (t == NULL) {
+        fprintf(listing, "Out of memory error at line %d\n", lineno);
+        return NULL;
+    }
+    for (int i = 0; i < MAXCHILDREN; i++) t->child[i] = NULL;
     t->sibling = NULL;
     t->nodekind = StmtK;
     t->kind.stmt = kind;
     t->lineno = lineno;
-  }
-  return t;
+    return t;
 }
 
 /* Function newExpNode creates a new expression 
  * node for syntax tree construction
  */
-TreeNode * newExpNode(ExpKind kind)
-{ TreeNode * t = (TreeNode *) malloc(sizeof(TreeNode));
+TreeNode * newExpNode(ExpKind kind, int lineno)
+{ 
+  TreeNode * t = (TreeNode *) malloc(sizeof(TreeNode));
   int i;
   if (t==NULL)
     fprintf(listing,"Out of memory error at line %d\n",lineno);
@@ -96,21 +97,18 @@ TreeNode * newExpNode(ExpKind kind)
   }
   return t;
 }
-TreeNode * newDeclNode(DeclKind kind)
-{ TreeNode * t = (TreeNode *) malloc(sizeof(TreeNode));
-  int i;
-  if (t==NULL)
-    fprintf(listing,"Out of memory error at line %d\n",lineno);
-
-  else {
-    for (i=0;i<MAXCHILDREN;i++) t->child[i] = NULL;
+TreeNode * newDeclNode(DeclKind kind, int lineno) {
+    TreeNode * t = (TreeNode *)malloc(sizeof(TreeNode));
+    if (t == NULL) {
+        fprintf(stderr, "Out of memory error at line %d\n", lineno);
+        return NULL;
+    }
+    for (int i = 0; i < MAXCHILDREN; i++) t->child[i] = NULL;
     t->sibling = NULL;
     t->nodekind = DeclK;
     t->kind.decl = kind;
     t->lineno = lineno;
-    t->type = Void;
-  }
-  return t;
+    return t;
 }
 /* Function copyString allocates and makes a new
  * copy of an existing string
@@ -229,7 +227,7 @@ void printTree( TreeNode * tree )
   }
   UNINDENT;
   //   else fprintf(listing,"Unknown node kind\n");
-  //  // ÀÚ½Ä ³ëµå·Î ÀÌµ¿ÇÏ¿© Àç±Í È£Ãâ
+  //  // ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ È£ï¿½ï¿½
   //       for (i = 0; i < MAXCHILDREN; i++) {
   //           if (tree->child[i] != NULL) {
   //               fprintf(listing, "Child %d (Address: %p):\n", i, (void*)tree->child[i]);
@@ -237,7 +235,7 @@ void printTree( TreeNode * tree )
   //           }
   //       }
 
-  //       // ÇüÁ¦ ³ëµå·Î ÀÌµ¿ (µð¹ö±×¿ë ÇüÁ¦ ÁÖ¼Ò Ãâ·Â)
+  //       // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ (ï¿½ï¿½ï¿½ï¿½×¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½)
   //       if (tree->sibling != NULL) {
   //           fprintf(listing, "Sibling (Address: %p):\n", (void*)tree->sibling);
   //       }

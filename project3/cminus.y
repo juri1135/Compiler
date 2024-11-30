@@ -21,13 +21,12 @@
 #define YYSTYPE TreeNode *
 static int savedNumber;
 static char * savedName; /* for use in assignments */
-/*globals.h¿¡ ÀÖ´Â type°ú ¸ÂÃçÁÖ±â*/
+/*globals.hì— ìˆëŠ” typeê³¼ ë§ì¶°ì£¼ê¸°*/
 static ExpType savedType;
-static int savedLineNo;  /* ditto */
 static TreeNode * savedTree; /* stores syntax tree for later return */
 static int yylex(void); // added 11/2/11 to ensure no conflict with lex
 void print_debug_info(void);
-/* ¾Ï½ÃÀû ¼±¾ğ ¹®Á¦ ÇØ°á... */
+/* ì•”ì‹œì  ì„ ì–¸ ë¬¸ì œ í•´ê²°... */
 int yyerror(char * message);
 
 %}
@@ -36,13 +35,14 @@ int yyerror(char * message);
 /* Bison declarations     */
 /**************************/
 
+
 %token IF ELSE INT RETURN VOID WHILE
 %token ID NUM
 %token LT LE GT GE EQ NE SEMI
 %token LPAREN RPAREN LCURLY RCURLY LBRACE RBRACE
 %left PLUS MINUS
 %left TIMES OVER COMMA
-/*ÃÖÁ¾ ´ëÀÔ ´ë»óÀÌ LHS´Ï±î ¿À¸¥ÂÊºÎÅÍ °áÇÕÇØ¼­ ÃÖÁ¾À¸·Î LHS¿¡ ³Ö¾îÁà¾ß*/
+/*ìµœì¢… ëŒ€ì… ëŒ€ìƒì´ LHSë‹ˆê¹Œ ì˜¤ë¥¸ìª½ë¶€í„° ê²°í•©í•´ì„œ ìµœì¢…ìœ¼ë¡œ LHSì— ë„£ì–´ì¤˜ì•¼*/
 %right ASSIGN
 %right THEN ELSE
 %token ERROR
@@ -72,61 +72,58 @@ decl_list   : decl_list declaration
 declaration : var_decl { $$ = $1; }
             | func_decl { $$ = $1; }
             ;
-/* ¾ê¸¦ node·Î ¸¸µé¾î¾ß µ¤¾î ¾º¿öÁö´Â ´ëÂü»ç ¸·À» ¼ö ÀÖÀ½... */
+/* ì–˜ë¥¼ nodeë¡œ ë§Œë“¤ì–´ì•¼ ë®ì–´ ì”Œì›Œì§€ëŠ” ëŒ€ì°¸ì‚¬ ë§‰ì„ ìˆ˜ ìˆìŒ... */
 id          :  ID
-                 { $$ = newExpNode(IdK);
+                 { $$ = newExpNode(IdK,lineno);
                  savedName = copyString(tokenString); 
-                 savedLineNo = lineno;
                  $$->attr.name=savedName;
                  $$->lineno=lineno;
                  }
             ;
 num         : NUM
-                 { $$ = newExpNode(ConstK);
+                 { $$ = newExpNode(ConstK,lineno);
                    savedNumber = atoi(tokenString);
                    $$->attr.val = savedNumber;
-                   $$->lineno = lineno;
+                   $$->lineno=lineno;
                  }
                  ;
-/*1¹øÀº child ¾øÀÌ id¶û type¿¡¼­ ¼Ó¼º °®°í ¿À±â*/
+/*1ë²ˆì€ child ì—†ì´ idë‘ typeì—ì„œ ì†ì„± ê°–ê³  ì˜¤ê¸°*/
 var_decl    : type_spec id SEMI
-                 { $$ = newDeclNode(VarK);
+                 { $$ = newDeclNode(VarK, $2->lineno);
+                 $$->lineno=$2->lineno;
                    $$->type = $1->type;  
-                   $$->attr.name = $2->attr.name;  /* id nodeÀÇ ÀÌ¸§... savedName ¾²´Ï±î updateµÇ¾î¹ö¸² */
-                   $$->lineno = savedLineNo;
+                   $$->attr.name = $2->attr.name;  /* id nodeì˜ ì´ë¦„... savedName ì“°ë‹ˆê¹Œ updateë˜ì–´ë²„ë¦¼ */
                  }
-/*¹è¿­Àº type_spec¿¡ µû¶ó type °áÁ¤*/
+/*ï¿½è¿­ï¿½ï¿½ type_specï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ type ï¿½ï¿½ï¿½ï¿½*/
             | type_spec id LBRACE num RBRACE SEMI
-                 { $$ = newDeclNode(ArrK);
+                 { $$ = newDeclNode(ArrK,$2->lineno);
                    $$->type = ($1->type== Integer) ? IntArray : VoidArray;
                    $$->attr.name =$2->attr.name;
                    $$->child[0] = $4;
-                   $$->lineno = savedLineNo;
                  }
             ;
-/*¾ê³×µµ node·Î ¾È ¸¸µé¾îÁÖ¸é updateµÇ¾î¼­ node·Î ¸¸µé¾îÁÖ±â */
+/*ï¿½ï¿½×µï¿½ nodeï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ updateï¿½Ç¾î¼­ nodeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ */
 type_spec   : INT 
-                 { $$ = newDeclNode(TypeK); 
+                 { $$ = newExpNode(TypeK,lineno); 
                    $$->type = Integer; 
                  }
-                 | VOID 
-                 { $$ = newDeclNode(TypeK); 
+            | VOID 
+                 { $$ = newExpNode(TypeK,lineno); 
                    $$->type = Void;     
                  }
                  ;
-/*child´Â paramÀÌ¶û comp type, nameÀº ´Ù saved¿¡¼­ */
+/*childï¿½ï¿½ paramï¿½Ì¶ï¿½ comp type, nameï¿½ï¿½ ï¿½ï¿½ savedï¿½ï¿½ï¿½ï¿½ */
 func_decl   : type_spec id LPAREN params RPAREN comp_stmt
-                 { $$ = newDeclNode(FuncK);
+                 { $$ = newDeclNode(FuncK,$2->lineno);
                    $$->type = $1->type;  
                    $$->attr.name = $2->attr.name;  
-                   $$->lineno = lineno;
                    $$->child[0] = $4; 
                    $$->child[1] = $6; 
                  }
                  ;
 
 params      : param_list { $$ = $1; }
-            | VOID { $$ = newDeclNode(VoidParamK); }
+            | VOID { $$ = newDeclNode(VoidParamK,lineno); }
             ;
 param_list : param_list COMMA param
                  { YYSTYPE t = $1;
@@ -139,25 +136,24 @@ param_list : param_list COMMA param
                  }
            | param { $$ = $1; }
            ;
-/* ¿©±â´Â parameter¸¦ °®´Â °Í... typeÀÌ void¿©µµ void parameter´Â ¾Æ´Ô ±×³É typeÀÌ voidÀÎ ÀÎÀÚ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ parameterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½... typeï¿½ï¿½ voidï¿½ï¿½ï¿½ï¿½ void parameterï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½×³ï¿½ typeï¿½ï¿½ voidï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 param      : type_spec id
-                 { $$ = newDeclNode(ParamK);
+                 { $$ = newDeclNode(ParamK,$2->lineno);
                    $$->type = $1->type;  
                    $$->attr.name = copyString(savedName);  
-                   $$->lineno = savedLineNo;
                  }
            | type_spec id LBRACE RBRACE
-                 { $$ = newDeclNode(ArrParamK);
+                 { $$ = newDeclNode(ArrParamK,$2->lineno);
                    $$->type = ($1->type==Integer)?IntArray:VoidArray; 
                    $$->attr.name = copyString(savedName); 
-                   $$->lineno = savedLineNo;
                  }
            ;
 
 comp_stmt  : LCURLY local_decl stmt_list RCURLY
-                { $$ = newStmtNode(CompoundK);
-                 $$->child[0] = $2 ? $2 : NULL;  // local_declarations°¡ ¾øÀ¸¸é NULL
+                { $$ = newStmtNode(CompoundK,lineno);
+                 $$->child[0] = $2 ? $2 : NULL;  // local_declarationsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NULL
                   $$->child[1] = $3 ? $3 : NULL;
+                  $$->lineno=lineno;
                 }
            ;
 
@@ -198,87 +194,101 @@ exp_stmt  : expression SEMI { $$ = $1; }
           ;
 
 select_stmt: IF LPAREN expression RPAREN statement   
-                 { $$ = newStmtNode(IfK);
+                 { $$ = newStmtNode(IfK,$5->lineno);
                    $$->child[0] = $3;
                    $$->child[1] = $5;
+                   $$->lineno=$5->lineno;
                  } %prec THEN
            | IF LPAREN expression RPAREN statement ELSE statement 
-                { $$ = newStmtNode(ElseK);
+                { $$ = newStmtNode(ElseK,$7->lineno);
                   $$->child[0] = $3;
                   $$->child[1] = $5;
                   $$->child[2] = $7;
+                  $$->lineno=$7->lineno;
                 }
            ;
 iter_stmt : WHILE LPAREN expression RPAREN statement 
-               { $$ = newStmtNode(WhileK);
+               { $$ = newStmtNode(WhileK,$5->lineno);
                  $$->child[0] = $3;
                  $$->child[1] = $5;
+                 $$->lineno=$5->lineno;
                }
           ;
 
 return_stmt : RETURN SEMI
-                 { $$ = newStmtNode(ReturnK);
+                 { $$ = newStmtNode(ReturnK,lineno);
+                   $$->lineno=lineno;
                  }
             | RETURN expression SEMI
-                 { $$ = newStmtNode(ReturnK);
+                 { $$ = newStmtNode(ReturnK,lineno);
                    $$->child[0] = $2;
+                   $$->lineno=lineno;
                  }
             ;
 
 expression : var ASSIGN expression
-                { $$ = newExpNode(AssignK);
+                { $$ = newExpNode(AssignK,$1->lineno);
                   $$->child[0] = $1;
                   $$->child[1] = $3;
+                  $$->lineno=$1->lineno;
                 }
            | simple_exp { $$ = $1; }
            ;
 
 var        : id
-               { $$ = newExpNode(VarExpK);
+               { $$ = newExpNode(VarExpK,$1->lineno);
                  $$->attr.name = copyString(savedName);
+                 $$->lineno=$1->lineno;
                }
            | id LBRACE expression RBRACE
-             { $$ = newExpNode(VarExpK);
+             { $$ = newExpNode(VarExpK,$1->lineno);
                $$->attr.name = $1->attr.name;
                $$->child[0] = $3;
+               $$->lineno=$1->lineno;
              }
            ;
 
 simple_exp : add_exp LT add_exp
-               { $$ = newExpNode(OpK);  
+               { $$ = newExpNode(OpK, $1->lineno);  
                  $$->child[0] = $1;
                  $$->attr.op =LT;  
                  $$->child[1] = $3;
+                 $$->lineno=$1->lineno;
                }
            | add_exp LE add_exp
-               { $$ = newExpNode(OpK); 
+               { $$ = newExpNode(OpK, $1->lineno); 
                  $$->child[0] = $1;
                  $$->attr.op =LE; 
                  $$->child[1] = $3;
+                 $$->lineno=$1->lineno;
                }
            |add_exp GT add_exp
-               { $$ = newExpNode(OpK);  
+               { $$ = newExpNode(OpK, $1->lineno);  
                  $$->child[0] = $1;
                  $$->attr.op = GT;  
                  $$->child[1] = $3;
+                 $$->lineno=$1->lineno;
                }
            |add_exp GE add_exp
-               { $$ = newExpNode(OpK);  
+               { $$ = newExpNode(OpK, $1->lineno);  
                  $$->child[0] = $1;
                  $$->attr.op = GE;  
                  $$->child[1] = $3;
+                 $$->lineno=$1->lineno;
                }
            | add_exp EQ add_exp
-               { $$ = newExpNode(OpK);  
+               { $$ = newExpNode(OpK, $1->lineno);  
                  $$->child[0] = $1;
                  $$->attr.op = EQ;  
                  $$->child[1] = $3;
+                 $$->lineno=$1->lineno;
                }
            | add_exp NE add_exp
-               { $$ = newExpNode(OpK); 
+               { $$ = newExpNode(OpK, $1->lineno); 
                  $$->child[0] = $1;
                  $$->attr.op = NE;  
                  $$->child[1] = $3;
+                 $$->lineno=$1->lineno;
                }
            | add_exp { $$ = $1; }
            ;
@@ -286,31 +296,35 @@ simple_exp : add_exp LT add_exp
 
 
 add_exp    : add_exp PLUS term
-                { $$ = newExpNode(OpK); 
+                { $$ = newExpNode(OpK, $1->lineno); 
                   $$->child[0] = $1;
                   $$->child[1] = $3;
                   $$->attr.op = PLUS;
+                  $$->lineno=$1->lineno;
                 }
            | add_exp MINUS term
-                { $$ = newExpNode(OpK); 
+                { $$ = newExpNode(OpK, $1->lineno); 
                   $$->child[0] = $1;
                   $$->child[1] = $3;
                   $$->attr.op = MINUS; 
+                  $$->lineno=$1->lineno;
                 }
            | term { $$ = $1; }
            ;
 
 term       : term TIMES factor
-                 { $$ = newExpNode(OpK);
+                 { $$ = newExpNode(OpK, $1->lineno);
                    $$->child[0] = $1;
                    $$->attr.op = TIMES;
                    $$->child[1] = $3;
+                   $$->lineno=$1->lineno;
                  }
            | term OVER factor
-                 { $$ = newExpNode(OpK);
+                 { $$ = newExpNode(OpK, $1->lineno);
                    $$->child[0] = $1;
                    $$->attr.op = OVER;
                    $$->child[1] = $3;
+                   $$->lineno=$1->lineno;
                  }
            | factor { $$ = $1; }
            ;
@@ -319,15 +333,17 @@ factor     : LPAREN expression RPAREN { $$ = $2; }
            | var { $$ = $1; }
            | call { $$ = $1; }
            | num 
-                { $$ = newExpNode(ConstK);
+                { $$ = newExpNode(ConstK, $1->lineno);
                   $$->attr.val=savedNumber;
+                  $$->lineno=$1->lineno;
                 }
            ;
     
 call       : id LPAREN args RPAREN 
-                { $$ = newExpNode(CallK);
+                { $$ = newExpNode(CallK, $1->lineno);
                   $$->attr.name = $1->attr.name;
                   $$->child[0] = $3;
+                  $$->lineno=$1->lineno;
                 }
            ;
 

@@ -11,11 +11,10 @@
 #include "analyze.h"
 #include "util.h"
 
-static int locationCounter = 0;
 int scopeDepth = 0;   
 ParameterList* currentParameterList=NULL;
 int nestedLevel=0;
-
+Scope globalScope;
 void error_undeclared(FILE * listing, char * type, char* name, int lineno){
   if(strcmp(type,"undeclared_func")==0){
     fprintf(listing, "Error: undeclared function \"%s\" is called at line %d\n", name, lineno);}
@@ -69,55 +68,106 @@ void error_redefine(FILE *listing, TreeNode *t) {
 }
 
 void inputFunc(void){
-  //project 2에서 사용한 문법 기반으로 작성
-  TreeNode * funcNode=newDeclNode(FuncK);
-  funcNode->type=Integer;
-  funcNode->attr.name="input";
-  funcNode->lineno=0;
-  
-  //child 0은 param, 1은 compound
-  //void param은 decl VoidParamK
-  TreeNode * param=newDeclNode(VoidParamK);
-  funcNode->child[0]=param;
-
-  TreeNode * compound=newStmtNode(CompoundK);
-  compound->child[0]=NULL;
-  compound->child[1]=NULL;
-  funcNode->child[1]=compound;
-
-  //return Node는 형태를 모르니까 만들진 말고 그냥 st_insert_function에 int로 넘겨
-  st_insert_function(currentScope,"input","int",NULL);
+  st_insert_function("Function","input",0,"int",currentScope,NULL);
 }
 
-void outputFunc(void){
-  TreeNode *funcNode = newDeclNode(FuncK);
-  funcNode->type = Void;              
-  funcNode->attr.name = "output";      
-  funcNode->lineno = 0;                
-   
-  ParameterList params = NULL;
-  addParameter(&params, "value", "int");
+void outputFunc(void){ 
+   nestedLevel++;
+   ParameterList params = NULL;
+   addParameter(&params, "value", "int");
+   st_insert_function("Function","output",0,"void",currentScope,params);
+   BucketList temp=currentScope->hashTable[hash("output")];
+  temp->params=params; 
+   Scope funcScope=newScope("output");
+   funcScope->nestedLevel=nestedLevel;
+   pushScope(funcScope);
+                
   
-  TreeNode *param = newDeclNode(ParamK);
-  param->type = Integer;
-  param->attr.name = "value";
-  funcNode->child[0] = param;
-
-  TreeNode *compound = newStmtNode(CompoundK);
-  compound->child[0] = NULL;                 // 지역 변수 없음
-  compound->child[1] = NULL;                 // 명령문 없음
-  funcNode->child[1] = compound;
-  // 심볼 테이블에 추가
-  st_insert_function(currentScope, "output", "void", params);
+  st_insert("Variable", "value",0,"int",currentScope);
+  
+  popScope();    
+  
 }
+
 /* Procedure traverse is a generic recursive 
  * syntax tree traversal routine:
  * it applies preProc in preorder and postProc 
  * in postorder to tree pointed to by t
  */
+char * nodeKindToString(TreeNode * t){
+  switch (t->nodekind) {
+		case DeclK:
+			switch (t->kind.decl) {
+				case VarK:
+          return "decl var";
+        case ArrK: 
+          return "decl arr";
+				case FuncK:
+          return "decl func";
+				case ParamK:
+          return "decl param";
+        case ArrParamK:
+          return "decl arrparam";
+				case VoidParamK:
+          return "decl voidparam";
+				
+				default:
+					break;
+			}
+			break;
+
+		case StmtK:
+			switch (t->kind.stmt) {
+				case CompoundK: 
+          return "stmt compound";
+        case IfK:
+           
+          return "stmt if";
+        case ElseK:
+          return "stmt else";
+        case WhileK:
+          return "stmt while";
+        case ReturnK:
+          return "stmt return";
+        default:
+            break;
+            
+    }
+			break;
+
+		case ExpK:
+  
+			switch (t->kind.exp) {
+        
+				case CallK:
+					return "exp call";
+				case IdK:
+           return "exp id";
+				case OpK:
+          return "exp op";
+        case AssignK:
+          return "exp assgin";
+        case ConstK:
+          return "exp const";
+        case TypeK:
+          return "exp type";
+        case VarExpK:
+          return "exp varexp";
+        
+
+				default:
+					break;
+			}
+			break;
+
+		default:
+			break;
+	}
+}
 static void traverse( TreeNode * t, void (* preProc) (TreeNode *), void (* postProc) (TreeNode *) ){ 
   if (t != NULL)
-  { preProc(t);
+  {  //printf("Traversing node: %s lineno:%d\n", nodeKindToString(t),t->lineno);
+    preProc(t);
     { int i;
       for (i=0; i < MAXCHILDREN; i++)
         traverse(t->child[i],preProc,postProc);
@@ -137,7 +187,12 @@ static void nullProc(TreeNode * t){
 }
 
 
-
+void postProc(TreeNode *t) {
+    if (t->nodekind == StmtK && t->kind.stmt == CompoundK) {
+        popScope();      // 스코프 닫기
+        scopeDepth--;   
+    }
+}
 /* Procedure insertNode inserts 
  * identifiers stored in t into 
  * the symbol table 
@@ -150,11 +205,14 @@ static void insertNode(TreeNode *t) {
         case ArrK: 
           if (st_lookup_top(t->attr.name)) {
             error_redefine(listing, t);
+            insertLines(t->attr.name, t->lineno);
           } else if (t->type == Void || t->type == VoidArray) {
               error_void_call_index(listing,"void",t->attr.name,t->lineno);
+              char *type = (t->kind.decl == ArrK) ? "void[]" : "void";
+              st_insert("Variable",t->attr.name, t->lineno, type, currentScope);
           } else {
-              char *type = (t->kind.decl == ArrK) ? "intArray" : "int";
-              st_insert("Variable",t->attr.name, t->lineno, locationCounter++, type, currentScope);
+              char *type = (t->kind.decl == ArrK) ? "int[]" : "int";
+              st_insert("Variable",t->attr.name, t->lineno, type, currentScope);
           }
           break;
           
@@ -162,24 +220,32 @@ static void insertNode(TreeNode *t) {
 				case FuncK: // 함수 처리
           if (st_lookup_top(t->attr.name)) { // 현재 스코프에서 중복 확인
              error_redefine(listing, t);
+             insertLines(t->attr.name, t->lineno);
+              
           } else {
               ParameterList params = NULL;
               char * type=t->type==Integer?"int":"void";
-              st_insert("Function",t->attr.name,t->lineno,locationCounter++,type,currentScope);
-              st_insert_function(currentScope, t->attr.name, type, params);
-
+              st_insert_function("Function",t->attr.name,t->lineno,type,currentScope,params);
+              //printf("%s: %s\n",t->attr.name,type);
+              nestedLevel++;
               Scope funcScope = newScope(t->attr.name);
+              funcScope->nestedLevel=nestedLevel;
               pushScope(funcScope);
+              scopeDepth=1;
+              
               currentParameterList = &(currentScope->paramlist[hash(t->attr.name)]);
+              
           }
-          scopeDepth=1;
+          
           break;
       
 				case ParamK:
+        //printf("cur scope=%s, var=%s\n",currentScope->name,t->attr.name);
         if (st_lookup_top(t->attr.name)) { //현재 function 인자에 중복으로 선언된 거 있는 지 확인하는 
             error_redefine(listing, t);
+            insertLines(t->attr.name, t->lineno);
           } else {
-            st_insert("Variable", t->attr.name,t->lineno,locationCounter++,"int",currentScope);
+            st_insert("Variable", t->attr.name,t->lineno,"int",currentScope);
             addParameter(currentParameterList, t->attr.name, "int");
           }
           break;
@@ -187,16 +253,18 @@ static void insertNode(TreeNode *t) {
 				case ArrParamK:
 					if (st_lookup(t->attr.name)) {
 						error_redefine(listing, t);
+            insertLines(t->attr.name, t->lineno);
 					}  else if (t->type == VoidArray) { // void[] 배열 선언
               error_void_call_index(listing,"void",t->attr.name,t->lineno);
+              st_insert("Variable",t->attr.name, t->lineno, "void[]",currentScope);
+            addParameter(currentParameterList, t->attr.name, "void[]");
           } else {
-						st_insert("Variable",t->attr.name, t->lineno, locationCounter++,"int[]",currentScope);
-            addParameter(currentParameterList, t->attr.name, "int");
+						st_insert("Variable",t->attr.name, t->lineno, "int[]",currentScope);
+            addParameter(currentParameterList, t->attr.name, "int[]");
 					}
 					break;
   
 				case VoidParamK:
-					st_insert("Variable",t->attr.name, t->lineno, locationCounter++, "void",currentScope);
 					break;
 
 				default:
@@ -206,46 +274,51 @@ static void insertNode(TreeNode *t) {
 
 		case StmtK:
 			switch (t->kind.stmt) {
-				case CompoundK: {
+				case CompoundK: 
+          //printf("compound. curscope=%s\n",currentScope->name);
           char scopeName[64];
 
            if (scopeDepth== 1) {
-            // 함수의 첫 번째 Compound는 함수 스코프를 그대로 사용
-            snprintf(scopeName, sizeof(scopeName), "%s", currentScope->name);
+            //printf("scopeDepth==1\n");
+            scopeDepth++;
           } else {
+            //printf("scopeDepth is not 1\n");
             // 중첩된 Compound는 고유 이름 생성
             snprintf(scopeName, sizeof(scopeName), "%s_%d", currentScope->name,scopeDepth- 1);
+            Scope newscope = newScope(scopeName);
+            nestedLevel++;
+            newscope->nestedLevel=nestedLevel;
+            pushScope(newscope);
+            scopeDepth++;
+            
           }
-
-          Scope newscope = newScope(scopeName);
-          pushScope(newscope);
-          scopeDepth++;
-          nestedLevel++;
           break;
-        }
-				default:
-					break;
-			}
-			break;
-
-		case ExpK:
-      BucketList list = st_lookup_bucket(t->attr.name);
-			switch (t->kind.exp) {
         
+				default:
+			    break;
+      }
+      break;
+		case ExpK:
+			switch (t->kind.exp) {
 				case CallK:
-					
+					BucketList list = st_lookup_bucket(t->attr.name);
           if (list == NULL) {
               error_undeclared(listing,"undeclared_func",t->attr.name,t->lineno);
+              st_insert_function("Function",t->attr.name,t->lineno,"undetermined",currentScope,NULL);
           } else {
+              //printf("ExpK(call): %s\n",t->attr.name);
               t->type = (strcmp(list->type, "int") == 0) ? Integer : Void;
               insertLines(t->attr.name, t->lineno); // 라인 번호 추가
           }
 					break;
-				case IdK:
-          if (list == NULL) {
+				case VarExpK:
+          BucketList list2 = st_lookup_bucket(t->attr.name);
+          if (list2 == NULL) {
               error_undeclared(listing,"undeclared_id",t->attr.name,t->lineno);
+              st_insert("Variable",t->attr.name,t->lineno,"undetermined",currentScope);
           } else {
-              t->type = (strcmp(list->type, "int") == 0) ? Integer : Void;
+              //printf("ExpK: %s\n",t->attr.name);
+              t->type = (strcmp(list2->type, "int") == 0) ? Integer : Void;
               insertLines(t->attr.name, t->lineno); // 라인 번호 추가
           }
 					break;
@@ -268,20 +341,13 @@ void pushScope(Scope scope) {
         scope->parent = currentScope;
     }
 
-    static int compoundCounter = 0;
-    if (strcmp(scope->name, "Compound") == 0) {
-        char uniqueName[64];
-        snprintf(uniqueName, sizeof(uniqueName), "Compound_%d", compoundCounter++);
-        free(scope->name);
-        scope->name = strdup(uniqueName); // 고유 이름 설정
-    }
     scope->currentParamList = NULL;
     scope->nestedLevel = nestedLevel; // nestedLevel 저장
     scopeStack[++topScope] = scope;
     currentScope = scope;
-    nestedLevel++;
-    fprintf(stderr, "Pushed scope: %s (Nested Level: %d)\n", scope->name, nestedLevel);
+   // fprintf(stderr, "Pushed scope: %s (Nested Level: %d)\n", scope->name, nestedLevel);
 }
+
 
 void popScope() {
     if (topScope < 0) {
@@ -289,8 +355,34 @@ void popScope() {
         exit(EXIT_FAILURE);
     }
 
-    fprintf(stderr, "Popped scope: %s (Nested Level: %d)\n", currentScope->name, nestedLevel);
-
+      //fprintf(stderr, "Current scope before pop: %s\n", currentScope->name);
+    // 함수 매개변수 리스트 연결 처리
+    if(strcmp("global",currentScope->name)!=0){
+      for (int i = 0; i < SIZE; i++) {
+          BucketList funcBucket = currentScope->parent->hashTable[i];
+          if (funcBucket != NULL && strcmp(currentScope->name,funcBucket->name)==0) {
+            //fprintf(stderr, "HashTable[%d]: %s\n", i, funcBucket->name);
+        
+            while (funcBucket != NULL) {
+                if (strcmp(funcBucket->kind, "Function") == 0) {
+                    // 현재 스코프의 paramlist[i]를 함수 BucketList의 params로 연결
+                    if(strcmp("output",funcBucket->name)!=0) funcBucket->params = currentScope->paramlist[i];
+                    //fprintf(stderr, "Linked parameters to function '%s'.\n", funcBucket->name);
+                     // 연결된 파라미터 확인 출력
+                    ParameterList temp = funcBucket->params;
+                    //fprintf(stderr, "Parameters for function '%s':\n", funcBucket->name);
+                    while (temp != NULL) {
+                        //fprintf(stderr, "- %s (%s)\n", temp->name, temp->type);
+                        temp = temp->next;
+                    }
+                }
+                funcBucket = funcBucket->next;
+            }
+          }
+      }
+    }
+    // 기존 스코프 닫기 작업
+    //fprintf(stderr, "Popped scope: %s (Nested Level: %d)\n", currentScope->name, nestedLevel);
     scopeStack[topScope] = NULL;
     topScope--;
 
@@ -301,20 +393,14 @@ void popScope() {
     }
 }
 
-void postProc(TreeNode *t) {
-    if (t->nodekind == StmtK && t->kind.stmt == CompoundK) {
-        popScope();      // 스코프 닫기
-        scopeDepth--;   
-        locationCounter = 0; // 메모리 위치 초기화
-    }
-}
+
 /* Function buildSymtab constructs the symbol 
  * table by preorder traversal of the syntax tree
  */
 void buildSymtab(TreeNode * syntaxTree)
 { //우리는 postOrder에서 scope 닫아야 하니까... nullProc 대신 scope 관리 함수 전달 
   //맨 처음에 새로 global scope 만들고, 현재 scope를 global로 설정... 
-    Scope globalScope = newScope("global");
+    globalScope = newScope("global");
     pushScope(globalScope);
   //input, output 함수 삽입
     inputFunc();
@@ -329,67 +415,48 @@ void buildSymtab(TreeNode * syntaxTree)
   }
 }
 
-static void typeError(TreeNode * t, char * message)
-{ fprintf(listing,"Type error at line %d: %s\n",t->lineno,message);
-  Error = TRUE;
-}
+
 
 /* Procedure checkNode performs
  * type checking at a single tree node
  */
-static void checkNode(TreeNode * t)
-{ 
-//switch (t->nodekind)
-//   { case ExpK:
-//       switch (t->kind.exp)
-//       { case OpK:
-//           if ((t->child[0]->type != Integer) ||
-//               (t->child[1]->type != Integer))
-//             typeError(t,"Op applied to non-integer");
-//           if ((t->attr.op == EQ) || (t->attr.op == LT))
-//             t->type = Boolean;
-//           else
-//             t->type = Integer;
-//           break;
-//         case ConstK:
-//         case IdK:
-//           t->type = Integer;
-//           break;
-//         default:
-//           break;
-//       }
-//       break;
-//     case StmtK:
-//       switch (t->kind.stmt)
-//       { case IfK:
-//           if (t->child[0]->type == Integer)
-//             typeError(t->child[0],"if test is not Boolean");
-//           break;
-//         case AssignK:
-//           if (t->child[0]->type != Integer)
-//             typeError(t->child[0],"assignment of non-integer value");
-//           break;
-//         case WriteK:
-//           if (t->child[0]->type != Integer)
-//             typeError(t->child[0],"write of non-integer value");
-//           break;
-//         case RepeatK:
-//           if (t->child[1]->type == Integer)
-//             typeError(t->child[1],"repeat test is not Boolean");
-//           break;
-//         default:
-//           break;
-//       }
-//       break;
-//     default:
-//       break;
+static void checkNode(TreeNode * t) {
+  switch (t->nodekind) {
+    case StmtK:
+      switch (t->kind.stmt) {
+        case AssignK: {
+          // Verify the type match of two operands when assigning.
+          if (t->child[0]->attr.arr.type == IntegerArray) {
+            typeError(t->child[0], "Assignment to Integer Array Variable");
+          }
 
-//   }
+          if (t->child[0]->attr.type == Void) {
+            typeError(t->child[0], "Assignment to Void Variable");
+          }
+          break;
+        }
+        case ReturnK: {
+          const TreeNode * funcDecl;
+          const ExpType funcType = funcDecl->type;
+          const TreeNode * expr = t->child[0];
+
+          if (funcType == Void && (expr != NULL && expr->type != Void)) {
+             typeError(t,"expected no return value");
+           } else if (funcType == Integer && (expr == NULL || expr->type == Void)) {
+             typeError(t,"expected return value");
+           }
+        }
+        default:
+          break;
+       }
+       break;
+     default:
+       break;
+   }
 }
-
 /* Procedure typeCheck performs type checking 
  * by a postorder syntax tree traversal
  */
-void typeCheck(TreeNode * syntaxTree)
-{ traverse(syntaxTree,nullProc,checkNode);
+void typeCheck(TreeNode * syntaxTree) {
+  traverse(syntaxTree, nullProc, checkNode);
 }
