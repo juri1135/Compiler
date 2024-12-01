@@ -48,9 +48,9 @@ void error_invalid(FILE *listing, char *type, int lineno){
     fprintf(listing, "Error: invalid condition at line %d\n", lineno);
   }
 }
-void error_redefine(FILE *listing, TreeNode *t) {
+void error_redefine(FILE *listing, TreeNode *t,char * kind) {
     // BucketList에서 심볼 정보 가져오기
-    BucketList bucket = st_lookup_bucket(t->attr.name);
+    BucketList bucket = st_lookup_bucket(t->attr.name,kind);
     if (bucket == NULL) {
         fprintf(listing, "Error: Internal issue - no bucket found for symbol \"%s\".\n", t->attr.name);
         return; // 안전하게 함수 종료
@@ -81,7 +81,7 @@ void outputFunc(void){
    addParameter(&params, "value", "int");
    st_insert_function("Function","output",0,"void",currentScope,params);
    BucketList temp=currentScope->hashTable[hash("output")];
-  temp->params=params; 
+    temp->params=params; 
    Scope funcScope=newScope("output");
    funcScope->nestedLevel=nestedLevel;
    pushScope(funcScope);
@@ -207,7 +207,7 @@ static void nullProc(TreeNode * t){
 
 void postProc(TreeNode *t) {
     if (t->nodekind == StmtK && t->kind.stmt == CompoundK) {
-        popScope();      // 스코프 닫기
+        popScope();      
         scopeDepth--;   
     }
 }
@@ -221,9 +221,9 @@ static void insertNode(TreeNode *t) {
 			switch (t->kind.decl) {
 				case VarK:
         case ArrK: 
-          if (st_lookup_top(t->attr.name)) {
-            error_redefine(listing, t);
-            insertLines(t->attr.name, t->lineno);
+          if (st_lookup_top(t->attr.name,"Variable")) {
+            error_redefine(listing, t,"Variable");
+            insertLines(t->attr.name, t->lineno,"Variable");
           } else if (t->type == Void || t->type == VoidArray) {
               error_void_call_index(listing,"void",t->attr.name,t->lineno);
               char *type = (t->kind.decl == ArrK) ? "void[]" : "void";
@@ -234,12 +234,10 @@ static void insertNode(TreeNode *t) {
           }
           break;
           
-
-				case FuncK: // 함수 처리
-          if (st_lookup_top(t->attr.name)) { // 현재 스코프에서 중복 확인
-             error_redefine(listing, t);
-             insertLines(t->attr.name, t->lineno);
-              
+				case FuncK: 
+          if (st_lookup_top(t->attr.name,"Function")) {
+             error_redefine(listing, t,"Function");
+             insertLines(t->attr.name, t->lineno,"Function");
           } else {
               ParameterList params = NULL;
               char * type=t->type==Integer?"int":"void";
@@ -254,18 +252,19 @@ static void insertNode(TreeNode *t) {
                 //printf("%s ",scopeArray[i]->name);
               }//printf("\n");
               scopeDepth=1;
-              
               currentParameterList = &(currentScope->paramlist[hash(t->attr.name)]);
-              
           }
-          
           break;
       
 				case ParamK:
-        //printf("cur scope=%s, var=%s\n",currentScope->name,t->attr.name);
-        if (st_lookup_top(t->attr.name)) { //현재 function 인자에 중복으로 선언된 거 있는 지 확인하는 
-            error_redefine(listing, t);
-            insertLines(t->attr.name, t->lineno);
+          //printf("cur scope=%s, var=%s\n",currentScope->name,t->attr.name);
+          if (st_lookup_top(t->attr.name,"Variable")) { //현재 function 인자에 중복으로 선언된 거 있는 지 확인하는 
+            error_redefine(listing, t,"Variable");
+            insertLines(t->attr.name, t->lineno,"Variable");
+          } else if(t->type==Void){
+            error_void_call_index(listing,"void",t->attr.name,t->lineno);
+            st_insert("Variable",t->attr.name, t->lineno, "void",currentScope);
+            addParameter(currentParameterList, t->attr.name, "void");
           } else {
             st_insert("Variable", t->attr.name,t->lineno,"int",currentScope);
             addParameter(currentParameterList, t->attr.name, "int");
@@ -273,9 +272,9 @@ static void insertNode(TreeNode *t) {
           break;
         
 				case ArrParamK:
-					if (st_lookup_top(t->attr.name)) {
-						error_redefine(listing, t);
-            insertLines(t->attr.name, t->lineno);
+					if (st_lookup_top(t->attr.name,"Variable")) {
+						error_redefine(listing, t,"Variable");
+            insertLines(t->attr.name, t->lineno,"Variable");
 					}  else if (t->type == VoidArray) { // void[] 배열 선언
               error_void_call_index(listing,"void",t->attr.name,t->lineno);
               st_insert("Variable",t->attr.name, t->lineno, "void[]",currentScope);
@@ -300,12 +299,12 @@ static void insertNode(TreeNode *t) {
           //printf("compound. curscope=%s\n",currentScope->name);
           char scopeName[64];
 
-           if (scopeDepth== 1) {
+          if (scopeDepth== 1) {
             //printf("scopeDepth==1\n");
             scopeDepth++;
-          } else {
+          }else {
             //printf("scopeDepth is not 1\n");
-            // 중첩된 Compound는 고유 이름 생성
+            //중첩된 Compound는 고유 이름 생성
             snprintf(scopeName, sizeof(scopeName), "%s_%d", currentScope->name, currentScope->childCounter++);
             Scope newscope = newScope(scopeName);
             scopeArray[scopeIndex++]=newscope;
@@ -328,7 +327,8 @@ static void insertNode(TreeNode *t) {
 		case ExpK:
 			switch (t->kind.exp) {
 				case CallK:
-					BucketList list = st_lookup_bucket(t->attr.name);
+					BucketList list = st_lookup_bucket(t->attr.name,"Function");
+
           if (list == NULL) {
               error_undeclared(listing,"undeclared_func",t->attr.name,t->lineno);
               st_insert_function("Function",t->attr.name,t->lineno,"Undetermined",currentScope,NULL);
@@ -336,11 +336,11 @@ static void insertNode(TreeNode *t) {
           } else {
               //printf("ExpK(call): %s\n",t->attr.name);
               t->type = (strcmp(list->type, "int") == 0) ? Integer : Void;
-              insertLines(t->attr.name, t->lineno); // 라인 번호 추가
+              insertLines(t->attr.name, t->lineno,"Function"); // 라인 번호 추가
           }
 					break;
 				case VarExpK:
-          BucketList list2 = st_lookup_bucket(t->attr.name);
+          BucketList list2 = st_lookup_bucket(t->attr.name,"Variable");
           if (list2 == NULL) {
               error_undeclared(listing,"undeclared_id",t->attr.name,t->lineno);
               st_insert("Variable",t->attr.name,t->lineno,"Undetermined",currentScope);
@@ -348,22 +348,20 @@ static void insertNode(TreeNode *t) {
           } else {
               //printf("ExpK: %s\n",t->attr.name);
               t->type = (strcmp(list2->type, "int") == 0) ? Integer : Void;
-              insertLines(t->attr.name, t->lineno); // 라인 번호 추가
+              insertLines(t->attr.name, t->lineno,"Variable"); // 라인 번호 추가
           }
 					break;
         case AssignK:
           t=t->child[0];
-          //printf("%s\n",t->attr.name);
-          BucketList list3 = st_lookup_bucket(t->attr.name);
-          //printf("%s %s\n",list3->name,list3->kind);
-          if (list3 == NULL||strcmp(list3->kind,"Function")==0) {
+          BucketList list3 = st_lookup_bucket(t->attr.name,"Variable");
+          if (list3 == NULL) {
               error_undeclared(listing,"undeclared_id",t->attr.name,t->lineno);
               st_insert("Variable",t->attr.name,t->lineno,"Undetermined",currentScope);
               t->type=Undetermined;
           } else {
               //printf("ExpK: %s\n",t->attr.name);
               t->type = (strcmp(list3->type, "int") == 0) ? Integer : Void;
-              insertLines(t->attr.name, t->lineno); // 라인 번호 추가
+              insertLines(t->attr.name, t->lineno,"Variable"); // 라인 번호 추가
           }
           break;
 				default:
@@ -376,14 +374,9 @@ static void insertNode(TreeNode *t) {
 	}
 }
 void pushScope(Scope scope) {
-    if (topScope >= SIZE - 1) {
-        fprintf(stderr, "Error: Scope stack overflow. Cannot push more scopes.\n");
-        exit(EXIT_FAILURE);
-    }
     if (currentScope != NULL) {
         scope->parent = currentScope;
     }
-    
     scope->currentParamList = NULL;
     scope->nestedLevel = nestedLevel; // nestedLevel 저장
     scopeStack[++topScope] = scope;
@@ -393,47 +386,37 @@ void pushScope(Scope scope) {
 
 
 void popScope() {
-    if (topScope < 0) {
-        fprintf(stderr, "Error: Scope stack underflow. No scopes to pop.\n");
-        exit(EXIT_FAILURE);
-    }
-
       //fprintf(stderr, "Current scope before pop: %s\n", currentScope->name);
-    // 함수 매개변수 리스트 연결 처리
-    if(strcmp("global",currentScope->name)!=0){
-      for (int i = 0; i < SIZE; i++) {
-          BucketList funcBucket = currentScope->parent->hashTable[i];
-          if (funcBucket != NULL && strcmp(currentScope->name,funcBucket->name)==0) {
-            //fprintf(stderr, "HashTable[%d]: %s\n", i, funcBucket->name);
+  if(strcmp("global",currentScope->name)!=0){
+    for (int i = 0; i < SIZE; i++) {
+      BucketList funcBucket = currentScope->parent->hashTable[i];
+      if (funcBucket != NULL && strcmp(currentScope->name,funcBucket->name)==0) {
+        //fprintf(stderr, "HashTable[%d]: %s\n", i, funcBucket->name);
         
-            while (funcBucket != NULL) {
-                if (strcmp(funcBucket->kind, "Function") == 0) {
-                    // 현재 스코프의 paramlist[i]를 함수 BucketList의 params로 연결
-                    if(strcmp("output",funcBucket->name)!=0) funcBucket->params = currentScope->paramlist[i];
-                    //fprintf(stderr, "Linked parameters to function '%s'.\n", funcBucket->name);
-                     // 연결된 파라미터 확인 출력
-                    ParameterList temp = funcBucket->params;
-                    //fprintf(stderr, "Parameters for function '%s':\n", funcBucket->name);
-                    while (temp != NULL) {
-                        //fprintf(stderr, "- %s (%s)\n", temp->name, temp->type);
-                        temp = temp->next;
-                    }
-                }
-                funcBucket = funcBucket->next;
+        while (funcBucket != NULL) {
+          if (strcmp(funcBucket->kind, "Function") == 0) {
+            // 현재 스코프의 paramlist[i]를 함수 BucketList의 params로 연결
+            if(strcmp("output",funcBucket->name)!=0) funcBucket->params = currentScope->paramlist[i];
+            //fprintf(stderr, "Linked parameters to function '%s'.\n", funcBucket->name);
+            ParameterList temp = funcBucket->params;
+            //fprintf(stderr, "Parameters for function '%s':\n", funcBucket->name);
+            while (temp != NULL) {
+              //fprintf(stderr, "- %s (%s)\n", temp->name, temp->type);
+              temp = temp->next;
             }
           }
+          funcBucket = funcBucket->next;
+        }
       }
     }
-    // 기존 스코프 닫기 작업
-    //fprintf(stderr, "Popped scope: %s (Nested Level: %d)\n", currentScope->name, nestedLevel);
-    scopeStack[topScope] = NULL;
-    topScope--;
-
-    currentScope = (topScope >= 0) ? scopeStack[topScope] : NULL;
-
-    if (nestedLevel > 0) {
-        nestedLevel--;
-    }
+  }
+  //fprintf(stderr, "Popped scope: %s (Nested Level: %d)\n", currentScope->name, nestedLevel);
+  scopeStack[topScope] = NULL;
+  topScope--;
+  currentScope = (topScope >= 0) ? scopeStack[topScope] : NULL;
+  if (nestedLevel > 0) {
+      nestedLevel--;
+  }
 }
 
 
@@ -528,6 +511,12 @@ static void checkNode(TreeNode *t) {
               break;
               //int=int 혹은 int[]=int[]만 허용
           case AssignK:
+            BucketList bucket = st_lookup_bucket(t->child[0]->attr.name,"Variable");
+            if(bucket == NULL){
+              //undeclared는 이미 출력한 상태
+              //error_undeclared(listing,"var",t->attr.name,t->lineno);
+              // t->type = Undetermined;
+            }
           //printf("assgin %s, %s\n",nodeTypeToString(t->child[0]),nodeTypeToString(t->child[1]));
             if(t->child[0]->type==IntArray&&t->child[1]->type==IntArray){
               t->type=IntArray;
@@ -555,7 +544,7 @@ static void checkNode(TreeNode *t) {
                 } else {
                     //변수의 타입을 심볼 테이블에서 가져와야 함
                     //!이것도 preorder에서 scope 결정해서 current scope 알게 된 상태로 들어가야
-                    BucketList bucket = st_lookup_bucket(t->attr.name);
+                    BucketList bucket = st_lookup_bucket(t->attr.name,"Variable");
                     if(bucket == NULL){
                         //undeclared는 이미 출력한 상태
                         printf("undeclared %s %d\n",t->attr.name, t->lineno);
@@ -579,7 +568,7 @@ static void checkNode(TreeNode *t) {
                   //호출 자체는 부모에 있는 함수 호출 가능하니까... st_lookup
                   //여기 오기 전에 current Scope이 다 지정이 되어 있어야 함
                  //printf("callk curSope: %s, lineno: %d name: %s\n",currentScope->name,t->lineno,t->attr.name);
-                    BucketList funcBucket = st_lookup_bucket(t->attr.name);
+                    BucketList funcBucket = st_lookup_bucket(t->attr.name,"Function");
                     if (funcBucket == NULL) {
                         //이미 undeclare는 symbol table 만들 때 출력했음
                         break;
@@ -623,7 +612,7 @@ static void checkNode(TreeNode *t) {
                     // 현재 함수의 반환 타입을 심볼 테이블에서 가져옴
                    // printf("returnk curSope: %s, lineno: %d fucname: %s\n",currentScope->name,t->lineno,funcName);
                     //returnk에는 name type이 없음... checkScope에서 funck 보이면 전역변수로 설정해줘야 될듯
-                    BucketList funcBucket = st_lookup_bucket(funcName);
+                    BucketList funcBucket = st_lookup_bucket(funcName,"Function");
                     //returnK의 child0이 return하는 expression. 
                     //if(funcBucket==NULL) printf("null\n");
                     //else  printf("%s\n",funcBucket->name);

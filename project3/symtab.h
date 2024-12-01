@@ -76,12 +76,12 @@ void popScope();
 /* Symbol table operations */
 void st_insert( char* kind,char * name, int lineno, char *type, Scope scope );
 void st_insert_function(char* kind,char * name, int lineno, char *type, Scope scope, ParameterList params);
-BucketList st_lookup_bucket(char *name);
-int st_lookup(char *name);
-BucketList st_lookup_top(char *name);
+BucketList st_lookup_bucket(char *name, char * kind);
+int st_lookup(char *name, char * kind);
+BucketList st_lookup_top(char *name, char * kind);
 
 /* Line number insertion */
-void insertLines(char *name, int lineno);
+void insertLines(char *name, int lineno, char * kind);
 
 /* Parameter list management */
 void addParameter(ParameterList *plist, char *name, char *type);

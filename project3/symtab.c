@@ -69,14 +69,14 @@ void st_insert( char* kind,char * name, int lineno, char *type, Scope scope )
   //만약 끝까지 갔는데 NULL이면 아직 정의되지 않은 거니까 symbol table에 추가
   if (l == NULL) {
       l = (BucketList)malloc(sizeof(struct BucketListRec));
-      l->name = strdup(name);             // 이름 복사
+      l->name = strdup(name);             
       l->lines = (LineList)malloc(sizeof(struct LineListRec));
-      l->lines->lineno = lineno;          // 첫 번째 라인 번호
-      l->memloc = scope->location++;                    // 메모리 위치
+      l->lines->lineno = lineno;         
+      l->memloc = scope->location++;                    
       l->lines->next = NULL;
       l->type = strdup(type);             
       l->kind=strdup(kind);
-      l->next = scope->hashTable[h];      // 연결 리스트로 추가
+      l->next = scope->hashTable[h];    
       scope->hashTable[h] = l;}
   else /* found in table, so just add line number */
   { LineList t = l->lines;
@@ -89,16 +89,15 @@ void st_insert( char* kind,char * name, int lineno, char *type, Scope scope )
 void st_insert_function(char* kind,char * name, int lineno, char *type, Scope scope, ParameterList params) {
     int h = hash(name);
     BucketList l = scope->hashTable[h];
-
     l = (BucketList)malloc(sizeof(struct BucketListRec));
-    l->name = strdup(name);             // 이름 복사
+    l->name = strdup(name);            
     l->lines = (LineList)malloc(sizeof(struct LineListRec));
-    l->lines->lineno = lineno;          // 첫 번째 라인 번호
-    l->memloc = scope->location++;                // 메모리 위치
+    l->lines->lineno = lineno;          
+    l->memloc = scope->location++;               
     l->lines->next = NULL;
     l->type = strdup(type);             
     l->kind=strdup(kind);
-    l->next = scope->hashTable[h];      // 연결 리스트로 추가
+    l->next = scope->hashTable[h];     
     scope->hashTable[h] = l;
     l->params=params;
     // paramlist에 매개변수 리스트 저장
@@ -113,19 +112,17 @@ void addParameter(ParameterList *plist, char *name, char *type) {
     newParam->next = NULL;
 
     if (*plist == NULL) {
-        *plist = newParam;  // 첫 번째 매개변수
+        *plist = newParam; 
     } else {
         ParameterList temp = *plist;
         while (temp->next != NULL) {
             temp = temp->next;
         }
-        temp->next = newParam;  // 마지막에 추가
+        temp->next = newParam;  
     }
 
-    // Debugging 출력
     //fprintf(stderr, "Added parameter: %s (%s)\n", name, type);
 
-    // 현재 매개변수 리스트 출력
     //fprintf(stderr, "Current Parameter List:\n");
     ParameterList temp = *plist;
     while (temp != NULL) {
@@ -133,27 +130,28 @@ void addParameter(ParameterList *plist, char *name, char *type) {
         temp = temp->next;
     }
 }
-BucketList st_lookup_bucket(char *name) {
+BucketList st_lookup_bucket(char *name, char * kind) {
     Scope scope = currentScope;
     while (scope != NULL) {
         int h = hash(name);
         BucketList l = scope->hashTable[h];
         while (l != NULL) {
-            if (strcmp(name, l->name) == 0) {
-                return l; // 심볼 발견
+            
+            if (strcmp(name, l->name) == 0 && strcmp(kind,l->kind)==0) {
+                
+                return l; 
             }
             l = l->next;
         }
-        scope = scope->parent; // 부모 스코프로 이동
+        scope = scope->parent;
     }
-    return NULL; // 심볼 미발견
+    return NULL; 
 }
 /* Function to insert a line number into the symbol's line list */
-void insertLines(char *name, int lineno) {
-    BucketList symbol = st_lookup_bucket(name);
+void insertLines(char *name, int lineno, char * kind) {
+    BucketList symbol = st_lookup_bucket(name,kind);
         LineList currentLine = symbol->lines;
         if (currentLine == NULL) {
-            // 라인 리스트가 비어있는 경우 새 노드 생성
             symbol->lines = (LineList) malloc(sizeof(struct LineListRec));
             if (symbol->lines == NULL) {
                 fprintf(stderr, "Error: Memory allocation failed for LineList.\n");
@@ -162,11 +160,9 @@ void insertLines(char *name, int lineno) {
             symbol->lines->lineno = lineno;
             symbol->lines->next = NULL;
         } else {
-            // 기존 라인 리스트의 끝으로 이동
             while (currentLine->next != NULL) {
                 currentLine = currentLine->next;
             }
-            // 새로운 라인 번호 추가
             currentLine->next = (LineList) malloc(sizeof(struct LineListRec));
             if (currentLine->next == NULL) {
                 fprintf(stderr, "Error: Memory allocation failed for LineList.\n");
@@ -179,12 +175,12 @@ void insertLines(char *name, int lineno) {
 }
 
 
-BucketList st_lookup_top(char *name){
+BucketList st_lookup_top(char *name, char * kind){
    int h = hash(name);
-    BucketList l = currentScope->hashTable[h]; // 현재 스코프에서만 검색
+    BucketList l = currentScope->hashTable[h];
     while (l != NULL) {
-        if (strcmp(name, l->name) == 0) {
-            return l; // 현재 스코프에 존재하면 반환
+        if (strcmp(name, l->name) == 0&&strcmp(kind,l->kind)==0) {
+            return l; 
         }
         l = l->next;
     }
@@ -193,20 +189,20 @@ BucketList st_lookup_top(char *name){
 /* Function st_lookup returns the memory 
  * location of a variable or -1 if not found
  */
-int st_lookup(char *name) {
+int st_lookup(char *name, char * kind) {
     Scope scope = currentScope;
     while (scope != NULL) {
         int h = hash(name);
         BucketList l = scope->hashTable[h];
         while (l != NULL) {
-            if (strcmp(name, l->name) == 0) {
+            if (strcmp(name, l->name) == 0&&strcmp(kind,l->kind)) {
                 return l->memloc;
             }
             l = l->next;
         }
-        scope = scope->parent; // 상위 스코프로 이동
+        scope = scope->parent; 
     }
-    return -1; // 찾지 못함
+    return -1; 
 }
 //만약 해당 scope 찾는 거에서 -1을 return받았다면 
 /* Procedure printSymTab prints a formatted 
