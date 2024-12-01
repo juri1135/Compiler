@@ -40,6 +40,7 @@ Scope newScope(char *name) {
     scope->name = strdup(name);
     scope->nestedLevel = (currentScope == NULL) ? 0 : currentScope->nestedLevel + 1;
     scope->parent = currentScope;
+    scope->childCounter = 1;
     memset(scope->hashTable, 0, sizeof(scope->hashTable));
     memset(scope->paramlist, 0, sizeof(scope->paramlist));
     
@@ -317,6 +318,5 @@ void printScope(FILE *listing) {
                 l = l->next;
             }
         }
-        fprintf(listing,"\n");
     }
 }

@@ -58,14 +58,14 @@ extern int lineno; /* source line number for listing */
 /**************************************************/
 
 typedef enum {StmtK,ExpK, DeclK} NodeKind;
-/*voidparamK Ãß°¡ (printTree¿¡¼­ Ã³¸®ÇÏ±â ¿ëÀÌ void parameter´Â Ãâ·Â Çü½ÄÀÌ ´Ù¸§) */
+/*voidparamK ï¿½ß°ï¿½ (printTreeï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ void parameterï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½) */
 typedef enum {VarK, ArrK, FuncK, PramsK, ParamK, VoidParamK, ArrParamK} DeclKind;
-/*if elseµµ Ãâ·Â Çü½ÄÀÌ ´Þ¶ó¼­ If¿Í IfElse¸¦ ºÐ¸®ÇÏ´Â °Ô ¿ëÀÌ*/
+/*if elseï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¶ï¿½ Ifï¿½ï¿½ IfElseï¿½ï¿½ ï¿½Ð¸ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 typedef enum {IfK,ElseK, WhileK, CompoundK, ReturnK } StmtKind;
 typedef enum {CallK,AssignK,OpK,ConstK,IdK, TypeK, VarExpK} ExpKind;
 
 /* ExpType is used for type checking */
-typedef enum {Void,Integer,IntArray,VoidArray} ExpType;
+typedef enum {Void,Integer,IntArray,VoidArray,Undetermined} ExpType;
 
 #define MAXCHILDREN 3
 

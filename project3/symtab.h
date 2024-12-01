@@ -20,9 +20,9 @@ typedef struct LineListRec {
 
 /* Structure for parameter list */
 typedef struct ParamListRec {
-    char *name;                 // 매개변수 이름
-    char *type;                 // 매개변수 타입 (예: int, void 등)
-    struct ParamListRec *next;  // 다음 매개변수 (연결 리스트)
+    char *name;                 
+    char *type;               
+    struct ParamListRec *next;  
 } *ParameterList;
 
 /* Structure for symbols in the hash table */
@@ -38,12 +38,13 @@ typedef struct BucketListRec
 
 /* Structure for scopes */
 typedef struct ScopeListRec {
+  int childCounter;
     int location;
-    char *name;                     // 스코프 이름
-    int nestedLevel;                // 중첩 수준
-    struct ScopeListRec *parent;    // 부모 스코프
-    BucketList hashTable[SIZE];     // 해시 테이블 (심볼 리스트)
-    ParameterList paramlist[SIZE];  // 매개변수 리스트 해시 테이블
+    char *name;                    
+    int nestedLevel;               
+    struct ScopeListRec *parent;    
+    BucketList hashTable[SIZE];     
+    ParameterList paramlist[SIZE];  
     ParameterList *currentParamList;
 } *Scope;
 /* SIZE is the size of the hash table */
