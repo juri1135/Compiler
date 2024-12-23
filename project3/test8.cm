@@ -1,0 +1,7 @@
+int x;
+int gcd(void){
+    return 1;
+}
+int x(void){
+    return 2;
+}

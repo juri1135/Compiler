@@ -1,0 +1,7 @@
+void example4(int a, int b) {
+    if (a > 0) 
+        if (b > 0)
+            b=5;
+    else  a=4;
+    
+}
