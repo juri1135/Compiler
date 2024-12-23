@@ -1,13 +1,4 @@
-int foo(void) {
-
-    return 1;
-
-}
-
-int main(void) {
-
-    foo = 3;
-
+int main(void){
+    c=a;
     return 0;
-
 }

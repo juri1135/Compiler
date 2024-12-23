@@ -21,13 +21,13 @@
 #define YYSTYPE TreeNode *
 static int savedNumber;
 static char * savedName; /* for use in assignments */
-/*globals.h¿¡ ÀÖ´Â type°ú ¸ÂÃçÁÖ±â*/
+/*globals.hì— ìžˆëŠ” typeê³¼ ë§žì¶°ì£¼ê¸°*/
 static ExpType savedType;
 static int savedLineNo;  /* ditto */
 static TreeNode * savedTree; /* stores syntax tree for later return */
 static int yylex(void); // added 11/2/11 to ensure no conflict with lex
 void print_debug_info(void);
-/* ¾Ï½ÃÀû ¼±¾ð ¹®Á¦ ÇØ°á... */
+/* ì•”ì‹œì  ì„ ì–¸ ë¬¸ì œ í•´ê²°... */
 int yyerror(char * message);
 
 %}
@@ -42,7 +42,7 @@ int yyerror(char * message);
 %token LPAREN RPAREN LCURLY RCURLY LBRACE RBRACE
 %left PLUS MINUS
 %left TIMES OVER COMMA
-/*ÃÖÁ¾ ´ëÀÔ ´ë»óÀÌ LHS´Ï±î ¿À¸¥ÂÊºÎÅÍ °áÇÕÇØ¼­ ÃÖÁ¾À¸·Î LHS¿¡ ³Ö¾îÁà¾ß*/
+/*ìµœì¢… ëŒ€ìž… ëŒ€ìƒì´ LHSë‹ˆê¹Œ ì˜¤ë¥¸ìª½ë¶€í„° ê²°í•©í•´ì„œ ìµœì¢…ìœ¼ë¡œ LHSì— ë„£ì–´ì¤˜ì•¼*/
 %right ASSIGN
 %right THEN ELSE
 %token ERROR
@@ -72,7 +72,7 @@ decl_list   : decl_list declaration
 declaration : var_decl { $$ = $1; }
             | func_decl { $$ = $1; }
             ;
-/* ¾ê¸¦ node·Î ¸¸µé¾î¾ß µ¤¾î ¾º¿öÁö´Â ´ëÂü»ç ¸·À» ¼ö ÀÖÀ½... */
+/* ì–˜ë¥¼ nodeë¡œ ë§Œë“¤ì–´ì•¼ ë®ì–´ ì”Œì›Œì§€ëŠ” ëŒ€ì°¸ì‚¬ ë§‰ì„ ìˆ˜ ìžˆìŒ... */
 id          :  ID
                  { $$ = newExpNode(IdK);
                  savedName = copyString(tokenString); 
@@ -88,14 +88,14 @@ num         : NUM
                    $$->lineno = lineno;
                  }
                  ;
-/*1¹øÀº child ¾øÀÌ id¶û type¿¡¼­ ¼Ó¼º °®°í ¿À±â*/
+/*1ë²ˆì€ child ì—†ì´ idëž‘ typeì—ì„œ ì†ì„± ê°–ê³  ì˜¤ê¸°*/
 var_decl    : type_spec id SEMI
                  { $$ = newDeclNode(VarK);
                    $$->type = $1->type;  
-                   $$->attr.name = $2->attr.name;  /* id nodeÀÇ ÀÌ¸§... savedName ¾²´Ï±î updateµÇ¾î¹ö¸² */
+                   $$->attr.name = $2->attr.name;  /* id nodeì˜ ì´ë¦„... savedName ì“°ë‹ˆê¹Œ updateë˜ì–´ë²„ë¦¼ */
                    $$->lineno = savedLineNo;
                  }
-/*¹è¿­Àº type_spec¿¡ µû¶ó type °áÁ¤*/
+/*ë°°ì—´ì€ type_specì— ë”°ë¼ type ê²°ì •*/
             | type_spec id LBRACE num RBRACE SEMI
                  { $$ = newDeclNode(ArrK);
                    $$->type = ($1->type== Integer) ? IntArray : VoidArray;
@@ -104,7 +104,7 @@ var_decl    : type_spec id SEMI
                    $$->lineno = savedLineNo;
                  }
             ;
-/*¾ê³×µµ node·Î ¾È ¸¸µé¾îÁÖ¸é updateµÇ¾î¼­ node·Î ¸¸µé¾îÁÖ±â */
+/*ì–˜ë„¤ë„ nodeë¡œ ì•ˆ ë§Œë“¤ì–´ì£¼ë©´ updateë˜ì–´ì„œ nodeë¡œ ë§Œë“¤ì–´ì£¼ê¸° */
 type_spec   : INT 
                  { $$ = newDeclNode(TypeK); 
                    $$->type = Integer; 
@@ -114,7 +114,7 @@ type_spec   : INT
                    $$->type = Void;     
                  }
                  ;
-/*child´Â paramÀÌ¶û comp type, nameÀº ´Ù saved¿¡¼­ */
+/*childëŠ” paramì´ëž‘ comp type, nameì€ ë‹¤ savedì—ì„œ */
 func_decl   : type_spec id LPAREN params RPAREN comp_stmt
                  { $$ = newDeclNode(FuncK);
                    $$->type = $1->type;  
@@ -139,7 +139,7 @@ param_list : param_list COMMA param
                  }
            | param { $$ = $1; }
            ;
-/* ¿©±â´Â parameter¸¦ °®´Â °Í... typeÀÌ void¿©µµ void parameter´Â ¾Æ´Ô ±×³É typeÀÌ voidÀÎ ÀÎÀÚ */
+/* ì—¬ê¸°ëŠ” parameterë¥¼ ê°–ëŠ” ê²ƒ... typeì´ voidì—¬ë„ void parameterëŠ” ì•„ë‹˜ ê·¸ëƒ¥ typeì´ voidì¸ ì¸ìž */
 param      : type_spec id
                  { $$ = newDeclNode(ParamK);
                    $$->type = $1->type;  
@@ -156,8 +156,8 @@ param      : type_spec id
 
 comp_stmt  : LCURLY local_decl stmt_list RCURLY
                 { $$ = newStmtNode(CompoundK);
-                 $$->child[0] = $2 ? $2 : NULL;  // local_declarations°¡ ¾øÀ¸¸é NULL
-                  $$->child[1] = $3 ? $3 : NULL;
+                  $$->child[0] = $2;
+                  $$->child[1] = $3;
                 }
            ;
 

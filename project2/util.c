@@ -229,7 +229,7 @@ void printTree( TreeNode * tree )
   }
   UNINDENT;
   //   else fprintf(listing,"Unknown node kind\n");
-  //  // 자식 노드로 이동하여 재귀 호출
+  //  //  黴        絹  臼      호  
   //       for (i = 0; i < MAXCHILDREN; i++) {
   //           if (tree->child[i] != NULL) {
   //               fprintf(listing, "Child %d (Address: %p):\n", i, (void*)tree->child[i]);
@@ -237,7 +237,7 @@ void printTree( TreeNode * tree )
   //           }
   //       }
 
-  //       // 형제 노드로 이동 (디버그용 형제 주소 출력)
+  //       //            絹  (    六        玲     )
   //       if (tree->sibling != NULL) {
   //           fprintf(listing, "Sibling (Address: %p):\n", (void*)tree->sibling);
   //       }

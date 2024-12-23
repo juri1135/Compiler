@@ -328,7 +328,6 @@ static void insertNode(TreeNode *t) {
 			switch (t->kind.exp) {
 				case CallK:
 					BucketList list = st_lookup_bucket(t->attr.name,"Function");
-
           if (list == NULL) {
               error_undeclared(listing,"undeclared_func",t->attr.name,t->lineno);
               st_insert_function("Function",t->attr.name,t->lineno,"Undetermined",currentScope,NULL);
@@ -336,7 +335,7 @@ static void insertNode(TreeNode *t) {
           } else {
               //printf("ExpK(call): %s\n",t->attr.name);
               t->type = (strcmp(list->type, "int") == 0) ? Integer : Void;
-              insertLines(t->attr.name, t->lineno,"Function"); // 라인 번호 추가
+              insertLines(t->attr.name, t->lineno,"Function"); 
           }
 					break;
 				case VarExpK:
@@ -348,7 +347,7 @@ static void insertNode(TreeNode *t) {
           } else {
               //printf("ExpK: %s\n",t->attr.name);
               t->type = (strcmp(list2->type, "int") == 0) ? Integer : Void;
-              insertLines(t->attr.name, t->lineno,"Variable"); // 라인 번호 추가
+              insertLines(t->attr.name, t->lineno,"Variable"); 
           }
 					break;
         case AssignK:
@@ -361,7 +360,7 @@ static void insertNode(TreeNode *t) {
           } else {
               //printf("ExpK: %s\n",t->attr.name);
               t->type = (strcmp(list3->type, "int") == 0) ? Integer : Void;
-              insertLines(t->attr.name, t->lineno,"Variable"); // 라인 번호 추가
+              insertLines(t->attr.name, t->lineno,"Variable"); 
           }
           break;
 				default:
@@ -448,252 +447,245 @@ static void typeError(TreeNode * t, char * message)
   Error = TRUE;
 }
 int checkFunctionCall(TreeNode *callNode, BucketList funcBucket, FILE *listing) {
-    ParameterList param = funcBucket->params;
-    TreeNode *arg = callNode->child[0];
-    //printf("check function call\n");
-    //if(param==NULL) printf("%s void param\n",funcBucket->name);
-    // 매개변수 출력 (원본 포인터 유지)
-    ParameterList tempParam = param;
-    while(tempParam != NULL){
-        //printf("Param - name: %s, type: %s\n", tempParam->name, tempParam->type);
-        tempParam = tempParam->next;
-    }
+  ParameterList param = funcBucket->params;
+  TreeNode *arg = callNode->child[0];
+  //printf("check function call\n");
+  //if(param==NULL) printf("%s void param\n",funcBucket->name);
+  ParameterList tempParam = param;
+  while(tempParam != NULL){
+    //printf("Param - name: %s, type: %s\n", tempParam->name, tempParam->type);
+    tempParam = tempParam->next;
+  }
+  TreeNode *tempArg = arg;
+  while(tempArg != NULL){
+    //printf("Arg s, type: %d\n", tempArg->type);
+    tempArg = tempArg->sibling;
+  }
+  param = funcBucket->params;
+  arg = callNode->child[0];
 
-    // 인수 출력 (원본 포인터 유지)
-    TreeNode *tempArg = arg;
-    while(tempArg != NULL){
-        //printf("Arg s, type: %d\n", tempArg->type);
-        tempArg = tempArg->sibling;
+  while (param != NULL && arg != NULL) {
+    char *argType = nodeTypeToString(arg);
+    if (strcmp(argType, param->type) != 0) {
+      error_void_call_index(listing, "invalidfunc", callNode->attr.name, callNode->lineno);
+      return 0;
     }
-
-    // 매개변수와 인수 다시 초기화
-    param = funcBucket->params;
-    arg = callNode->child[0];
-
-    while (param != NULL && arg != NULL) {
-        char *argType = nodeTypeToString(arg);
-        if (strcmp(argType, param->type) != 0) {
-            error_void_call_index(listing, "invalidfunc", callNode->attr.name, callNode->lineno);
-            return 0;
-        }
-        param = param->next;
-        arg = arg->sibling;
-    }
-
-    if (param != NULL || arg != NULL) {
-        error_void_call_index(listing, "invalidfunc", callNode->attr.name, callNode->lineno);
-        return 0;
-    }
-    //둘 다 null이면 return 1;
-    return 1;
+    param = param->next;
+    arg = arg->sibling;
+  }
+  if (param != NULL || arg != NULL) {
+    error_void_call_index(listing, "invalidfunc", callNode->attr.name, callNode->lineno);
+    return 0;
+  }
+  return 1;
 }
 /* Procedure checkNode performs
  * type checking at a single tree node
  */
 static void checkNode(TreeNode *t) {
-    if (t == NULL) return;
+  if (t == NULL) return;
 
-    switch (t->nodekind) {
-      case ExpK:
-      //기존에 존재하지 않는 변수나 함수 호출하는 건 symbol table build하면서 체크함
-      //함수 호출하면 cur scope->global까지 가면서 해당 함수 찾고 symbol table에 저장된 param과 일치하는 지 확인
-      //return type은 returnK에서 확인해주면 됨
-        switch (t->kind.exp) {
-          case OpK: // 연산자 노드
-              //printf("op %s, %s\n",nodeTypeToString(t->child[0]),nodeTypeToString(t->child[1]));
-              //int+int, void+void, int[]+int[]... 이 중 int op int만 허용
-               if (t->child[0]->type == Integer && t->child[1]->type == Integer) {
-                  t->type=Integer;
-              }else {
-                error_invalid(listing, "operation", t->lineno);
-                  // t->type=Undetermined;
-              }
-              break;
-              //int=int 혹은 int[]=int[]만 허용
-          case AssignK:
-            BucketList bucket = st_lookup_bucket(t->child[0]->attr.name,"Variable");
-            if(bucket == NULL){
-              //undeclared는 이미 출력한 상태
-              //error_undeclared(listing,"var",t->attr.name,t->lineno);
-              // t->type = Undetermined;
-            }
-          //printf("assgin %s, %s\n",nodeTypeToString(t->child[0]),nodeTypeToString(t->child[1]));
-            if(t->child[0]->type==IntArray&&t->child[1]->type==IntArray){
-              t->type=IntArray;
-            }
-            else if(t->child[0]->type==Integer&&t->child[1]->type==Integer){
+  switch (t->nodekind) {
+    case ExpK:
+    //기존에 존재하지 않는 변수나 함수 호출하는 건 symbol table build하면서 체크함
+    //함수 호출하면 cur scope->global까지 가면서 해당 함수 찾고 symbol table에 저장된 param과 일치하는 지 확인
+    //return type은 returnK에서 확인해주면 됨
+      switch (t->kind.exp) {
+        case OpK: // 연산자 노드
+          //printf("op %s, %s\n",nodeTypeToString(t->child[0]),nodeTypeToString(t->child[1]));
+          //int+int, void+void, int[]+int[]... 이 중 int op int만 허용
+           if (t->child[0]->type == Integer && t->child[1]->type == Integer) {
               t->type=Integer;
-            }
-            else{
-              error_invalid(listing,"assign",t->lineno);
+          }else {
+            error_invalid(listing, "operation", t->lineno);
               // t->type=Undetermined;
-            }
+          }
+          break;
+          //int=int 혹은 int[]=int[]만 허용
+        case AssignK:
+          BucketList bucket = st_lookup_bucket(t->child[0]->attr.name,"Variable");
+          if(bucket == NULL){
+            //undeclared는 이미 출력한 상태
+            //error_undeclared(listing,"var",t->attr.name,t->lineno);
+            // t->type = Undetermined;
+          }
+          //printf("assgin %s, %s\n",nodeTypeToString(t->child[0]),nodeTypeToString(t->child[1]));
+          if(t->child[0]->type==IntArray&&t->child[1]->type==IntArray){
+            t->type=IntArray;
+          }
+          else if(t->child[0]->type==Integer&&t->child[1]->type==Integer){
+            t->type=Integer;
+          }
+          else{
+            error_invalid(listing,"assign",t->lineno);
+            // t->type=Undetermined;
+          }
+          break;
+        case ConstK:
+            t->type = Integer;
             break;
-          case ConstK:
-             t->type = Integer;
-              break;
-              //id 혹은 id[]... 여기선 index 체크만 하면 됨. 
-          case VarExpK:
+            //id 혹은 id[]... 여기선 index 체크만 하면 됨. 
+        case VarExpK:
           //일단 [] 안에 들어간 게 있다면 Integer인지 보고 int 아니면 에러
           //그리고 id[]가 정말 intArr인 지 확인.(symbol table 기반) intArr이라면 t는 intger
-            if(t->child[0] != NULL) {
-                if(t->child[0]->type != Integer){
-                    error_void_call_index(listing, "indexNotInt", t->attr.name,t->lineno);
-                    t->type=Integer;
-                    // t->type = Undetermined;
-                } else {
-                    //변수의 타입을 심볼 테이블에서 가져와야 함
-                    //!이것도 preorder에서 scope 결정해서 current scope 알게 된 상태로 들어가야
-                    BucketList bucket = st_lookup_bucket(t->attr.name,"Variable");
-                    if(bucket == NULL){
-                        //undeclared는 이미 출력한 상태
-                        printf("undeclared %s %d\n",t->attr.name, t->lineno);
-                        // t->type = Undetermined;
-                    }
-                    else {
-                        if(strcmp(bucket->type,"int[]")==0){
-                          //printf("int[int]=int %s %d\n",t->attr.name,t->lineno);
-                            t->type = Integer; // 배열의 요소 타입이 Integer라면
-                        }
-                        else {
-                            //void 배열인 경우는 이미 build symbol table에서 출력
-                            //printf("voidarr%s %d\n",t->attr.name,t->lineno);
-                            // t->type = Undetermined;
-                        }
-                    }
+          if(t->child[0] != NULL) {
+            if(t->child[0]->type != Integer){
+              error_void_call_index(listing, "indexNotInt", t->attr.name,t->lineno);
+              t->type=Integer;
+              // t->type = Undetermined;
+            } else {
+              //변수의 타입을 심볼 테이블에서 가져와야 함
+              //!이것도 preorder에서 scope 결정해서 current scope 알게 된 상태로 들어가야
+              BucketList bucket = st_lookup_bucket(t->attr.name,"Variable");
+              if(bucket == NULL){
+                //undeclared는 이미 출력한 상태
+                printf("undeclared %s %d\n",t->attr.name, t->lineno);
+                // t->type = Undetermined;
+              }
+              else {
+                if(strcmp(bucket->type,"int[]")==0){
+                  //printf("int[int]=int %s %d\n",t->attr.name,t->lineno);
+                  t->type = Integer; // 배열의 요소 타입이 Integer라면
                 }
-            }
-            break;
-            case CallK: { // 함수 호출
-                  //호출 자체는 부모에 있는 함수 호출 가능하니까... st_lookup
-                  //여기 오기 전에 current Scope이 다 지정이 되어 있어야 함
-                 //printf("callk curSope: %s, lineno: %d name: %s\n",currentScope->name,t->lineno,t->attr.name);
-                    BucketList funcBucket = st_lookup_bucket(t->attr.name,"Function");
-                    if (funcBucket == NULL) {
-                        //이미 undeclare는 symbol table 만들 때 출력했음
-                        break;
-                    } 
-                    if(strcmp(funcBucket->type,"Undetermined")==0){
-                    error_void_call_index(listing,"func",t->attr.name,t->lineno);
-                    break;}
-                    //printf("%s\n",funcBucket->name);
-                    checkFunctionCall(t, funcBucket, listing);
-                    t->type = (strcmp(funcBucket->type,"int")==0) ? Integer : Void;
-                    // if (checkFunctionCall(t, funcBucket, listing)) {
-                    //     t->type = (strcmp(funcBucket->type,"int")==0) ? Integer : Void;
-                    // } else {
-                    //     //t->type = Undetermined;
-                    // }
-                    break;
+                else {
+                  //void 배열인 경우는 이미 build symbol table에서 출력
+                  //printf("voidarr%s %d\n",t->attr.name,t->lineno);
+                  // t->type = Undetermined;
                 }
-
-                default:
-                    break;
+              }
             }
+          }
+          break;
+
+        case CallK: { // 함수 호출
+          //호출 자체는 부모에 있는 함수 호출 가능하니까... st_lookup
+          //여기 오기 전에 current Scope이 다 지정이 되어 있어야 함
+          //printf("callk curSope: %s, lineno: %d name: %s\n",currentScope->name,t->lineno,t->attr.name);
+          BucketList funcBucket = st_lookup_bucket(t->attr.name,"Function");
+          if (funcBucket == NULL) {
+            //이미 undeclare는 symbol table 만들 때 출력했음
             break;
-
-        case StmtK:
-            switch (t->kind.stmt) {
-                case IfK: 
-                case ElseK:
-                case WhileK:
-                    if (t->child[0]->type != Integer) {
-                        error_invalid(listing,"condition",t->lineno);
-                    }
-                    break;
-                case CompoundK:
-                  //printf("compound cur scope: %s, checkindex: %d\n",currentScope->name,checkIndex);
-                  checkIndex-=2;
-                  currentScope=scopeArray[checkIndex];
-                  scopeDepth--;
-                  //printf("compound after curSope: %s, lineno: %d name: %s\n",currentScope->name,t->lineno,t->attr.name);
-                  break;
-                case ReturnK: { // return문
-                    // 현재 함수의 반환 타입을 심볼 테이블에서 가져옴
-                   // printf("returnk curSope: %s, lineno: %d fucname: %s\n",currentScope->name,t->lineno,funcName);
-                    //returnk에는 name type이 없음... checkScope에서 funck 보이면 전역변수로 설정해줘야 될듯
-                    BucketList funcBucket = st_lookup_bucket(funcName,"Function");
-                    //returnK의 child0이 return하는 expression. 
-                    //if(funcBucket==NULL) printf("null\n");
-                    //else  printf("%s\n",funcBucket->name);
-                    ExpType funcType;
-                    if (strcmp(funcBucket->type,"int")==0) {
-                        //printf("return type: int\n");
-                        funcType = Integer;
-                    } else if (funcBucket->type==Void) {
-                      //printf("return type: void\n");
-                        funcType = Void;
-                    } else {
-                      //printf("return type: undetermined\n");
-                        funcType = Undetermined;
-                    }
-
-                    if (t->child[0] != NULL) {
-                        if (funcType != t->child[0]->type) {
-                            error_invalid(listing,"return",t->lineno);
-                        }
-                    } else {
-                        if (funcType != Void) {
-                            error_invalid(listing,"return",t->lineno);
-                        }
-                    }
-                    break;
-                }
-
-                default:
-                    break;
-            }
+          } 
+          if(strcmp(funcBucket->type,"Undetermined")==0){
+            error_void_call_index(listing,"func",t->attr.name,t->lineno);
             break;
-
+          }
+          //printf("%s\n",funcBucket->name);
+          checkFunctionCall(t, funcBucket, listing);
+          t->type = (strcmp(funcBucket->type,"int")==0) ? Integer : Void;
+          // if (checkFunctionCall(t, funcBucket, listing)) {
+          //     t->type = (strcmp(funcBucket->type,"int")==0) ? Integer : Void;
+          // } else {
+          //     //t->type = Undetermined;
+          // }
+          break;
+        }
         default:
+          break;
+      }
+      break;
+
+      case StmtK:
+        switch (t->kind.stmt) {
+          case IfK: 
+          case ElseK:
+          case WhileK:
+            if (t->child[0]->type != Integer) {
+              error_invalid(listing,"condition",t->lineno);
+            }
             break;
+          case CompoundK:
+            //printf("compound cur scope: %s, checkindex: %d\n",currentScope->name,checkIndex);
+            checkIndex-=2;
+            currentScope=scopeArray[checkIndex];
+            scopeDepth--;
+            //printf("compound after curSope: %s, lineno: %d name: %s\n",currentScope->name,t->lineno,t->attr.name);
+            break;
+          case ReturnK: { // return문
+            // 현재 함수의 반환 타입을 심볼 테이블에서 가져옴
+            // printf("returnk curSope: %s, lineno: %d fucname: %s\n",currentScope->name,t->lineno,funcName);
+            //returnk에는 name type이 없음... checkScope에서 funck 보이면 전역변수로 설정해줘야 될듯
+            BucketList funcBucket = st_lookup_bucket(funcName,"Function");
+            //returnK의 child0이 return하는 expression. 
+            //if(funcBucket==NULL) printf("null\n");
+            //else  printf("%s\n",funcBucket->name);
+            ExpType funcType;
+            if (strcmp(funcBucket->type,"int")==0) {
+              //printf("return type: int\n");
+              funcType = Integer;
+            } else if (funcBucket->type==Void) {
+              //printf("return type: void\n");
+              funcType = Void;
+            } else {
+              //printf("return type: undetermined\n");
+              funcType = Undetermined;
+            }
+            if (t->child[0] != NULL) {
+              if (funcType != t->child[0]->type) {
+                error_invalid(listing,"return",t->lineno);
+              }
+            } else {
+              if (funcType != Void) {
+                error_invalid(listing,"return",t->lineno);
+              }
+            }
+            break;
+          }
+          default:
+            break;
+        }
+        break;
+
+      default:
+        break;
     }
 }
 static void checkScope(TreeNode *t) {
-    switch (t->nodekind) {
-        case DeclK:
-        
-            switch (t->kind.decl) {
-                case FuncK:
-                //printf("check funck %s, %d\n",t->attr.name,t->lineno);
-                    funcName=t->attr.name;
-                    if(checkIndex==scopeIndex){
-                      printf("index out of range!\n");
-                    }else{
-                      //printf("check scope funck curscope: %s\n",currentScope->name);
-                     currentScope=scopeArray[checkIndex++];
-                     scopeDepth=1;
-                     //printf("after check scope curscope: %s\n",currentScope->name);
-                    }break;
-                default:
-                    break;
-            }
+  switch (t->nodekind) {
+    case DeclK:
+      switch (t->kind.decl) {
+        case FuncK:
+        //printf("check funck %s, %d\n",t->attr.name,t->lineno);
+          funcName=t->attr.name;
+          if(checkIndex==scopeIndex){
+            printf("index out of range!\n");
+          }else{
+            //printf("check scope funck curscope: %s\n",currentScope->name);
+           currentScope=scopeArray[checkIndex++];
+           scopeDepth=1;
+           //printf("after check scope curscope: %s\n",currentScope->name);
+          }break;
+        default:
             break;
-        case StmtK:
-            switch (t->kind.stmt) {
-                case CompoundK:
-                //printf("check compound %s, %d\n",t->attr.name,t->lineno);
-                  if(scopeDepth==1){
-                    //printf("첫 번째 compound %d\n",t->lineno);
-                    scopeDepth++;
-                  }
-                  else{
-                    //printf("check scope compound curscope: %s\n",currentScope->name);
-                    currentScope=scopeArray[checkIndex++];
-                    scopeDepth--;
-                    //printf("after check scope curscope: %s\n",currentScope->name);
-                  }
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case ExpK:
+      }
+      break;
+
+    case StmtK:
+      switch (t->kind.stmt){ 
+        case CompoundK:
+        //printf("check compound %s, %d\n",t->attr.name,t->lineno);
+          if(scopeDepth==1){
+            //printf("첫 번째 compound %d\n",t->lineno);
+            scopeDepth++;
+          }
+          else{
+            //printf("check scope compound curscope: %s\n",currentScope->name);
+            currentScope=scopeArray[checkIndex++];
+            scopeDepth--;
+            //printf("after check scope curscope: %s\n",currentScope->name);
+          }
           break;
         default:
-          
-            break;
-    }
+          break;
+      }
+      break;
+
+    case ExpK:
+      break;
+
+    default:
+      break;
+  }
 }
 /* Procedure typeCheck performs type checking 
  * by a postorder syntax tree traversal
